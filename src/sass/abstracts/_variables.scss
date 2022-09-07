@@ -1,0 +1,42 @@
+//CSS variables
+:root {
+	--color-body: #fbfbfb;
+	--color-text: #1F1F1F;
+	--color-primary: #230550;
+	--color-secondary: #4A00E0;
+	--color-text-white: #F5F5F5;
+	--color-link-white: white;
+	--color-link-white_hover: var(--color-text-white);
+	--color-link-regular_hover: #1F1F1F;
+
+	//Footer
+	--color-footer-link: var(--color-link-white);
+	--color-footer-link_hover: var(--color-link-white_hover);
+	--color-footer-bg: var(--color-primary);
+	--color-footer-text: white;
+
+
+	//navbar
+	--color-navbar-bg: var(--color-primary);
+
+	//Spacing, radius and card related stuff
+	--card-radius-big: 20px;
+	--card-radius-medium: 12px;
+	--card-radius-small: 8px;
+	--card-background-color: white;
+	--card-clay-white: 0px 10px 20px rgba(179, 197, 234, 0.8),
+		inset 2px 2px 4px rgba(238, 243, 255, 0.75),
+		inset -4px -4px 20px #DFE6F5;
+
+}
+
+//SASS variables helpers from css variables
+$color-secondary: #4A00E0;
+
+//Bulma overrides
+$text: var(--color-text);
+$navbar-item-hover-background-color: transparent;
+$navbar-height: 4.5rem;
+$navbar-dropdown-item-hover-background-color: transparent;
+$navbar-dropdown-radius: var(--card-radius-small);
+$footer-padding: 4rem 1.5rem;

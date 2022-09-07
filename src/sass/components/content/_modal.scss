@@ -1,0 +1,20 @@
+.modal.ui-modal {
+	will-change: opacity;
+	opacity: 0;
+	display: block;
+	z-index: -99;
+	
+	&.in-transition, &.is-active {
+		z-index: 99;
+	}
+	.modal-close {
+		position: absolute;
+		right: -16px;
+		top: -16px;
+		padding: 0;
+
+	}
+	.modal-content {
+		overflow: visible;
+	}
+}

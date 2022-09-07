@@ -1,0 +1,66 @@
+{
+  "name": "arkdewp",
+  "version": "1.0.0",
+  "description": "ARKDE wp solo theme based on underscores",
+  "author": "Jose Striedinger",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "keywords": [
+    "WordPress",
+    "Theme"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@wordpress/scripts": "^19.2.2",
+    "autoprefixer": "^10.4.8",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.5",
+    "browser-sync": "^2.27.10",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "bulma": "^0.9.4",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "dir-archiver": "^1.1.1",
+    "eslint-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^7.0.1",
+    "rtlcss": "^3.5.0",
+    "sass": "^1.54.5",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.5",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "rtlcssConfig": {
+    "options": {
+      "autoRename": false,
+      "autoRenameStrict": false,
+      "blacklist": {},
+      "clean": true,
+      "greedy": false,
+      "processUrls": false,
+      "stringMap": []
+    },
+    "plugins": [],
+    "map": false
+  },
+  "scripts": {
+    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
+    "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
+    "compile:rtl": "rtlcss style.css style-rtl.css",
+    "lint:scss": "wp-scripts lint-style 'sc/sass/**/*.scss'",
+    "lint:js": "wp-scripts lint-js 'src/js/*.js'",
+    "lint:webpack": "wp-scripts lint-js 'webpack.common.js'",
+    "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock",
+    "prod": "webpack --config webpack.prod.js",
+    "dev": "webpack --config webpack.dev.js"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0",
+    "eslint": "^7.32.0",
+    "gsap": "^3.11.0",
+    "mini-css-extract-plugin": "^2.6.1"
+  }
+}

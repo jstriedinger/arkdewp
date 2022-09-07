@@ -1,0 +1,210 @@
+.main-navigation {
+	display: block;
+	width: 100%;
+
+	ul {
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+
+		ul {
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+			float: left;
+			position: absolute;
+			top: 100%;
+			left: -999em;
+			z-index: 99999;
+
+			ul {
+				left: -999em;
+				top: 0;
+			}
+
+			li {
+
+				&:hover > ul,
+				&.focus > ul {
+					display: block;
+					left: auto;
+				}
+			}
+
+			a {
+				width: 200px;
+			}
+
+			:hover > a,
+			.focus > a {
+			}
+
+			a:hover,
+			a.focus {
+			}
+		}
+
+		li:hover > ul,
+		li.focus > ul {
+			left: auto;
+		}
+	}
+
+	li {
+		position: relative;
+
+		&:hover > a,
+		&.focus > a {
+		}
+	}
+
+	a {
+		display: block;
+		text-decoration: none;
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a,
+	.current-menu-ancestor > a {
+	}
+}
+
+/* Small menu. */
+.menu-toggle,
+.main-navigation.toggled ul {
+	display: block;
+}
+
+@media screen and (min-width: 37.5em) {
+
+	.menu-toggle {
+		display: none;
+	}
+
+	.main-navigation ul {
+		display: flex;
+	}
+}
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin: 0 0 1.5em;
+	}
+
+	.nav-links {
+		display: flex;
+	}
+
+	.nav-previous {
+		flex: 1 0 50%;
+	}
+
+	.nav-next {
+		text-align: end;
+		flex: 1 0 50%;
+	}
+}
+
+/* Top navbar navigation */
+header#masthead {
+	background-color: var(--color-navbar-bg);
+	nav.navbar {
+		background: transparent;
+		max-width: $fullhd;
+		margin: 0 auto;
+		padding: 0 1rem;
+		gap: 16px;
+		@include touch {
+			.navbar-menu {
+				//changing bulma open transition from Display to height
+				display: block; 
+				max-height: 0;
+				transition: max-height 0.55s ease-out, padding 0s ease-out 0.5s;
+				box-sizing: border-box;
+				overflow: hidden;
+				&.is-active {
+					max-height: 100vh;
+					transition: max-height 0.65s ease-in;
+				}
+				&:not(.is-active) {
+					padding: 0;
+				}
+			}
+		}
+		.navbar-item {
+			background: transparent !important;
+			&.has-dropdown .navbar-link {
+				background: transparent;
+				border: none;
+			}
+		}
+		@include touch {
+			.navbar-menu {
+				background-color: inherit;
+			}
+			.navbar-item, .navbar-link {
+				color: inherit;
+				&:not(.is-arrowless)::after {
+					border-color: inherit;
+				}
+			}
+		}
+		
+		.custom-logo-link {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				.custom-logo {
+					max-width: 90px;
+				}
+		}
+		.navbar-dropdown {
+			border-top: none;
+			border-radius: $navbar-dropdown-radius;
+		}
+		@include desktop {
+			.navbar-item.navbar-item {
+				.navbar-dropdown {
+					top: 80%;
+					
+				}
+			}
+
+		}
+		
+	}
+
+	//Navbar always inside section 
+	//Should be transparent and add a padding to next sibling
+	&.in-body {
+		position: absolute;
+		width: 100%;
+		top: 0;
+		background: transparent;
+		+ * {
+			padding-top: $navbar-height;
+		} 
+	}
+}
+
+/* Footer navigation */
+footer.footer {
+	background: var(--color-footer-bg);
+	a {
+		color: var(--color-footer-link);
+		&:hover,&:active,&:focus {
+			color: var(--color-footer-link_hover);
+		}
+	}
+	h1,h2,h3,h4,h5,p{
+		color: var(--color-footer-text);
+	}
+	img {
+		max-width: 125px;
+	}
+	
+}

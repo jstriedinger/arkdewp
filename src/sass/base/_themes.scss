@@ -1,0 +1,15 @@
+//dark/light theme
+[data-theme="light"] {
+
+	//footer
+	--color-footer-bg: white;
+	--color-footer-link: $text;
+	--color-footer-link_hover: var(--color-secondary);
+	--color-footer-text: var(--color-text);
+
+
+	//navbar
+	--color-navbar-bg: transparent;
+
+
+}

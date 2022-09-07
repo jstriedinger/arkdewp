@@ -1,0 +1,18 @@
+
+.card {
+	background: var(--card-background-color);
+	border-radius: var(--card-radius-big);
+	box-shadow: var(--card-clay-white);
+	overflow: hidden;
+	&.course-preview {
+	
+		.card-content {
+			padding: 1rem;
+			padding-top: 0.5rem
+		}
+	
+		.card-header {
+			background: red;
+		}
+	}
+}
