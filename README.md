@@ -1,11 +1,9 @@
-# New ARDEK wp theme
-A new ARKDE wordpress theme, aiming ton luanch on January 2023. Using npm and webpack to build.
+![Arkde logo](https://github.com/jstriedinger/jstriedinger/blob/main/arkde-badge.png?raw=true)
+# New ARKDE theme
+A new wordpress theme, aiming to luanch on January 2023. Using npm and webpack to build.
 UI based on Figma project: https://www.figma.com/file/YiL5NIS4uCGzgQzYfevNs7/ARKDE-LMS-2.0
 
-## Dependencies
-- Buddyboss platform plugin
-- Learndash
-- Advanced Custom Fields
+Most development can be found on `src` folder
 
 ## Development guidelines
 - A focus on modular Javascript
@@ -14,5 +12,9 @@ UI based on Figma project: https://www.figma.com/file/YiL5NIS4uCGzgQzYfevNs7/ARK
 - Scalable Sass using more CSS global/local variables
 - Development workflow opitmized for buddyworks and Kinsta 
 
+## Dependencies
+- Buddyboss platform plugin
+- Learndash
+- Advanced Custom Fields
 
 *FYI this project is still in development*
