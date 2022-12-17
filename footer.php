@@ -11,7 +11,7 @@
 
 ?>
 
-	<footer id="colophon" class="footer">
+	<footer class="footer">
 		<div class="container">
 			<div class="columns is-variable is-6-widescreen">
 				<div class="column is-one-quarter">

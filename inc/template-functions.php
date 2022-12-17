@@ -41,7 +41,27 @@ function arkde_header() {
 	// Mobile header check.
 	get_template_part( 'template-parts/nav','top',array( ) );
 }
-add_action( THEME_HOOK_PREFIX . 'header', 'arkde_header' );
+add_action( THEME_HOOK_PREFIX . 'nav', 'arkde_header' );
+
+
+//Remove pagination of courses archive page, show all by default
+function arkde_no_pagintion_courses( $query ) {
+	if ( !is_admin() && is_post_type_archive('sfwd-courses' ) && $query->is_main_query()) {
+        $query->set( 'posts_per_page', 2 );
+        return;
+    }
+}
+add_action( 'pre_get_posts', 'arkde_no_pagintion_courses', 1 );
+
+add_action( 'wp_loaded', 'change_WISDMreview_selector' );
+function change_WISDMreview_selector() {
+  global $rrf_ratings_settings;
+  $rrf_ratings_settings['selectors'] = apply_filters(
+      'rrf_rating_selectors',
+      array( 'span.ratings-here' )
+  );
+}
+
 
 
 

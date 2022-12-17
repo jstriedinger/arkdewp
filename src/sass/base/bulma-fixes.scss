@@ -1,0 +1,17 @@
+/**
+* Expected normal Bulma behaviour that for some reason is not present
+* therefore we make it!
+**/
+
+.column.has-text-centered
+{
+	figure.image {
+		margin: 0 auto;
+	}
+}
+
+//adding variable gap to top/bottom paddings as well
+.columns.is-variable.is-multiline>.column {
+	padding-top: var(--columnGap);
+	padding-bottom: var(--columnGap);
+}

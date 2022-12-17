@@ -20,13 +20,20 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?> data-theme="light">
+<body <?php body_class(); ?>  data-currency="<?php echo get_woocommerce_currency(); ?>">
 <?php wp_body_open(); ?>
+<?php
+if ( is_singular( 'sfwd-courses' ) && ! is_user_logged_in() ) :
+	learndash_load_login_modal_html();
+endif;
+?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'arkdewp' ); ?></a>
+	<?php do_action( THEME_HOOK_PREFIX . 'before_header' ); ?>
 
-
-	<header id="masthead" class="site-header in-body">
-		<?php do_action( THEME_HOOK_PREFIX . 'header' ); ?>
-		
+	<header id="masthead" class="site-header in-body <?php echo get_post_type() == 'sfwd-courses' ? 'is-colored' : ''; ?>">
+		<?php do_action( THEME_HOOK_PREFIX . 'nav' ); ?>
 	</header><!-- #masthead -->
+	<?php do_action( THEME_HOOK_PREFIX . 'after_header' ); ?>
+
+	<?php do_action( THEME_HOOK_PREFIX . 'before_content' ); ?>

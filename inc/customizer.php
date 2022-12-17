@@ -65,6 +65,6 @@ function arkdewp_customize_partial_blogdescription() {
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function arkdewp_customize_preview_js() {
-	wp_enqueue_script( 'arkdewp-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), ARKDE_THEME_VERSION, true );
+	wp_enqueue_script( 'arkdewp-customizer', get_stylesheet_directory_uri_uri() . '/js/customizer.js', array( 'customize-preview' ), ARKDE_THEME_VERSION, true );
 }
 add_action( 'customize_preview_init', 'arkdewp_customize_preview_js' );

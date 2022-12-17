@@ -1,21 +1,51 @@
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-	border: 1px solid;
-	border-color: $color__border-button;
-	border-radius: 3px;
-	background: $color__background-button;
-	color: rgba(0, 0, 0, 0.8);
-	line-height: 1;
-	padding: 0.6em 1em 0.4em;
-
-	&:hover {
-		border-color: $color__border-button-hover;
+.button, button {
+	border-radius: var(--card-radius-medium);
+	&.is-small {
+		//to override bulma preset
+		border-radius: var(--card-radius-small) !important;
+	}
+	&.is-large {
+		border-radius: var(--card-radius-large);
+	}
+	border: 0px;
+	font-weight: 600;
+	background: none;
+	overflow: hidden;
+	transition: all 0.2s ease-out;
+	&.is-purple {
+		background: var(--button-blue-gradient);
+		box-shadow: var(--button-clay-blue);
+		color: var(--color-text-white);
+		&:active, &:hover, &:focus {
+			background: var(--button-blue-gradient_hover);
+		}
+	}
+	&.is-primary {
+		background: var(--button-green-gradient);
+		box-shadow: var(--button-clay-green);
+		overflow: hidden;
+		transition: all 0.2s ease-out;
+		color: var(--color-text-white);
+	
+		&:active,
+		&:hover,
+		&:focus {
+			background: var(--button-green-gradient_hover);
+		}
 	}
 
-	&:active,
-	&:focus {
-		border-color: $color__border-button-focus;
+	&.is-gold {
+		background: var(--button-gold-gradient);
+		box-shadow: var(--button-shadow-gold);
+		overflow: hidden;
+		transition: all 0.2s ease-out;
+		color: var(--color-text-white);
+	
+		&:active,
+		&:hover,
+		&:focus {
+			background: var(--button-gold-gradient_hover);
+			color: var(--color-text-white);
+		}
 	}
 }

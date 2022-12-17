@@ -6,6 +6,38 @@ $fa-font-path: "./webfonts";
 @import "@fortawesome/fontawesome-free/scss/brands";
 
 //add 14px font size
-.is-size-14px {
-	font-size: 0.875rem;
+h1,h2,h3,h4,h5,h6,p,.title,.subtitle, .icon-text {
+	&.is-size-14px {
+		font-size: 0.875rem;
+	}
+	&.is-size-14px-mobile {
+		@include mobile {
+			font-size: 0.875rem;
+		}
+	}
+	&.is-gold {
+		color: var(--color-gold);
+		.icon, span {
+			color: var(--color-gold) !important
+		}
+	}
+
+	
+}
+
+.is-line-through {
+	text-decoration-line: line-through;
+}
+
+//bigger size made for here section titles
+.is-size-0 {
+	@include desktop {
+		font-size: 3.5rem !important;
+	}
+}
+
+span {
+	&.is-blue {
+		color: var(--color-secondary);
+	}
 }

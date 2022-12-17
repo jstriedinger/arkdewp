@@ -24,7 +24,7 @@ const config = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					{ loader: 'css-loader', options: { url: false, sourceMap: true } },
-					{ loader: 'postcss-loader', options: { sourceMap: true } },
+					{ loader: 'postcss-loader' },
 					{ loader: 'sass-loader', options: { sourceMap: true } },
 				],
 			},
@@ -44,11 +44,10 @@ const config = {
 		],
 	},
 	plugins: [
-		require( 'autoprefixer' ),
 		new CopyWebpackPlugin( {
 			patterns: [
 				{ from: 'webfonts', to: 'webfonts' },
-				//{ from: 'img/flags', to: 'flags' }
+				{ from: 'img', to: 'img' },
 			],
 		} ),
 	],

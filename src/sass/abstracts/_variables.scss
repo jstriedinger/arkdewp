@@ -3,7 +3,10 @@
 	--color-body: #fbfbfb;
 	--color-text: #1F1F1F;
 	--color-primary: #230550;
+	--color-primary_rgba: 35,5,80;
 	--color-secondary: #4A00E0;
+	--color-secondary_rgba: 35,5,80;
+	--color-gold: #FCB316;
 	--color-text-white: #F5F5F5;
 	--color-link-white: white;
 	--color-link-white_hover: var(--color-text-white);
@@ -21,6 +24,7 @@
 
 	//Spacing, radius and card related stuff
 	--card-radius-big: 20px;
+	--card-radius-large: 14px;
 	--card-radius-medium: 12px;
 	--card-radius-small: 8px;
 	--card-background-color: white;
@@ -28,15 +32,45 @@
 		inset 2px 2px 4px rgba(238, 243, 255, 0.75),
 		inset -4px -4px 20px #DFE6F5;
 
+	//buttons
+	--button-clay-blue: inset 0px 0px 10px rgba(0, 0, 0, 0.3),
+		0px 10px 40px rgba(132, 71, 255, 0.6),
+		inset 3px 1px 15px rgba(255, 255, 255, 0.2);
+	--button-blue-gradient: linear-gradient(315deg, #4A00E0 0%, rgb(122, 63, 239) 70%);
+	--button-blue-gradient_hover: linear-gradient(315deg, #3900AD 0%, #732DFF 70%);
+
+	--button-green-gradient: linear-gradient(315deg, #009286 0%, #00D1B2 70%);
+	--button-green-gradient_hover: linear-gradient(315deg, #00786F 0%, #00B79C 70%);
+	--button-clay-green: 0px 10px 40px rgba(0, 168, 84, 0.6),
+		inset 0px 0px 10px rgba(0, 0, 0, 0.3),
+		inset 3px 1px 15px rgba(255, 255, 255, 0.3);
+
+	--button-shadow-gold: 0px 10px 40px rgba(252, 179, 22, 0.6),
+		inset 0px -3px 10px rgba(0, 0, 0, 0.1),
+		inset 3px 1px 15px rgba(255, 255, 255, 0.1);
+		--button-gold-gradient: linear-gradient(315deg, var(--color-gold) 0%, #FDD171 70%);
+		--button-gold-gradient_hover: linear-gradient(315deg, #F0A503 0%, #FCC13F 70%);
+	
+
+		
+
 }
 
 //SASS variables helpers from css variables
 $color-secondary: #4A00E0;
+$color-primary: #230550;
 
 //Bulma overrides
 $text: var(--color-text);
+$title-color: $text;
 $navbar-item-hover-background-color: transparent;
 $navbar-height: 4.5rem;
 $navbar-dropdown-item-hover-background-color: transparent;
 $navbar-dropdown-radius: var(--card-radius-small);
 $footer-padding: 4rem 1.5rem;
+$link: var(--color-secondary);
+$breadcrumb-item-hover-color: $link;
+
+.icon-text.has-text-link {
+	color: $link !important;
+}

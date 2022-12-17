@@ -1,0 +1,41 @@
+
+.masonry-grid {
+	column-gap: 2rem;
+	> *{
+		margin: 0;
+		grid-template-rows: 1fr auto;
+		margin-bottom: 2rem;
+	} 
+	&.extended {
+		@include desktop {
+			width: 130%;
+			margin-left: -15%;
+		}
+	}
+	@include desktop {
+		column-count: 2;
+	}
+	&.columns-3 {
+		@include widescreen {
+			column-count: 3;
+		}
+	}
+	&.columns-4 {
+		@include widescreen {
+			column-count: 4;
+		}
+	}
+}
+
+.arkde-course-grid {
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: 1fr;
+
+	@include tablet {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@include widescreen {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}

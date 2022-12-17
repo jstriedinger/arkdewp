@@ -28,17 +28,8 @@ function arkdewp_setup() {
 		* If you're building a theme based on ARKDE, use a find and replace
 		* to change 'arkdewp' to the name of your theme in all the template files.
 		*/
-	load_theme_textdomain( 'arkdewp', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'arkdewp', get_stylesheet_directory_uri() . '/languages' );
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
-	/*
-		* Let WordPress manage the document title.
-		* By adding theme support, we declare that this theme does not use a
-		* hard-coded <title> tag in the document head, and expect WordPress to
-		* provide it for us.
-		*/
 	add_theme_support( 'title-tag' );
 
 	/*
@@ -103,6 +94,9 @@ function arkdewp_setup() {
 			'flex-height' => true,
 		)
 	);
+
+	//deregister Buddyboss customizer
+	remove_action('wp_head', 'buddyboss_customizer_css');
 }
 add_action( 'after_setup_theme', 'arkdewp_setup' );
 
@@ -150,9 +144,17 @@ function arkdewp_scripts() {
 	wp_enqueue_style( 'arkdewp-css', $assets_uri . 'arkdewp' . $file_prefix . '.css', array(), $v, 'all' );
 	wp_style_add_data( 'arkdewp-css', 'rtl', 'replace' );
 
-	wp_enqueue_script('arkdewp-js', $assets_uri . 'arkdewp' . $file_prefix . '.js', array(), $v, 'all' );
+	wp_enqueue_script('arkdewp-js', $assets_uri . 'arkdewp' . $file_prefix . '.js', array( 'jquery' ), $v, 'all' );
+	wp_localize_script(
+		'arkdewp-js',
+		'arkde_ajax',
+		array(
+			'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php',
+			'nonce'   => wp_create_nonce( 'ajax-arkde-nonce' ),
+		)
+	);
 
-	//wp_enqueue_script( 'arkdewp-navigation', get_template_directory_uri() . '/js/navigation.js', array(), ARKDE_THEME_VERSION, true );
+	//wp_enqueue_script( 'arkdewp-navigation', get_stylesheet_directory_uri_uri() . '/js/navigation.js', array(), ARKDE_THEME_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -163,44 +165,90 @@ add_action( 'wp_enqueue_scripts', 'arkdewp_scripts' );
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+require __DIR__ . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require __DIR__ . '/inc/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require __DIR__ . '/inc/template-functions.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require __DIR__ . '/inc/customizer.php';
 /**
  * Add navigation helpers.
  */
-require get_template_directory() . '/inc/navigation.php';
+require __DIR__ . '/inc/navigation.php';
+/**
+ * Add ajax theme functions.
+ */
+require __DIR__ . '/inc/ajax.php';
+
+/**
+ * Add learndash helper functions
+ */
+require __DIR__ . '/inc/learndash-helper.php';
+
+/**
+ * Buddyboss related stuff.
+ */
+require __DIR__ . '/inc/buddyboss.php';
 
 /**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+	require __DIR__ . '/inc/jetpack.php';
 }
 
 /**
  * Load WooCommerce compatibility file.
  */
 if ( class_exists( 'WooCommerce' ) ) {
-	require get_template_directory() . '/inc/woocommerce.php';
+	require __DIR__ . '/inc/woocommerce.php';
 }
 
 function meks_which_template_is_loaded() {
     global $template;
     print_r( $template );
+		echo get_post_type();
+		$result = [];
+    $result['scripts'] = [];
+    $result['styles'] = [];
+
+    // Print all loaded Scripts
+    /*global $wp_scripts;
+    foreach( $wp_scripts->queue as $script ) :
+       $result['scripts'][] =  $wp_scripts->registered[$script]->src . ";";
+    endforeach;*/
+
+    // Print all loaded Styles (CSS)
+		/*echo "<pre>";
+    global $wp_styles;
+    foreach( $wp_styles->queue as $style ) :
+			$result['styles'][] =  $style . " - " . $wp_styles->registered[$style]->src . ";";
+    endforeach;
+		var_dump($result);
+		echo "</pre>";*/
+
 }
  
 add_action( 'wp_footer', 'meks_which_template_is_loaded' );
+
+
+//Write to error log
+if ( ! function_exists('write_log')) {
+   function write_log ( $log )  {
+      if ( is_array( $log ) || is_object( $log ) ) {
+         error_log( print_r( $log, true ) );
+      } else {
+         error_log( $log );
+      }
+   }
+}

@@ -1,4 +1,4 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar " role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
 	<?php	
 		the_custom_logo();
@@ -26,7 +26,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
+          <a class="button is-yellow">
             <strong>Sign up</strong>
           </a>
           <a class="button is-light">

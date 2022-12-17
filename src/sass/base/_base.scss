@@ -4,7 +4,10 @@ body {
 /* Typography
 --------------------------------------------- */
 @import "typography";
+@import "elements/buttons";
 @import "themes";
+@import "resets";
+@import "bulma-fixes";
 
 /* Elements
 --------------------------------------------- 
@@ -22,3 +25,10 @@ body {
 --------------------------------------------- 
 @import "elements/buttons";
 @import "elements/fields";*/
+
+/*
+Body
+*/
+main#primary {
+	overflow: hidden;
+}

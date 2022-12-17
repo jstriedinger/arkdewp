@@ -1,3 +1,4 @@
+//stuff related to posts and pages layout, like sections and more
 .sticky {
 	display: block;
 }
@@ -20,4 +21,165 @@
 .page-links {
 	clear: both;
 	margin: 0 0 1.5em;
+}
+
+section{
+	position: relative;
+	img.woosh-svg {
+		z-index: 3;
+		width: 100%;
+		position: relative;
+	}
+	&#main-section {
+		font-size: 0;
+	}
+	
+	&.background-gradient-purple {
+		background: url('./img/gradient-bg.svg') center bottom;
+		background-size: cover;
+		//background: linear-gradient(180deg, darken(#FCB316, 10%) 5%, darken(#4A00E0, 10%) 50%, #230550);
+		//background: linear-gradient(149deg, hsla(47, 100%, 52%, 1), cubic-bezier(0.42, 0, 0.22, 1), hsla(290, 97%, 52%, 1));
+		//background: linear-gradient(149deg, #FCB316, cubic-bezier(0.42, 0, 0.22, 1), $color-primary);
+		p, h1, h2, h3 {
+			color: white;
+		}
+		&.has-background-center {
+			&.has-image {
+				&:after {
+					background-position:center center
+				}
+			}
+			&:not(.has-image) {
+				background-position: center center
+			}
+		}
+		&.has-image {
+			background: none;
+			background-size: cover;
+			background-position: center top;
+			z-index: 0;
+		
+			&:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				background: url('./img/gradient-bg.svg') right bottom;
+				background-size: cover;
+				//background: linear-gradient(to bottom right, darken(#FCB316,10%) 5%, darken(#4A00E0,10%) 50%, darken(#230550,5%));
+				content: " ";
+				opacity: 0.7;
+			}
+			> * {
+				z-index: 2;
+			}
+		}
+
+
+		&.has-video {
+			.video-bg-wrapper {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
+				pointer-events: none;
+				overflow: hidden;
+				iframe {
+					position: absolute;
+					min-height: 100%;
+					aspect-ratio: 16/9;
+					min-width: 100%;
+					top: 50%;
+					transform: translateY(-50%);
+					max-width: 1000%;
+					margin-left: -487px;
+					margin-top: 0px;
+					width: 1333.33px;
+					height: 750px;
+					@include tablet {
+						height: auto;
+						margin-left:0;
+					}
+					@include widescreen {
+						width: 104%;
+						height: auto;
+					}
+					@include fullhd {
+						width: 101%;
+
+					}
+					
+				}
+			}
+			
+		}
+	}
+	&#main-section {
+		.hero-body {
+			z-index: 2;
+			
+		}
+		
+		.megagrants-badge {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				justify-content: center;
+				gap: 15px;
+		
+				span {
+					flex: 1;
+					opacity: 0.4;
+					transform-origin: left center;
+					&:first-of-type {
+						transform-origin: right center;
+					}
+					hr {
+						height: 1px;
+					}
+				}
+			}
+	}
+}
+
+
+
+
+
+.bullet-icons {
+	background: url('./img/game_icons.png') center left;
+	background-repeat: no-repeat;
+	background-size: 825px 200px;
+	width: 275px;
+	height: 200px;
+	margin: 0 auto;
+	&.teachers {
+		background-position: 0 0;
+	}
+	&.bullet-icon-industry {
+		background-position: -275px 0;
+	}
+	&.bullet-icon-awards {
+		background-position: -550px 0;
+	}
+
+	&.is-small {
+		background-size: 550px 133px;
+		width: 183px;
+		height: 133px;
+
+		&.bullet-icon-industry {
+			background-position: -183px 0;
+		}
+	
+		&.bullet-icon-awards {
+			background-position: -366px 0;
+		}
+
+	}
+
 }

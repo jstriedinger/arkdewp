@@ -38,12 +38,36 @@ function arkdewp_woocommerce_setup() {
 add_action( 'after_setup_theme', 'arkdewp_woocommerce_setup' );
 
 /**
+ * Check if an item is in the cart
+ *
+ * @param [type] $search_products
+ * @return void
+ */
+function matched_cart_items( $search_products ) {
+	$count = 0;
+
+	if ( ! WC()->cart->is_empty() ) {
+		// Loop though cart items.
+		foreach ( WC()->cart->get_cart() as $cart_item ) {
+			// Handling also variable products and their products variations.
+			$cart_item_ids = array( $cart_item['product_id'], $cart_item['variation_id'] );
+
+			// Handle a simple product Id (int or string) or an array of product Ids
+			if ( ( is_array( $search_products ) && array_intersect( $search_products, cart_item_ids ) ) || ( ! is_array( $search_products ) && in_array( $search_products, $cart_item_ids ) ) ) {
+				$count++; // incrementing items count.
+			}
+		}
+	}
+	return $count; // returning matched items count.
+}
+
+/**
  * WooCommerce specific scripts & stylesheets.
  *
  * @return void
  */
 function arkdewp_woocommerce_scripts() {
-	wp_enqueue_style( 'arkdewp-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), ARKDE_THEME_VERSION );
+	wp_enqueue_style( 'arkdewp-woocommerce-style', get_stylesheet_directory_uri() . '/woocommerce.css', array(), ARKDE_THEME_VERSION );
 
 	$font_path   = WC()->plugin_url() . '/assets/fonts/';
 	$inline_font = '@font-face {

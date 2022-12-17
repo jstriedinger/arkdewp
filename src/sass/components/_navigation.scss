@@ -111,12 +111,14 @@
 /* Top navbar navigation */
 header#masthead {
 	background-color: var(--color-navbar-bg);
+
 	nav.navbar {
 		background: transparent;
 		max-width: $fullhd;
 		margin: 0 auto;
 		padding: 0 1rem;
 		gap: 16px;
+		
 		@include touch {
 			.navbar-menu {
 				//changing bulma open transition from Display to height
@@ -136,10 +138,23 @@ header#masthead {
 		}
 		.navbar-item {
 			background: transparent !important;
-			&.has-dropdown .navbar-link {
-				background: transparent;
-				border: none;
+			color: white;
+			.navbar-link:not(.is-arrowless)::after {
+				border-color: white;
 			}
+			&.has-dropdown
+			{
+				.navbar-link {
+					background: transparent;
+					border: none;
+					color: white;
+				}
+				a.navbar-item {
+					color: $text;
+				}
+
+			}
+			
 		}
 		@include touch {
 			.navbar-menu {
@@ -175,6 +190,8 @@ header#masthead {
 			}
 
 		}
+
+		
 		
 	}
 
@@ -185,11 +202,16 @@ header#masthead {
 		width: 100%;
 		top: 0;
 		background: transparent;
-		+ * {
+		+ main > section:first-of-type {
 			padding-top: $navbar-height;
 		} 
 	}
+	&.is-colored {
+		background: var(--color-primary);
+	}
 }
+
+
 
 /* Footer navigation */
 footer.footer {
