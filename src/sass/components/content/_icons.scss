@@ -1,6 +1,6 @@
 .course-level-icon {
 	font-size: 0;
-	display: table;
+	display: inline-block;
 	span.txt {
 		font-size: 13px;
 		&.left {
@@ -54,7 +54,7 @@
 	
 	&.level-advanced {
 		> .level-bar {
-			background: var(--color-text);
+			opacity: 1 !important;
 		}
 	}
 

@@ -24,20 +24,20 @@ if ( $career ) :
 			<div class="card career-card ">
 				<div class="card-background" style="background-image: url(<?php echo $thumbnail; ?>)"></div>
 				<div class="card-header" >
-					<img src="<?php echo $icon; ?>" alt="" width="70px">
+					<img src="<?php echo $icon; ?>" alt="" width="80px">
 					<div>
-						<p class="is-size-4 is-size-3-desktop has-lh-one"><?php echo esc_html( $header['tech'] ); ?></p>
-						<p class="is-size-4 is-size-3-desktop has-text-weight-bold has-lh-1-2"><?php echo esc_html( $header['name'] ); ?></p>
+						<p class="is-size-4 is-size-3-widescreen has-lh-one"><?php echo esc_html( $header['tech'] ); ?></p>
+						<p class="is-size-4 is-size-3-widescreen has-text-weight-bold has-lh-1-2"><?php echo esc_html( $header['name'] ); ?></p>
 					</div>
 				</div>
-				<div class="card-content">
+				<div class="card-content has-gap-64">
 					<ul>
 						<li>
 							<span class="icon-text">
 								<span class="icon">
 									<i class="fa-solid fa-layer-group fa-lg"></i>
 								</span>
-								<span class="is-size-6 is-size-5-desktop ml-2"><?php echo sprintf( esc_html__( '%s cursos', 'arkdewp' ), esc_attr( $num_courses ) ); ?></span>
+								<span class="is-size-6 ml-2"><?php echo sprintf( esc_html__( '%s cursos', 'arkdewp' ), esc_attr( $num_courses ) ); ?></span>
 							</span>
 						</li>
 						<li class="mt-4">
@@ -45,7 +45,7 @@ if ( $career ) :
 								<span class="icon">
 									<i class="fa-solid fa-clock fa-lg"></i>
 								</span>
-								<span class="is-size-6 is-size-5-desktop ml-2"><?php echo esc_html( $duration ); ?></span>
+								<span class="is-size-6 ml-2"><?php echo esc_html( $duration ); ?></span>
 							</span>
 						</li>
 						<li class="mt-4">
@@ -53,19 +53,19 @@ if ( $career ) :
 								<span class="icon">
 									<i class="fa-solid fa-percent fa-lg"></i>
 								</span>
-								<span class="is-size-6 is-size-5-desktop ml-2"><?php echo sprintf( esc_html__( 'Con %s%% de Dto', 'arkdewp' ), esc_attr( $discount ) ); ?></span>
+								<span class="is-size-6 ml-2"><?php echo sprintf( esc_html__( 'Con %s%% de Dto', 'arkdewp' ), esc_attr( $discount ) ); ?></span>
 							</span>
 						</li>
 					</ul>
-					
-				</div>
-				<div class="card-footer">
-					<span class="icon-text">
-						<span class="is-size-6 has-text-primary has-text-weight-bold"><?php esc_html_e( 'Más información', 'arkdewp' ); ?></span>
-						<span class="icon has-text-primary">
-							<i class="bb-icon-angle-right bb-icon-l is-size-3"></i>
+					<div class="card-footer">
+						<span class="icon-text">
+							<span class="is-size-6 has-text-primary has-text-weight-bold"><?php esc_html_e( 'Más información', 'arkdewp' ); ?></span>
+							<span class="icon has-text-primary">
+								<i class="fa-solid fa-chevron-right"></i>
+							</span>
 						</span>
-					</span>
+					</div>
+					
 				</div>
 			</div>	
 			

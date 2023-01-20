@@ -45,12 +45,57 @@
 	overflow: hidden;
 	position: relative;
 	.card-content, .card-footer {
-		padding: 1rem 1.25rem 1.5rem;
+		padding: 1.25rem 1.5rem;
 		display: flex;
 		flex-direction: column;
-		gap:10px;
 		position: relative;
 		
+	}
+	&.with-shadows{
+		box-shadow: var(--card-clay-white);
+	}
+	&.bb-sticky-sidebar {
+		@include fullhd {
+			margin: 0 2rem;
+		}
+		.card-content {
+			padding: 2rem;
+		}
+	}
+	&.course-card-mini {
+		background: transparent;
+		border-radius: 0;
+		.card-content {
+			gap: 0;
+			padding-left: 0;
+			padding-right: 0;
+		}
+		.card-header {
+			height: 140px;
+			border-radius: var(--card-radius-medium);
+			position: relative;
+			cursor: pointer;
+			overflow: hidden;
+
+			img {
+				left: 0;
+				margin: 0 auto;
+				min-height: 100%;
+				-o-object-fit: cover;
+				object-fit: cover;
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 100%;
+			}
+
+			.tag {
+				position: absolute;
+				z-index: 2;
+				left: 16px;
+				top: 16px;
+			}
+		}
 	}
 	&.course-card {
 		box-shadow: var(--card-clay-white);
@@ -65,9 +110,9 @@
 			}
 		}
 		.card-header {
-			height: 225px;
-			@include widescreen {
-				height: 250px;
+			height: 160px;
+			@include fullhd {
+				height: 180px;
 			}
 			overflow: hidden;
 			position: relative;
@@ -102,17 +147,15 @@
 				}
 			
 				&:after {
-					content: "\f04b";
+					content: "\f144";
 					position: absolute;
 					z-index: 2;
-					font-size: 1.3rem;
+					font-size: 3rem;
 					top: calc(50% - 30px);
 					left: calc(50% - 30px);
 					font-family: "Font Awesome 6 Free";
-					font-weight: 700;
+					font-weight: 600;
 					transition: all 0.25s;
-					background: rgba(var(--color-primary_rgba), 0.6);
-					border-radius: 100%;
 					width: 60px;
 					height: 60px;
 					text-align: center;
@@ -125,7 +168,7 @@
 				}
 				&:hover {
 					&:after {
-						font-size: 1.8rem;
+						font-size: 3.5rem;
 						width: 90px;
 						height: 90px;
 						top: calc(50% - 45px);
@@ -140,14 +183,65 @@
 						display: flex;
 						align-items: flex-end;
 						justify-content: center;
-						padding-bottom: calc(25% - 60px);
-						background: rgba(var(--color-primary_rgba), 0.2);
+						padding-bottom: calc(20% - 60px);
+						background: rgba(var(--color-primary_rgba), 0.4);
 					}
 				}
 			}
 		}
 		@include desktop{
 			height: 100%;
+		}
+	}
+	&.course-preview {
+		background-size:cover;
+		background-position: center center;
+		font-size: 0;
+		cursor: pointer;
+		height: 100%;
+		video {
+			min-width: 100%;
+			min-height: 100;
+			object-fit: cover;
+			height: 100%;
+		}
+		&:before {
+			content: "";
+			position: absolute;
+			z-index: 2;
+			background: var(--color-primary);
+			opacity: 0.25;
+			width: 100%;
+			height: 100%;
+			top:0;
+			left: 0;
+		}
+		
+		&:after {
+			content: "\f144";
+			position: absolute;
+			z-index: 3;
+			font-size: 4rem;
+			top: calc(50% - 30px);
+			left: calc(50% - 30px);
+			font-family: "Font Awesome 6 Free";
+			font-weight: 600;
+			transition: all 0.25s;
+			width: 60px;
+			height: 60px;
+			text-align: center;
+			vertical-align: middle;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: white;
+		}
+
+		&:hover {
+			&:after {
+				font-size: 5rem;
+			}
+			
 		}
 	}
 	&.teacher-card {
@@ -197,8 +291,8 @@
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background: var(--color-secondary);
-				opacity: 0.3;
+				background: var(--color-primary);
+				opacity: 0.5;
 				content: " ";
 			}
 			
@@ -209,7 +303,7 @@
 	&.testimonial-card {
 		box-shadow: var(--card-clay-white);
 		.card-content {
-			padding-bottom: 1rem;
+			gap: 0
 		}
 		.card-footer {
 			display: flex;
@@ -229,7 +323,23 @@
 	}
 
 	&.career-card {
-
+		&.popup {
+			overflow: visible;
+			&:before, .card-background {
+				border-radius: var(--card-radius-big);
+			}
+			.modal-close {
+				position: absolute;
+				top: -8px;
+				right: -8px;
+				background: $title-color;
+				z-index: 9;
+			}
+			.card-content {
+				padding: 1rem
+			}
+			
+		}
 		.card-background {
 			background: none;
 			background-size: cover;
@@ -253,22 +363,26 @@
 			background: var(--color-primary);
 			opacity: 0.5;
 		}
-		p, li, span {
+		p, li, span, strong {
 			color: white;
 		}
 		.card-header, .card-content {
-			padding: 1rem 1.25rem 1.5rem;
+			padding: 1.25rem 1.5rem;
 			z-index: 2;
 			filter:grayscale(0%);
 		}
 		.card-content {
 			padding-top: 1.75rem;
-			padding-bottom: 1rem;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-end;
+			
 		}
 		.card-footer {
 			padding-top: 0;
 			flex-direction: row-reverse;
 			z-index: 2;
+			padding:0
 		}
 		.card-header{
 			padding: 1rem 1.5rem;

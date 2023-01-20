@@ -87,6 +87,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "~bulma/sass/helpers/_all.sass";
 //@import "~bulma/bulma";
 @import "base/base";
+@import "helpers";
 
 
 
@@ -94,6 +95,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Components
 --------------------------------------------------------------*/
 @import "components/components";
+@import "wsdm-ratings";
+@import "woocommerce";
 
 /*--------------------------------------------------------------
 # Accesibility

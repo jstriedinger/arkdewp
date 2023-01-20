@@ -25,7 +25,7 @@ $careers = get_posts( $args );
 <main id="primary">
 	<section class="hero is-small background-gradient-purple ">
 		<div class="hero-body">
-			<div class="container columns is-centered">
+			<div class="container columns is-centered is-max-widescreen">
 				<div class="column is-full is-three-quarters-widescree">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
@@ -48,17 +48,17 @@ $careers = get_posts( $args );
 		</div>
 	</section>
 	<section class="section">
-		<div class="container pb-6">
+		<div class="container pb-6 is-max-widescreen">
 			<div class="columns is-vcentered is-multiline">
 				<?php if ( ! is_wp_error( $careers ) && ! empty( $careers ) ) : ?>
 					<div class="column is-half is-5-widescreen mb-4">
 						<p class="title is-size-3 is-size-2-widescreen has-text-weight-bold"><?php esc_html_e( 'Packs de cursos', 'arkdewp' ); ?></p>
 						<p class="subtitle is-size-6"><?php esc_html_e( 'Ahorra y llega más lejos con nuestros packs de cursos enfocado en un rol especifico en la industria', 'arkdewp' ); ?></p>
 					</div>
-					<div class="column is-full is-10-widescreen">
-						<div class="columns is-variable anim-right-left-children">
+					<div class="column is-full">
+						<div class="columns is-variable is-6 anim-right-left-children">
 							<?php foreach ( $careers as $career ) : ?>
-										<div class="column is-half" >
+										<div class="column is-narrow" >
 								<?php	get_template_part( 'template-parts/cards/career', '', array( 'career' => $career ) ); ?>
 										</div>
 					<?php	endforeach; ?>
@@ -99,5 +99,5 @@ $careers = get_posts( $args );
 	</section>
 </main>
 <?php
-get_template_part( 'template-parts/modals/course', 'preview' );
+get_template_part( 'template-parts/modals/course', 'card-preview' );
 get_footer();

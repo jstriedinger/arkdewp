@@ -1,0 +1,128 @@
+//WISDM rating pluign
+//hack ton show the rating in a partiuclar place and without the text title showing up
+
+.wdm_course_rating_reviews {
+	padding-bottom: 10px !important;
+
+	@include desktop {
+		padding-top: 50px !important;
+	}
+}
+
+.reviews-total-wrap {
+	display: none;
+}
+
+.review-split-percent-inner-2 {
+	background-color: var(--color-secondary) !important;
+}
+
+.review-split-count {
+	color: $title-color !important;
+}
+
+.filter-options {
+	display: none !important;
+	margin-top: 15px !important;
+
+	select.select-text {
+		font-size: 15px !important;
+	}
+}
+
+
+.arkde-reviews-course {
+	
+	> div {
+		flex: 0 auto;
+		&:nth-child(2) {
+			flex: 1;
+		}
+		&:first-child {
+			min-width: 140px;
+		}
+	}
+	.review-split-percent {
+		height: 6px;
+	}
+	.review-split-wrap {
+		max-width: none;
+	}
+}
+
+.review-top-section {
+	justify-content: flex-start !important;
+	position: relative;
+	padding: 0 !important;
+	background: transparent;
+	margin:0;
+	flex-direction: column;
+
+	
+
+	flex-direction: row;
+	align-items: center;
+	display: flex !important;	
+}
+
+
+button.write-a-review {
+	
+}
+
+.modal-navigation button.previous {
+	//@extend .button,.is-outline, .is-grey;
+}
+
+.course-reviews-section {
+}
+#course-reviews-section {
+	a.load_more_reviews {
+		margin: 0;
+		font-size: unset !important;
+		line-height: normal !important;
+		display: block !important;
+	}
+}
+
+.reviews-avg {
+	font-weight: 900;
+	color: $title-color !important;
+	font-size: 48px !important;
+	line-height: 1.2 !important;
+
+	@include desktop {
+		font-size: 60px !important;
+	}
+
+	@include fullhd {
+		font-size: 72px !important;
+	}
+}
+
+.comment-review-inner .review-footer {
+	display: none;
+}
+
+.rating-stars .fa {
+	line-height: 1.2 !important;
+}
+
+.rating-container .filled-stars {
+	-webkit-text-stroke: 0px !important;
+	text-shadow: none !important;
+	color: var(--color-gold) !important;
+}
+
+.rating-container .fa {
+	font-family: "Font Awesome 6 Free";
+}
+
+.theme-krajee-fa .star {
+	font-size: 16px;
+}
+
+.ratings-after-title .rating-container.rating-sm+span {
+	font-size: 20px;
+	font-family: "Open Sans";
+}

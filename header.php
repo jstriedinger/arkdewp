@@ -31,7 +31,7 @@ endif;
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'arkdewp' ); ?></a>
 	<?php do_action( THEME_HOOK_PREFIX . 'before_header' ); ?>
 
-	<header id="masthead" class="site-header in-body <?php echo get_post_type() == 'sfwd-courses' ? 'is-colored' : ''; ?>">
+	<header id="masthead" class="site-header in-body <?php echo ( get_post_type() == 'sfwd-courses' || is_cart() || is_checkout() ) ? 'is-colored' : ''; ?>">
 		<?php do_action( THEME_HOOK_PREFIX . 'nav' ); ?>
 	</header><!-- #masthead -->
 	<?php do_action( THEME_HOOK_PREFIX . 'after_header' ); ?>

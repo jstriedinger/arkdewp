@@ -14,7 +14,7 @@ class UIModals {
 
 	setup() {
 		//get all modals on page
-		this.uimodals = document.querySelectorAll( '.modal.ui-modal' )
+		this.uimodals = document.querySelectorAll( '.ui-modal' )
 
 		//Last loaded preview frame
 		this.lastLoadedPreview = null;
@@ -36,7 +36,7 @@ class UIModals {
 		document.addEventListener( 'click', ( event ) => {
 			const target = event.target
 			if ( target.classList.contains( 'modal-background' ) ) {
-				const activeModal = target.closest( '.modal' )
+				const activeModal = target.closest( '.ui-modal' )
 				this.closeModal( activeModal )
 			}
 		} )
@@ -64,7 +64,6 @@ class UIModals {
 					gsap.delayedCall( 0.5, function() {
 						foundModal.classList.remove( 'in-transition' )
 						foundModal.classList.add( 'is-active' )
-						console.log( 'open modal' )
 					} )
 				}, onStart() {
 					foundModal.classList.add( 'in-transition' )

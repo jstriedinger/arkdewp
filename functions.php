@@ -42,7 +42,7 @@ function arkdewp_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'navtop' => esc_html__( 'Top navigation', 'arkdewp' ),
+			'navtop'   => esc_html__( 'Top navigation', 'arkdewp' ),
 			'footer-1' => esc_html__( 'Footer #1', 'arkdewp' ),
 			'footer-2' => esc_html__( 'Footer #2', 'arkdewp' ),
 		)
@@ -95,8 +95,8 @@ function arkdewp_setup() {
 		)
 	);
 
-	//deregister Buddyboss customizer
-	remove_action('wp_head', 'buddyboss_customizer_css');
+	// deregister Buddyboss customizer
+	remove_action( 'wp_head', 'buddyboss_customizer_css' );
 }
 add_action( 'after_setup_theme', 'arkdewp_setup' );
 
@@ -136,15 +136,15 @@ add_action( 'widgets_init', 'arkdewp_widgets_init' );
  * Enqueue scripts and styles.
  */
 function arkdewp_scripts() {
-	//following ASTRA good practice code
+	// following ASTRA good practice code
 	$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
-	$assets_uri = ARKDE_THEME_URI . 'assets/';
-	$v = (filemtime( $assets_uri . 'arkdewp' . $file_prefix . '.css'  ));
-	
+	$assets_uri  = ARKDE_THEME_URI . 'assets/';
+	$v           = ( filemtime( $assets_uri . 'arkdewp' . $file_prefix . '.css' ) );
+
 	wp_enqueue_style( 'arkdewp-css', $assets_uri . 'arkdewp' . $file_prefix . '.css', array(), $v, 'all' );
 	wp_style_add_data( 'arkdewp-css', 'rtl', 'replace' );
 
-	wp_enqueue_script('arkdewp-js', $assets_uri . 'arkdewp' . $file_prefix . '.js', array( 'jquery' ), $v, 'all' );
+	wp_enqueue_script( 'arkdewp-js', $assets_uri . 'arkdewp' . $file_prefix . '.js', array( 'jquery' ), $v, 'all' );
 	wp_localize_script(
 		'arkdewp-js',
 		'arkde_ajax',
@@ -154,7 +154,7 @@ function arkdewp_scripts() {
 		)
 	);
 
-	//wp_enqueue_script( 'arkdewp-navigation', get_stylesheet_directory_uri_uri() . '/js/navigation.js', array(), ARKDE_THEME_VERSION, true );
+	// wp_enqueue_script( 'arkdewp-navigation', get_stylesheet_directory_uri_uri() . '/js/navigation.js', array(), ARKDE_THEME_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -215,40 +215,41 @@ if ( class_exists( 'WooCommerce' ) ) {
 }
 
 function meks_which_template_is_loaded() {
-    global $template;
-    print_r( $template );
-		echo get_post_type();
-		$result = [];
-    $result['scripts'] = [];
-    $result['styles'] = [];
+	global $template;
+	print_r( $template );
+	$result            = array();
+	$result['scripts'] = array();
+	$result['styles']  = array();
 
-    // Print all loaded Scripts
-    /*global $wp_scripts;
-    foreach( $wp_scripts->queue as $script ) :
-       $result['scripts'][] =  $wp_scripts->registered[$script]->src . ";";
-    endforeach;*/
+	// Print all loaded Scripts
 
-    // Print all loaded Styles (CSS)
-		/*echo "<pre>";
-    global $wp_styles;
-    foreach( $wp_styles->queue as $style ) :
+	global $wp_scripts;
+	foreach ( $wp_scripts->queue as $script ) :
+		$result['scripts'][] = $script . ' - ' . $wp_scripts->registered[ $script ]->src . ';';
+	endforeach;
+
+	// Print all loaded Styles (CSS)
+		/*
+		echo "<pre>";
+	global $wp_styles;
+	foreach( $wp_styles->queue as $style ) :
 			$result['styles'][] =  $style . " - " . $wp_styles->registered[$style]->src . ";";
-    endforeach;
-		var_dump($result);
-		echo "</pre>";*/
+	endforeach;
+	echo "</pre>";*/
+	var_dump( $result );
 
 }
- 
+
 add_action( 'wp_footer', 'meks_which_template_is_loaded' );
 
 
-//Write to error log
-if ( ! function_exists('write_log')) {
-   function write_log ( $log )  {
-      if ( is_array( $log ) || is_object( $log ) ) {
-         error_log( print_r( $log, true ) );
-      } else {
-         error_log( $log );
-      }
-   }
+// Write to error log
+if ( ! function_exists( 'write_log' ) ) {
+	function write_log( $log ) {
+		if ( is_array( $log ) || is_object( $log ) ) {
+			error_log( print_r( $log, true ) );
+		} else {
+			error_log( $log );
+		}
+	}
 }

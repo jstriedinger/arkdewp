@@ -6,7 +6,7 @@ $fa-font-path: "./webfonts";
 @import "@fortawesome/fontawesome-free/scss/brands";
 
 //add 14px font size
-h1,h2,h3,h4,h5,h6,p,.title,.subtitle, .icon-text {
+h1,h2,h3,h4,h5,h6,p,.title,.subtitle, .icon-text, span, a, td, tr, i {
 	&.is-size-14px {
 		font-size: 0.875rem;
 	}
@@ -15,14 +15,24 @@ h1,h2,h3,h4,h5,h6,p,.title,.subtitle, .icon-text {
 			font-size: 0.875rem;
 		}
 	}
-	&.is-gold {
+	&.has-text-gold {
 		color: var(--color-gold);
 		.icon, span {
 			color: var(--color-gold) !important
 		}
 	}
-
-	
+	&.has-text-light-gold {
+		color: var(--color-career);
+		.icon, span {
+			color: var(--color-career) !important
+		}
+	}
+	&.is-size-big-4 {
+		font-size: 4rem !important;
+	}
+}
+a:hover {
+	color: $link;
 }
 
 .is-line-through {
@@ -35,6 +45,7 @@ h1,h2,h3,h4,h5,h6,p,.title,.subtitle, .icon-text {
 		font-size: 3.5rem !important;
 	}
 }
+
 
 span {
 	&.is-blue {

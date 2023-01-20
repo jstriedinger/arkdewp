@@ -14,33 +14,24 @@
 
 get_header();
 ?>
-	<main id="primary" class="site-main">
-		<section class="section">
-			<div class="container mb-6">
+<main id="primary" class="site-main">
+	<?php
 
-			</div>
-			<div class="columns">
-				<div class="column is-full">
-					<?php
+	while ( have_posts() ) :
+		the_post();
+		the_content();
+		// get_template_part( 'template-parts/content', 'page' );
 
-					while ( have_posts() ) :
-						the_post();
+		// If comments are open or we have at least one comment, load up the comment template.
+		if ( comments_open() || get_comments_number() ) :
+			comments_template();
 
-						get_template_part( 'template-parts/content', 'page' );
+		endif;
 
-						// If comments are open or we have at least one comment, load up the comment template.
-						if ( comments_open() || get_comments_number() ) :
-							comments_template();
+	endwhile; // End of the loop.
+	?>
 
-						endif;
-
-					endwhile; // End of the loop.
-					?>
-				</div>
-			</div>
-		</section>
-
-	</main><!-- #main -->
+</main><!-- #main -->
 
 <?php
 get_sidebar();

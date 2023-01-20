@@ -2,10 +2,6 @@ import { modals } from './modals.js'
 import YTPlayer from 'yt-player'
 import { isMobile } from './tools'
 
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin( ScrollTrigger )
 
 class UICoursesGrid {
 	/**
@@ -58,23 +54,14 @@ class UICoursesGrid {
 		this.coursesIds = Array.from( [ ...this.courses ], ( item ) => item.dataset.course )
 		this.container = document.getElementById( 'anim-course-grids' )
 
-		//prepare the animations
-		/*if ( this.container ) {
-			const tl = gsap.timeline( {
-				scrollTrigger: {
-					trigger: this.container,
-					start: 'top 70%',
-				},
-			} )
-			tl.add( gsap.fromTo( '#anim-course-grids .card.course-card', { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.2 } ) )
-		}*/
-
 		//only do previews when is not mobile
 		if ( ! isMobile ) {
 			//get course preview modal on the page
-			this.coursePreviewModal = document.querySelector( '#course-preview-modal' )
+			this.coursePreviewModal = document.querySelector( '#course-card-preview-modal' )
 			this.prepareCoursePreviews()
 			this.ytPlayer = new YTPlayer( '#course-video-preview', { related: false, modestBranding: true } )
+			this.ytPlayer.mute()
+			console.log( 'starting player' )
 
 			//lets map add_to_cart buttons
 			this.addToCartBtns = document.getElementsByClassName( 'add_to_cart_button' )
@@ -95,7 +82,9 @@ class UICoursesGrid {
 				const closeBtn = this.coursePreviewModal.querySelector( '.modal-close' )
 				closeBtn.addEventListener( 'click', () => {
 					if ( this.ytPlayer ) {
-						this.ytPlayer.pause()
+						this.ytPlayer.stop()
+						this.ytPlayer.mute()
+						console.log( 'stop from X' )
 					}
 				} )
 				//Close modal when click in background
@@ -103,24 +92,26 @@ class UICoursesGrid {
 					const target = event.target
 					if ( target.classList.contains( 'modal-background' ) ) {
 						if ( this.ytPlayer ) {
-							this.ytPlayer.pause()
+							this.ytPlayer.stop()
+							this.ytPlayer.mute()
+							console.log( 'Stopping from clicking away' )
 						}
 					}
 				} )
 				document.addEventListener( 'keydown', ( event ) => {
 					const e = event || window.event
 					if ( e.code === 'Escape' && this.ytPlayer ) { // Escape key
-						this.ytPlayer.pause()
+						this.ytPlayer.stop()
+						this.ytPlayer.mute()
+						console.log( 'stopping from ESC' )
 					}
 				} )
 			}
 		} else {
 			//lets put the card header as link to the course itself in mobile
-			console.log( 'on mobile' );
 			[ ...this.courses ].forEach( ( courseCard ) => {
 				const cardHeader = courseCard.querySelector( '.card-header' )
 				const url = cardHeader.dataset.href
-				console.log( 'heere bitch!' )
 				cardHeader.addEventListener( 'click', ( ) => window.location = url )
 			} )
 		}
@@ -136,7 +127,11 @@ class UICoursesGrid {
 			//we were not the last loaded preview
 
 			//1. load the yt preview video
-			this.ytPlayer.load( courseData.preview_url, { autoplay: true } )
+			this.ytPlayer.load( courseData.preview_url, { autoplay: false, keyboard: false } )
+			this.ytPlayer.stop()
+			this.ytPlayer.unMute()
+			this.ytPlayer.play()
+			console.log( 'Playing first step' )
 			this.lastLoadedPreview = videoPreviewUrl
 
 			//2. put the info
@@ -206,10 +201,12 @@ class UICoursesGrid {
 			}
 		} else {
 			this.ytPlayer.seek( 0 )
+			this.ytPlayer.unMute()
 			this.ytPlayer.play()
+			console.log( 'playing again' )
 		}
 
-		modals.openModal( 'course-preview-modal' )
+		modals.openModal( 'course-card-preview-modal' )
 	}
 }
 export const CoursesGrid = new UICoursesGrid()

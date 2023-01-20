@@ -8,11 +8,27 @@ Here we have all css that help spacing between css grids and flexbox items
 .has-gap-6 {
 	gap: 3px;
 }
+.has-gap-8 {
+	gap: 4px;
+}
 .has-gap-16 {
 	gap: 1rem;
 }
 .has-gap-32 {
 	gap: 2rem;
+	&.responsive-gap {
+		@include touch {
+			gap: 1rem;
+		}
+	}
+}
+.has-gap-64 {
+	gap: 4rem;
+	&.responsive-gap {
+		@include touch {
+			gap: 2rem;
+		}
+	}
 }
 .has-gap-10 {
 	gap: 5px;

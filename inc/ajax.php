@@ -36,13 +36,13 @@ function get_courses_preview_info() {
 				$course_info['title'] = get_the_title();
 				$course_teachers      = array();
 
-				// teachers
+				// teachers.
 				foreach ( get_field( 'teachers' ) as $teacher ) {
-					$teacherData          = array();
-					$teacherData['name']  = $teacher->post_title;
-					$teacherData['image'] = get_the_post_thumbnail_url( $teacher->ID );
+					$teacher_data          = array();
+					$teacher_data['name']  = $teacher->post_title;
+					$teacher_data['image'] = get_the_post_thumbnail_url( $teacher->ID );
 
-					array_push( $course_teachers, $teacherData );
+					array_push( $course_teachers, $teacher_data );
 				}
 				$course_info['teachers'] = $course_teachers;
 				$course_info['students'] = 0;
@@ -60,15 +60,15 @@ function get_courses_preview_info() {
 
 				if ( $pricing_info['price_type'] !== 'free' ) {
 
-					$courseProduct   = get_field( 'wc_product', $course_id );
-					$courseProductID = $courseProduct->ID;
-					$courseProduct   = wc_get_product( $courseProductID );
+					$course_product   = get_field( 'wc_product', $course_id );
+					$course_product_id = $course_product->ID;
+					$course_product   = wc_get_product( $course_product_id );
 
-					$pricing_info['price']         = wc_get_price_to_display( $courseProduct, array( 'price' => $courseProduct->get_price() ) );
-					$pricing_info['regular_price'] = wc_get_price_to_display( $courseProduct, array( 'price' => $courseProduct->get_regular_price() ) );
-					$pricing_info['on_sale']       = $courseProduct->is_on_sale();
+					$pricing_info['price']         = wc_get_price_to_display( $course_product, array( 'price' => $course_product->get_price() ) );
+					$pricing_info['regular_price'] = wc_get_price_to_display( $course_product, array( 'price' => $course_product->get_regular_price() ) );
+					$pricing_info['on_sale']       = $course_product->is_on_sale();
 
-					// format the price depending on currency
+					// format the price depending on currency.
 					if ( $currency === 'COP' ) {
 						$pricing_info['price']         = number_format( $pricing_info['price'], 0, ',', '.' );
 						$pricing_info['regular_price'] = number_format( $pricing_info['regular_price'], 0, ',', '.' );
@@ -77,7 +77,7 @@ function get_courses_preview_info() {
 						$pricing_info['regular_price'] = number_format( $pricing_info['regular_price'] );
 					}
 
-					$pricing_info['product_id']  = $courseProductID;
+					$pricing_info['product_id']  = $course_product_id;
 					$course_info['pricing_info'] = $pricing_info;
 
 				}
@@ -85,25 +85,25 @@ function get_courses_preview_info() {
 				if ( sfwd_lms_has_access( $course_id, $current_user_id )
 						|| ( current_user_can( 'administrator' ) && LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_Admin_User', 'courses_autoenroll_admin_users' ) ) ) {
 					$course_info['enrolled'] = true;
-					// no need to get the price, bc link would to course
+					// no need to get the price, bc link would to course.
 					$course_info['cta_link'] = arkdewp_ld_course_resume( $course_id );
 					$course_info['cta_txt']  = esc_html__( 'Sigue con el curso', 'arkdewp' );
 				} else {
 					$course_info['enrolled'] = false;
 
-					// lets check if its free
+					// lets check if its free.
 					if ( $pricing_info['price_type'] === 'free' ) {
-						// we need to check if user is loggedin but not registered
+						// we need to check if user is loggedin but not registered.
 						$course_info['cta_link'] = is_user_logged_in() ? get_the_permalink( $course_id ) : wp_login_url( get_the_permalink( $course_id ) );
 						$course_info['cta_txt']  = esc_html__( 'Registrate ahora', 'arkdewp' );
 
 					} else {
 						// not enrolled and is a paid course
 						$course_info['cta_txt'] = esc_html__( 'Compralo ahora', 'arkdewp' );
-						if ( matched_cart_items( $courseProductID ) > 0 ) {
+						if ( matched_cart_items( $course_product_id ) > 0 ) {
 							$course_info['cta_link'] = wc_get_checkout_url();
 						} else {
-							$course_info['cta_link'] = '/?add-to-cart=' . $courseProductID;
+							$course_info['cta_link'] = '/?add-to-cart=' . $course_product_id;
 
 						}
 					}

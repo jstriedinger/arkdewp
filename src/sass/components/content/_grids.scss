@@ -29,7 +29,7 @@
 
 .arkde-course-grid {
 	display: grid;
-	gap: 2rem;
+	gap: 2.5rem;
 	grid-template-columns: 1fr;
 
 	@include tablet {

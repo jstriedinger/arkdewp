@@ -88,9 +88,15 @@ Elements used on course page and course items (cards etc)
 	
 }
 
-//Bulma bug that flex items are always with flex 1
-.level-unset-flex-items {
-	> .level-item {
-		flex: initial;
+
+//career preview launcher
+a#career-preview-launcher {
+	i {
+		font-size: 3rem;
+		will-change: font-size;
+		transition: font-size 0.2s ease-out;
+	}
+	&:hover i {
+		font-size: 3.3rem;
 	}
 }
