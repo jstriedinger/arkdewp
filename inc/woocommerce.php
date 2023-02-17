@@ -249,3 +249,24 @@ if ( ! function_exists( 'arkdewp_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
+/**
+ * Remove chekcout fields not used
+ *
+ * @param [type] $fields
+ * @return void
+ */
+function remove_checkout_fields( $fields ) {
+
+	unset( $fields['billing']['billing_company'] );
+	unset( $fields['billing']['billing_postcode'] );
+	unset( $fields['billing']['billing_address_1'] );
+	unset( $fields['billing']['billing_address_2'] );
+	unset( $fields['billing']['billing_city'] );
+	unset( $fields['order']['order_comments'] );
+	unset( $fields['billing']['billing_state'] );
+	unset( $fields['billing']['billing_phone'] );
+	return $fields;
+
+}
+
+add_filter( 'woocommerce_checkout_fields', 'remove_checkout_fields' );

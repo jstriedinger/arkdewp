@@ -12,12 +12,16 @@
 	background: none;
 	overflow: hidden;
 	transition: all 0.2s ease-out;
+	&.is-outlined {
+		border: 1px solid;
+	}
 	&.is-purple {
 		background: var(--button-blue-gradient);
 		box-shadow: var(--button-clay-blue);
 		color: var(--color-text-white);
 		&:active, &:hover, &:focus {
 			background: var(--button-blue-gradient_hover);
+			color: var(--color-text-white);
 		}
 	}
 	&.is-primary {

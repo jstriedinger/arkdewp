@@ -39,13 +39,14 @@
 
 	}
 }
-.card, a .card {
+
+.card, a .card, a.card {
 	background: var(--card-background-color);
 	border-radius: var(--card-radius-big);
 	overflow: hidden;
 	position: relative;
 	.card-content, .card-footer {
-		padding: 1.25rem 1.5rem;
+		padding: 1.5rem;
 		display: flex;
 		flex-direction: column;
 		position: relative;
@@ -60,6 +61,32 @@
 		}
 		.card-content {
 			padding: 2rem;
+		}
+	}
+	&.course-card-tiny {
+		background: transparent;
+		border-radius: 0;
+		.card-header {
+			height: 90px;
+			width: 90px;
+			border-radius: var(--card-radius-small);
+			position: relative;
+			overflow: hidden;
+			img {
+				left: 0;
+				margin: 0 auto;
+				min-height: 100%;
+				-o-object-fit: cover;
+				object-fit: cover;
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 100%;
+			}
+		}
+		.card-content {
+			padding: 0;
+			flex: 1;
 		}
 	}
 	&.course-card-mini {
@@ -405,6 +432,7 @@
 		}
 	}
 }
+
 
 //item for displaying a course teachers. Used on:
 //1. course cards

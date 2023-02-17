@@ -25,8 +25,8 @@ class Course {
 			this.pensumToggles = document.querySelectorAll( '.lesson-row-header' )
 			//lets add the click listener to preview
 			this.previewLauncher = document.getElementById( 'course-preview-launcher' )
-			this.previewLauncher.addEventListener( 'click', ( event ) => this.showCoursePreview( event ) )
 			this.previewUrl = this.previewLauncher.dataset.preview
+			this.previewLauncher.addEventListener( 'click', ( event ) => this.showCoursePreview( event ) )
 
 			this.ytPlayer = new YTPlayer( '#course-video-preview', { related: false, modestBranding: true } )
 			this.ytPlayer.load( this.previewUrl, { autoplay: false, keyboard: false } )

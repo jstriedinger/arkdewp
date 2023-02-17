@@ -40,7 +40,6 @@ const setupAnimnations = () => {
 	gsap.fromTo( '.anim-bottom-top-children > *', { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.2, scrollTrigger: {
 		trigger: '.anim-bottom-top-children',
 		start: 'top 75%',
-		markers: true,
 	} } )
 
 	gsap.fromTo( '.anim-right-left-children > *', { autoAlpha: 0, x: 50 }, { autoAlpha: 1, x: 0, duration: 1, stagger: 0.2, scrollTrigger: {
@@ -94,7 +93,7 @@ const setupAnimnations = () => {
 
 	//remove woocommerce notices after a while
 	if ( document.querySelectorAll( '.woocommerce-notices-wrapper .woocommerce-message' ).length > 0 ) {
-		gsap.to( '.woocommerce-notices-wrapper .woocommerce-message', { autoAlpha: 0, duration: 0.8, stagger: 0.2, delay: 1, onComplete( ) {
+		gsap.to( '.woocommerce-notices-wrapper .woocommerce-message', { autoAlpha: 0, duration: 0.8, stagger: 0.2, delay: 2, onComplete( ) {
 			this.targets()[ 0 ].remove()
 		} } )
 	}

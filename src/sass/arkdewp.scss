@@ -68,6 +68,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /* Accessibility
 --------------------------------------------- */
 
+@import "base/base";
 //Bulma components
 @import "~bulma/sass/base/_all.sass";
 @import "~bulma/sass/grid/_all.sass";
@@ -82,11 +83,11 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "~bulma/sass/components/navbar.sass";
 @import "~bulma/sass/components/pagination.sass";
 @import "~bulma/sass/elements/_all.sass";
+@import "~bulma/sass/form/_all.sass";
 
 @import "~bulma/sass/layout/_all.sass";
 @import "~bulma/sass/helpers/_all.sass";
 //@import "~bulma/bulma";
-@import "base/base";
 @import "helpers";
 
 
@@ -97,6 +98,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "components/components";
 @import "wsdm-ratings";
 @import "woocommerce";
+@import "buddypress";
 
 /*--------------------------------------------------------------
 # Accesibility

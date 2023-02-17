@@ -1,0 +1,25 @@
+body.buddypress.register {
+	input#signup_submit {
+		@extend .button, .is-purple, .is-fullwidth, .is-medium;
+		border: none !important;
+		color: white !important;
+	}
+	form.standard-form.signup-form {
+		overflow: visible !important;
+		label, input, legend {
+			font-size: 14px !important;
+		}
+		input {
+			height: 36px !important;
+		}
+	} 
+	article.bp_register {
+		max-width: none;
+		.entry-content {
+			@extend .card, .with-shadows, .pb-5, .px-5;
+		}
+	}
+	.register-privacy-info {
+		font-size: 14px;
+	}
+}

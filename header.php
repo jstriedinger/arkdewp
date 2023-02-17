@@ -31,9 +31,11 @@ endif;
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'arkdewp' ); ?></a>
 	<?php do_action( THEME_HOOK_PREFIX . 'before_header' ); ?>
 
+	<?php if ( ! bp_is_register_page() ) : ?>
 	<header id="masthead" class="site-header in-body <?php echo ( get_post_type() == 'sfwd-courses' || is_cart() || is_checkout() ) ? 'is-colored' : ''; ?>">
 		<?php do_action( THEME_HOOK_PREFIX . 'nav' ); ?>
 	</header><!-- #masthead -->
+	<?php endif; ?>
 	<?php do_action( THEME_HOOK_PREFIX . 'after_header' ); ?>
 
 	<?php do_action( THEME_HOOK_PREFIX . 'before_content' ); ?>

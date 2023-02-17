@@ -13,8 +13,8 @@ if ( $teacher ) :
 		<div class="card-content" style="background-image: url(<?php echo $imgbg; ?>)">
 			<p class="is-size-4 is-size-3-fullhd has-text-weight-bold"><?php echo $teacher->post_title; ?></p>
 			<p class="mb-4 mt-4"><?php echo get_field( 'mini_bio', $teacher->ID ); ?></p>
-			<?php if ( $company ) : ?>
-				<img src="<?php echo esc_url( $company['url'] ); ?>" alt="<?php echo esc_attr( $company['alt'] ); ?>">
+			<?php if ( ! empty( $company ) ) : ?>
+				<img src="<?php echo esc_url( $company['img_bw'] ); ?>" alt="<?php echo esc_attr( $company['name'] ); ?>">
 			<?php endif; ?>
 		</div>
 	</div>	

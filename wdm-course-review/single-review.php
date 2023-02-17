@@ -104,39 +104,5 @@ $show          = '';
 				</div> <!-- .review-meta-wrap closing -->
 			</div> <!-- .review-footer closing -->
 		</div><!-- .comment-review-inner closing -->
-		<?php
-		$review_comments = get_comments(
-			array(
-				'post_id' => $review->ID,
-				'status'  => 'approve',
-			)
-		);
-		?>
-		<?php if ( count( $review_comments ) > 0 ) : ?>
-			<div class="wdm-reply-comments" id="<?php echo esc_attr( 'wdm_review_id_' . $review->ID ); ?>">
-				<div class='wdm-review-replies' id='<?php echo esc_attr( 'wdm_review_replies' . $review->ID ); ?>'>
-					<?php
-					wp_list_comments(
-						array(
-							'callback'          => 'rrf_load_custom_comment_template',
-							'avatar_size'       => 32,
-							'type'              => 'comment',
-							'per_page'          => 10, // Allow comment pagination.
-							'reverse_top_level' => false, // Show the oldest comments at the top of the list.
-						),
-						$review_comments
-					);
-					$count = count( $review_comments ) - 1;
-					?>
-					<?php if ( $count > 0 ) : ?>
-						<div class="more-reply-wrap">
-							<?php /* translators: %d : Comment replies count. */ ?>
-							<a href="#" class="view-comment-alt comment-toggle-alt" data-review="<?php echo esc_attr( $count ); ?>"><?php echo sprintf( esc_html__( 'View %d more replies', 'wdm_ld_course_review' ), esc_html( $count ) ); ?></a>
-							<a href="#" class="hide-comment-alt comment-toggle-alt hide" data-review="<?php echo esc_attr( $count ); ?>"><?php echo esc_html__( 'Show less replies', 'wdm_ld_course_review' ); ?></a>
-						</div> <!-- .more-reply-wrap closing -->
-					<?php endif; ?>
-				</div> <!-- .wdm-review-replies closing -->
-			</div> <!-- .wdm-reply-comments closing -->
-		<?php endif; ?>
 	</div> <!-- .content-review-details closing -->
 </div><!-- .review-comments-wrap closing -->

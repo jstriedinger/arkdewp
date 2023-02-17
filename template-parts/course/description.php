@@ -2,14 +2,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+$white = $args[0];
 $course_content = get_the_content();
 ?>
 
-<h3 class="subtitle is-size-4 has-text-weight-bold pt-4"><?php esc_html_e( 'Descripción', 'arkdewp' ); ?></h3>
-<div class="course-description content has-text-justified">
+<h3 class="subtitle is-size-4 has-text-weight-bold pt-4 <?php echo $white ? 'has-text-white' : ''; ?>"><?php esc_html_e( 'Descripción', 'arkdewp' ); ?></h3>
+<div class="course-description content has-text-justified <?php echo $white ? 'has-text-white' : ''; ?>">
 	<?php echo $course_content; ?>
 </div>
-<div class="course-desc-show">
-	<a href="#" class="has-text-weight-bold"><span><?php esc_html_e( 'Leer más ', 'arkdewp' ); ?></span><i class="fa-solid fa-chevron-down"></i></a>
+<div class="course-desc-show <?php echo $white ? 'has-text-white' : ''; ?>">
+	<a href="#" class="has-text-weight-bold <?php echo $white ? 'has-text-white' : ''; ?>"><span><?php esc_html_e( 'Leer más ', 'arkdewp' ); ?></span><i class="fa-solid fa-chevron-down"></i></a>
 </div>
 <div class="mb-6"></div>

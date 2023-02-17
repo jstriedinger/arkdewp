@@ -28,9 +28,14 @@ header#masthead {
 	nav.navbar {
 		background: transparent;
 		max-width: $fullhd;
+
 		margin: 0 auto;
 		padding: 0 1rem;
 		gap: 16px;
+
+		&.is-max-widescreen {
+			max-width: $widescreen;
+		}
 		
 		@include touch {
 			.navbar-menu {
@@ -55,6 +60,9 @@ header#masthead {
 			.navbar-link:not(.is-arrowless)::after {
 				border-color: white;
 			}
+			img {
+				max-height: 36px;
+			}
 			&.has-dropdown
 			{
 				.navbar-link {
@@ -72,8 +80,6 @@ header#masthead {
 				position: relate;
 				span.count {
 					position: absolute;
-					top: 1rem;
-					right: 0;
 					background: $turquoise;
 					color: white;
 					text-align: center;
@@ -132,9 +138,12 @@ header#masthead {
 		width: 100%;
 		top: 0;
 		background: transparent;
-		+ main > section:first-of-type, + main > .learndash_post_sfwd-courses > section:first-of-type, + main > .woocommerce  {
+		+ main > section:first-of-type, + main > .learndash_post_sfwd-courses > section:first-of-type, + main > .woocommerce, + main > .container  {
 			padding-top: $navbar-height;
 		} 
+		+ main > .woocommerce {
+			max-width: $widescreen;
+		}
 	}
 	&.is-colored {
 		background: var(--color-primary);

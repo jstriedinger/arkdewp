@@ -229,18 +229,18 @@ function meks_which_template_is_loaded() {
 	endforeach;
 
 	// Print all loaded Styles (CSS)
-		/*
+		
 		echo "<pre>";
 	global $wp_styles;
 	foreach( $wp_styles->queue as $style ) :
 			$result['styles'][] =  $style . " - " . $wp_styles->registered[$style]->src . ";";
 	endforeach;
-	echo "</pre>";*/
+	echo "</pre>";
 	var_dump( $result );
 
 }
 
-add_action( 'wp_footer', 'meks_which_template_is_loaded' );
+//add_action( 'wp_footer', 'meks_which_template_is_loaded' );
 
 
 // Write to error log

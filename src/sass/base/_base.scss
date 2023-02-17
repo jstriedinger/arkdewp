@@ -1,12 +1,19 @@
 body {
-	background: var(--color-body); // Fallback for when there is no custom background color defined.
+	background: var(--color-body);
+	min-height: 100%;
+	&.single-career {
+		background: var(--color-primary);
+	} // Fallback for when there is no custom background color defined.
+}
+html{
+	height: 100%;
 }
 /* Typography
 --------------------------------------------- */
+@import "resets";
 @import "typography";
 @import "elements/buttons";
 @import "themes";
-@import "resets";
 @import "bulma-fixes";
 
 /* Elements
@@ -30,5 +37,5 @@ body {
 Body
 */
 main#primary {
-	overflow: hidden;
+	//overflow: hidden;
 }

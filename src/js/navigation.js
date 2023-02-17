@@ -68,11 +68,11 @@ class Navbar {
 
 	toggleDropdown( el ) {
 		el.preventDefault()
-		const target = el.target
-		const itemDropdown =	target.closest( '.navbar-item.has-dropdown' )
+		const target = el.currentTarget//el.target.classList.contains( 'navbar-link' ) ? el.target : el.target.parentElement
+		const itemDropdown =	target.parentElement
 		if ( ! itemDropdown.classList.contains( 'is-active' ) &&
-				this.currentOpenDropdown &&
-				this.currentOpenDropdown !== itemDropdown ) {
+		this.currentOpenDropdown &&
+		this.currentOpenDropdown !== itemDropdown ) {
 			//another dropdown is open. Lets close it
 			this.currentOpenDropdown.classList.remove( 'is-active' )
 			this.currentOpenDropdown.querySelector( '.navbar-link' ).setAttribute( 'aria-expanded', false )
@@ -80,6 +80,7 @@ class Navbar {
 		itemDropdown.classList.toggle( 'is-active' )
 		const currentAriaExpanded = target.getAttribute( 'aria-expanded' )
 		target.setAttribute( 'aria-expanded', currentAriaExpanded === 'true' ? false : true )
+		itemDropdown.classList.add( 'is-active' )
 		if ( itemDropdown.classList.contains( 'is-active' ) ) {
 			this.currentOpenDropdown = itemDropdown
 		} else {

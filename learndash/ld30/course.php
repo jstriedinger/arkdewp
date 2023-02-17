@@ -83,7 +83,7 @@ $num_topics = 0;
 foreach ( $lesson_topics as $lesson_topic ) {
 	$num_topics += count( $lesson_topic );
 }
-get_template_part( 'template-parts/modals/course', 'preview' );
+get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' => 'course-preview-modal' ) );
 
 ?>
 	<section class="hero is-medium background-gradient-purple has-image mb-0" style="background-image: url(<?php echo $course_image; ?>)" id="course-top-section">
@@ -164,7 +164,7 @@ get_template_part( 'template-parts/modals/course', 'preview' );
 								<?php
 								if ( $is_on_sale ) :
 									?>
-									<span class="is-size-5 is-line-through has-text-weight-normal has-text-grey-light ml-2">$<?php echo esc_html( $regular_price ); ?></span>
+									<span class="is-size-5 is-line-through has-text-weight-normal has-text-grey-light">$<?php echo esc_html( $regular_price ); ?></span>
 									<?php
 								endif;
 
@@ -192,7 +192,7 @@ get_template_part( 'template-parts/modals/course', 'preview' );
 										<span class="icon">
 											<i class="fa-solid fa-circle-check"></i>
 										</span>
-										<span><?php esc_html_e( 'Ya está en tu carrito', 'arkdewp' ); ?></span>
+										<span class="is-size-14px"><?php esc_html_e( 'Ya está en tu carrito', 'arkdewp' ); ?></span>
 									</div>
 								<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="button is-primary is-medium" ><?php esc_html_e( 'Termina tu compra', 'arkdewp' ); ?></a>
 
@@ -202,7 +202,6 @@ get_template_part( 'template-parts/modals/course', 'preview' );
 							?>
 
 							<?php
-							endelse;
 							endif;
 						?>
 					</div>
@@ -223,7 +222,6 @@ get_template_part( 'template-parts/modals/course', 'preview' );
 	<section class="section mt-0" id="course-content">
 		<div class="container">
 			<div class="columns is-variable is-8 is-multiline">
-					
 				<div class="column is-full is-8-widescreen">
 					
 					<?php
@@ -343,11 +341,11 @@ get_template_part( 'template-parts/modals/course', 'preview' );
 												);
 											} else {
 												?>
-												<div class="icon-text mb-2">
+												<div class="icon-text mb-2 has-text-grey">
 													<span class="icon">
 														<i class="fa-solid fa-circle-check"></i>
 													</span>
-													<span><?php esc_html_e( 'Ya está en tu carrito', 'arkdewp' ); ?></span>
+													<span class="is-size-14px"><?php esc_html_e( 'Ya está en tu carrito', 'arkdewp' ); ?></span>
 												</div>
 											<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="button is-primary is-medium" ><?php esc_html_e( 'Termina tu compra', 'arkdewp' ); ?></a>
 
@@ -357,10 +355,9 @@ get_template_part( 'template-parts/modals/course', 'preview' );
 										?>
 
 										<?php
-										endelse;
 										endif;
 									?>
-									<div class="is-flex mt-6">
+									<div class="is-flex mt-5 pt-1">
 										<ul>
 											<li>
 												<div class="icon mr-1">
@@ -374,12 +371,14 @@ get_template_part( 'template-parts/modals/course', 'preview' );
 												</div>
 												<span class="is-size-14px"><?php echo sprintf( esc_html__( '%s clases', 'arkdewp' ), esc_attr( $num_topics ) ); ?></span>
 											</li>
-											<li class="mt-2">
-												<div class="icon mr-1">
-													<i class="fa-solid fa-feather"></i>
-												</div>
-												<span class="is-size-14px"><?php echo sprintf( esc_html__( '%s desafios', 'arkdewp' ), esc_attr( $challenges ) ); ?></span>
-											</li>
+											<?php if ( $challenges ) : ?>
+												<li class="mt-2">
+													<div class="icon mr-1">
+														<i class="fa-solid fa-feather"></i>
+													</div>
+													<span class="is-size-14px"><?php echo sprintf( esc_html__( '%s desafios', 'arkdewp' ), esc_attr( $challenges ) ); ?></span>
+												</li>
+											<?php endif; ?>
 											<li class="mt-2">
 												<div class="icon mr-1">
 													<span class="course-level-icon level-<?php echo esc_attr( $level->slug ); ?> mr-1">

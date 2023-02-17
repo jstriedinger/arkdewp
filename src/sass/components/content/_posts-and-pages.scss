@@ -2,21 +2,10 @@
 .sticky {
 	display: block;
 }
-
-.post,
-.page {
-	margin: 0 0 1.5em;
-}
-
 .updated:not(.published) {
 	display: none;
 }
 
-.page-content,
-.entry-content,
-.entry-summary {
-	margin: 1.5em 0 0;
-}
 
 .page-links {
 	clear: both;
@@ -209,6 +198,10 @@ section{
 
 //Course page
 ul.bullet-points {
+	gap: 1.25rem;
+	li {
+		flex: calc(50% - 1.25rem);
+	}
 	@include mobile {
 		flex-direction: column;
 		li {
@@ -235,6 +228,17 @@ ul.bullet-points {
 		width: 100%;
 		position: absolute;
 		bottom: 0;
+	}
+	&.has-text-white {
+		&:before {
+			background: linear-gradient(to bottom, transparent 50%, $color-primary);
+		}
+		strong {
+			color: white;
+		}
+		a {
+			text-decoration: underline;
+		}
 	}
 
 	&.is-showing {

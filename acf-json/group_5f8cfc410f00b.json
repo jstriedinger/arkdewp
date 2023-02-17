@@ -3,25 +3,6 @@
     "title": "Carreras",
     "fields": [
         {
-            "key": "field_5f8cff2c782b4",
-            "label": "Descripcion",
-            "name": "desc",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
-        },
-        {
             "key": "field_6393fc3346360",
             "label": "Titulo carrera",
             "name": "header",
@@ -139,6 +120,105 @@
             "maxlength": ""
         },
         {
+            "key": "field_5f8cff2c782b4",
+            "label": "Descripcion",
+            "name": "desc",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_5fca9036ba06d",
+            "label": "Qué vas a aprender?",
+            "name": "objectives",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_5fca9043ba06e",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_5fca9043ba06e",
+                    "label": "text",
+                    "name": "txt",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_63cb986ab67d4",
+            "label": "Qué necesitas saber?",
+            "name": "requirements",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_63cb98b1b67d5",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_63cb98b1b67d5",
+                    "label": "Item",
+                    "name": "txt",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
             "key": "field_5fca905734e75",
             "label": "Cursos",
             "name": "courses",
@@ -163,6 +243,27 @@
             "min": "",
             "max": "",
             "return_format": "object"
+        },
+        {
+            "key": "field_63cb7ce3d73eb",
+            "label": "Número de clases",
+            "name": "num_topics",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
         },
         {
             "key": "field_611b33ae35b87",
@@ -259,49 +360,9 @@
             "return_format": "object"
         },
         {
-            "key": "field_5fca9036ba06d",
-            "label": "Qué vas a aprender?",
-            "name": "objectives",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "field_5fca9043ba06e",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "",
-            "sub_fields": [
-                {
-                    "key": "field_5fca9043ba06e",
-                    "label": "item",
-                    "name": "item",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                }
-            ]
-        },
-        {
             "key": "field_5fb5d4c9dc4b3",
             "label": "Testimonios de Carrera",
-            "name": "testimonials",
+            "name": "reviews",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -343,5 +404,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674240799
+    "modified": 1674294841
 }

@@ -1,4 +1,4 @@
-<nav class="navbar " role="navigation" aria-label="main navigation">
+<nav class="navbar <?php echo is_cart() || is_checkout() ? 'is-max-widescreen' : ''; ?>" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
 	<?php
 		the_custom_logo();
@@ -26,18 +26,64 @@
 		endif;
 		?>
 	<div class="navbar-end">
-		<div class="navbar-item">
-			<div class="buttons">
-				<a class="button is-yellow">
-				<strong>Sign up</strong>
-				</a>
-				<a class="button is-light">
-				Log in
-				</a>
+		<?php if ( is_user_logged_in() ) : ?>
+			<?php
+				$current_user = wp_get_current_user();
+				$user_link    = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( $current_user->ID ) : get_author_posts_url( $current_user->ID );
+				$display_name = function_exists( 'bp_core_get_user_displayname' ) ? bp_core_get_user_displayname( $current_user->ID ) : $current_user->display_name;
+			?>
+				<div class="navbar-item  has-dropdown">
+					<button class="navbar-link" aria-expanded="false">
+						<?php echo $display_name; ?>
+						<span class="mr-2"></span>
+						<?php echo get_avatar( get_current_user_id(), 36 ); ?>
+					</button>
+					<div class="navbar-dropdown" >
+						<?php
+						if ( function_exists( 'bp_is_active' ) ) {
+							$menu = wp_nav_menu(
+								array(
+									'theme_location' => 'header-my-account',
+									'echo'           => false,
+									'fallback_cb'    => '__return_false',
+								)
+							);
+							if ( ! empty( $menu ) ) {
+								wp_nav_menu(
+									array(
+										'theme_location' => 'header-my-account',
+										'menu_id'        => 'header-my-account-menu',
+										'container'      => false,
+										'items_wrap'     => '<div id="%1$s" class="%2$s">%3$s</div>',
+										'fallback_cb'    => '',
+										'walker'         => new BulmaWalker(), // new BuddyBoss_SubMenuWrap(),
+										'menu_class'     => 'bb-my-account-menu',
+									)
+								);
+							} else {
+								do_action( THEME_HOOK_PREFIX . 'header_user_menu_items' );
+							}
+						} else {
+							do_action( THEME_HOOK_PREFIX . 'header_user_menu_items' );
+						}
+						?>
+					</div>
+				</div>
+		<?php else : ?>
+			<div class="navbar-item">
+				<div class="buttons">
+					<a class="button is-gold is-small" href="<?php echo wp_login_url(); ?>">
+						<?php _e( 'Inicia sesión', 'arkdewp' ); ?>
+					</a>
+					<a class="button is-outlined is-white is-small" href="<?php echo wp_registration_url(); ?>">
+						<?php _e( 'Registrate', 'arkdewp' ); ?>
+					</a>
+				</div>
 			</div>
-		</div>
+
+		<?php endif; ?>
 		<?php
-		if ( ! is_cart() && ! is_checkout() ) :
+		if ( ! is_cart() && ! is_checkout() && class_exists( 'WooCommerce' ) ) :
 			?>
 		<div class="navbar-item">
 					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="header-cart-link notification-link">
