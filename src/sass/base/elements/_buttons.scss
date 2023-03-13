@@ -13,7 +13,7 @@
 	overflow: hidden;
 	transition: all 0.2s ease-out;
 	&.is-outlined {
-		border: 1px solid;
+		border: 2px solid;
 	}
 	&.is-purple {
 		background: var(--button-blue-gradient);
@@ -22,6 +22,17 @@
 		&:active, &:hover, &:focus {
 			background: var(--button-blue-gradient_hover);
 			color: var(--color-text-white);
+		}
+		&.is-outlined {
+			border-color: var(--color-primary);
+			color: var(--color-primary);
+			background: transparent;
+			box-shadow: none;
+			&:hover, &:active, &:focus {
+				border-color: var(--color-primary);
+					color: var(--color-primary);
+					background: transparent;
+			}
 		}
 	}
 	&.is-primary {
@@ -51,5 +62,8 @@
 			background: var(--button-gold-gradient_hover);
 			color: var(--color-text-white);
 		}
+	}
+	&.is-simple {
+		box-shadow: none !important;
 	}
 }

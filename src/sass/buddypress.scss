@@ -4,22 +4,130 @@ body.buddypress.register {
 		border: none !important;
 		color: white !important;
 	}
+
 	form.standard-form.signup-form {
 		overflow: visible !important;
-		label, input, legend {
+
+		label,
+		input,
+		legend {
 			font-size: 14px !important;
 		}
+
 		input {
 			height: 36px !important;
 		}
-	} 
+	}
+
 	article.bp_register {
 		max-width: none;
+
 		.entry-content {
 			@extend .card, .with-shadows, .pb-5, .px-5;
 		}
 	}
+
 	.register-privacy-info {
 		font-size: 14px;
 	}
+}
+
+.register-section-logo {
+	padding-top: 3rem;
+}
+
+//Profile page
+#buddypress, .woocommerce {
+	#cover-image-container {
+		margin-top: 0;
+		@extend .card, .with-shadows, .mt-2;
+		border: none;
+	}
+
+	.arkde-member-avatar {
+		width: 125px;
+		height: auto;
+		max-width: 100%;
+		overflow: hidden;
+		position: relative;
+		height: 125px;
+		margin: 0 auto;
+		border-radius: 100%;
+
+		a {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: 2;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		&.can-upload {
+
+			i,
+			span {
+				opacity: 0;
+			}
+
+			&:hover {
+
+				i,
+				span {
+					opacity: 1;
+				}
+
+				&:after {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: var(--color-primary);
+					opacity: 0.5;
+					z-index: 1;
+				}
+
+			}
+		}
+	}
+
+	ul.profile-links {
+		width: 100%;
+
+		li {
+			padding: 0.75rem 1.25rem;
+			border-radius: var(--card-radius-small);
+			flex: 1;
+
+			&:not(.is-active) {
+				&:hover {
+					background: $white-ter;
+				}
+			}
+		}
+
+		li.is-active {
+			background: $white-ter;
+
+		}
+	}
+
+	.bp-profile-wrapper {
+		border-radius: var(--card-radius-medium);
+		border: 1px solid $grey-lighter;
+		background: transparent;
+	}
+
+	.submit {
+		input[type='submit'] {
+			@extend .button,.is-purple;
+			color: white;
+		}
+	}
+
 }

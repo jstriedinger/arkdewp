@@ -18,6 +18,8 @@ class Course {
 	setup() {
 		//animations
 		this.coursePreviewModal = document.getElementById( 'course-preview-modal' )
+		this.sideBarToggle = document.getElementById( 'course-sidebar-toggle' )
+		this.courseSidebar = document.getElementById( 'course-sidebar' )
 
 		if ( this.coursePreviewModal ) {
 			this.showMoreBtn = document.querySelector( '.course-desc-show' )
@@ -96,6 +98,17 @@ class Course {
 				} )
 			} )
 			this.pensumToggles[ 0 ].click()
+		}
+
+		if ( this.sideBarToggle ) {
+			console.log( this.courseSidebar )
+			this.sideBarToggle.addEventListener( 'click', ( ) => {
+				if ( this.courseSidebar.classList.contains( 'is-active' ) ) {
+					this.courseSidebar.classList.remove( 'is-active' )
+				} else {
+					this.courseSidebar.classList.add( 'is-active' )
+				}
+			} )
 		}
 	}
 

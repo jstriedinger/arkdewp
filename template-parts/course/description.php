@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$white = $args[0];
+$white          = isset( $args[0] ) ? $args[0] : false;
 $course_content = get_the_content();
 ?>
 

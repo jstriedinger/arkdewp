@@ -100,3 +100,297 @@ a#career-preview-launcher {
 		font-size: 3.3rem;
 	}
 }
+
+
+//dinu progress bar with simple svg, no animation
+.course-progress {
+	width: 100%;
+	//animation: donutfade 1s;
+	.fa-solid {
+		position: absolute;
+		font-size: 3.2rem;
+		top: calc(50% - 1.6rem);
+		left: calc(48% - 1.6rem);
+		color: var(--color-gold);
+	}
+	p {
+		color: white;
+		text-align: center;
+	}
+}
+.donut-ring {
+	stroke: lighten($color-primary,10%);
+}
+.donut-segment {
+	transform-origin: center;
+	stroke: var(--color-gold);
+}
+
+
+@keyframes donutfade {
+	/* this applies to the whole svg item wrapper */
+		0% {
+				opacity: .2;
+		}
+		100% {
+				opacity: 1;
+		}
+}
+@keyframes donutfadelong {
+		0% {
+				opacity: 0;
+		}
+		100% {
+				opacity: 1;
+		}
+}
+	
+@keyframes donut1 {
+		0% {
+				stroke-dasharray: 0, 100;
+		}
+		100% {
+				stroke-dasharray: 69, 31;
+		}
+}
+	
+@keyframes donut2 {
+		0% {
+				stroke-dasharray: 0, 100;
+		}
+		100% {
+				stroke-dasharray: 30, 70;
+		}
+}
+	
+@keyframes donut3{
+		0% {
+				stroke-dasharray: 0, 100;
+		}
+		100% {
+				stroke-dasharray: 1, 99;
+		}
+}
+
+.donut-percent {
+	//animation: donutfadelong 1s;
+}
+
+.donut-data {
+	font-size: 0.12em;
+	line-height: 1;
+	transform: translateY(0.5em);
+	text-align: center;
+	text-anchor: middle;
+	color: #666;
+	fill: #666;
+	//animation: donutfadelong 1s;
+}
+
+// Topic page
+body.learndash-cpt.learndash-embed-responsive
+{
+	.learndash_post_sfwd-topic {
+		.ld-video {
+			position: relative;
+			padding: 0;
+			height: auto;
+			background: $black;
+			font-size: 0;
+			iframe {
+				position: relative;
+				height: 100vh;
+				max-height: 75vh;
+			}
+		}
+		.learndash_mark_complete_button {
+			@extend .button, .is-primary, .is-simple;
+		}
+	}
+
+	
+}
+.prev-topic,
+.next-topic {
+	position: absolute;
+	left: 10px;
+	top: calc(50% - 12px);
+	z-index: 2;
+	
+	i {
+		opacity: 0;
+		transition: opacity 0.5s ease;
+		color: white;
+	}
+	span {
+		opacity: 0;
+		color: white;
+	}
+	color: white;
+	&.no-video {
+		position: relative;
+		
+		i, span {
+			opacity: 1;
+			color: var(--color-secondary);
+		}
+	}
+}
+.next-topic {
+	right: 10px;
+	left: unset;
+}
+
+.ld-video-wrapper {
+	position: relative;
+
+
+	&:hover {
+		.next-topic, .prev-topic {
+			i {
+				opacity: 1;
+			}
+			&:hover {
+				span {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+.column.course-sidebar
+{
+	position: relative;
+	flex: unset;
+	width: 0;
+	z-index: 9;
+	transition: left 0.4s, width 0.7s;
+	//overflow: hidden;
+	left: -370px;
+	
+
+	&.is-active {
+		transition: left 0.4s, width 0.7s;
+		left: 0;
+		width: 370px;
+		
+		.sidebar-wrapper {
+			.course-sidebar-toggle:after {
+				content: "\f060";
+			}
+		}
+	}
+
+	&.right-side {
+		.sidebar-wrapper {
+			border-left: 1px solid $grey-lighter;
+		}
+	}
+	&.left-side {
+		.sidebar-wrapper {
+			border-right: 1px solid $grey-lighter;
+		}
+	}
+}
+
+
+.sidebar-wrapper {
+	
+	position: relative;
+	height: 100%;
+	width:370px;
+	background: var(--color-body);
+	//padding-top: $navbar-height;
+		
+	.course-sidebar-toggle {
+		position: absolute;
+		right: -45px;
+		top: 25px;
+		width: 45px;
+		height: 50px;
+		background: var(--color-body);
+		border: 1px solid $grey-lighter;
+		border-left: none;
+		
+		font-weight: 600;
+		padding: 0 0.3rem;
+		border-radius: var(--card-radius-small);
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		&:after {
+			content: "\f061";
+			font-family: "Font Awesome 6 Free";
+			font-size: 2rem;
+		}
+	}
+	.lms-topic-sidebar-data
+	{
+		overflow: scroll;
+	}
+	ol.bb-lessons-list {
+		list-style-type: none;
+
+		.lms-lesson-item {
+			a {
+				color: $text;
+			}
+			.lesson-header {
+				padding: 1rem;
+				
+				border-bottom: 1px solid $grey-lighter;
+				&:after {
+					content: "\f078";
+					font-family: "Font Awesome 6 Free";
+					font-size: 1rem;
+					position: relative;
+					font-weight: 600;
+					margin-left:auto;
+				}
+			}
+			&:first-child {
+				border-top: 1px solid $grey-lighter;
+			}
+			&:last-child {
+
+			}
+		
+			&:nth-child(odd) {
+				.lesson-header {
+					background: $white-ter;
+				}
+			}
+			
+			&.lms-lesson-turnover
+			{
+				//chevron down
+				.lesson-header {
+					&:after {
+						content: "\f077";
+					}
+				}
+			}
+			.lms-lesson-content {
+				ol {
+					list-style-type: none;
+
+					li.lms-topic-item {
+						padding: 0.5rem 1.75rem;
+						&.current {
+							background: $white-ter;
+							
+						}
+						&:hover {
+							background: $white-ter;
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+	
+
+
+}

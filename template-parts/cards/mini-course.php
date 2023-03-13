@@ -18,7 +18,7 @@ if ( $course ) :
 	}
 	?>
 	
-	<div class="card course-card" data-course="<?php echo esc_attr( $course->ID ); ?>" id="course-card-<?php echo esc_attr( $course->ID ); ?>" data-categories="<?php echo esc_attr( $course_cats_string ); ?>">
+	<div class="card course-card vertical-100" data-course="<?php echo esc_attr( $course->ID ); ?>" id="course-card-<?php echo esc_attr( $course->ID ); ?>" data-categories="<?php echo esc_attr( $course_cats_string ); ?>">
 		<div class="card-header" data-href="<?php echo $permalink; ?>" >
 			<?php if ( $course_price_type == 'free' || $course_price_type == 'open' ) : ?>
 					<span class="tag is-success is-light is-medium"><?php echo esc_html__( 'Gratis', 'arkdewp' ); ?></span>

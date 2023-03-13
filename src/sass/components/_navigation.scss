@@ -24,18 +24,18 @@
 /* Top navbar navigation */
 header#masthead {
 	background-color: var(--color-navbar-bg);
+	position: relative;
+	z-index: 3;
 
 	nav.navbar {
 		background: transparent;
-		max-width: $fullhd;
+		max-width: $widescreen;
 
 		margin: 0 auto;
 		padding: 0 1rem;
 		gap: 16px;
 
-		&.is-max-widescreen {
-			max-width: $widescreen;
-		}
+		
 		
 		@include touch {
 			.navbar-menu {
@@ -127,26 +127,38 @@ header#masthead {
 
 		}
 
-		
+	&.is-full {
+		max-width: $fullhd;
+	}
 		
 	}
 
 	//Navbar always inside section 
 	//Should be transparent and add a padding to next sibling
-	&.in-body {
+	&.is-transparent {
 		position: absolute;
 		width: 100%;
 		top: 0;
 		background: transparent;
-		+ main > section:first-of-type, + main > .learndash_post_sfwd-courses > section:first-of-type, + main > .woocommerce, + main > .container  {
-			padding-top: $navbar-height;
-		} 
+		&:not(.is-colored) {
+			+ main > section:first-of-type, + main > .learndash_post_sfwd-courses > section:first-of-type, + main > .woocommerce, + main > .container  {
+				padding-top: $navbar-height;
+			} 
+			+.bs-bp-container {
+				padding-top: $navbar-height;
+			}
+		}
 		+ main > .woocommerce {
 			max-width: $widescreen;
+			.bsMyAccount {
+				@extend .pt-4, .pb-4;
+			}
 		}
-	}
-	&.is-colored {
-		background: var(--color-primary);
+		+ .bs-bp-container {
+			max-width: $widescreen;
+			margin: 0 auto;
+			@extend .mt-4;
+		}
 	}
 }
 

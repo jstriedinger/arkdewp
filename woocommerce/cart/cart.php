@@ -37,7 +37,6 @@ do_action( 'woocommerce_before_cart' );
 						$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
 						$terms       = get_the_terms( $product_id, 'product_cat' );
-						$course_type = get_field( 'delivery_type', $product_id );
 
 						$term = null;
 						if ( ! empty( $terms ) ) {
@@ -46,17 +45,21 @@ do_action( 'woocommerce_before_cart' );
 
 						$is_pack = false;
 						$course  = null;
+						$cid          = get_post_meta( $product_id, '_related_course' );
+						$args         = array(
+							'post__in'  => $cid[0],
+							'post_type' => 'sfwd-courses',
+							'posts_per_page' => -1,
+						);
 
-						if ( $term->slug == 'career' ) {
+						if ( 'career' == $term->slug ) {
 							$is_pack = true;
-							$args    = array(
-								'post__in'  => get_post_meta( $product_id, '_related_course' )[0],
-								'post_type' => 'sfwd-courses',
-							);
 							$courses = ( new WP_Query( $args ) )->posts;
+							$item_in_cart = get_field( 'career', $product_id );
 						} else {
 							// only one course.
-							$course_id = get_post_meta( $product_id, '_related_course' )[0][0];
+							$item_in_cart = get_post_meta( $product_id, '_related_course' )[0][0];
+							
 						}
 						?>
 							<li class='cart-item <?php echo $is_pack ? 'career' : ''; ?> is-flex is-align-items-flex-start py-5 has-gap-16'>
@@ -80,22 +83,22 @@ do_action( 'woocommerce_before_cart' );
 										'template-parts/course/course',
 										'rating',
 										array(
-											'course_id' => $course_id,
+											'course_id' => $item_in_cart,
 											'size' => 'fa-xs',
 										)
 									);
 									?>
 								<?php endif; ?>
-								<p class="subtitle is-size-6 has-text-weight-bold mb-0"><?php echo $_product->get_title(); ?></p>
+								<p class="subtitle is-size-6 has-text-weight-bold mb-0"><?php echo get_the_title($item_in_cart); ?></p>
 								<?php if ( $is_pack ) : ?>
 										<div class="is-flex has-gap-8 is-align-items-center has-text-grey-light">
 											<span class=" is-size-7"><?php echo sprintf( esc_html__( '%s cursos', 'arkdewp' ), esc_attr( count( $courses ) ) ); ?></span>
 											<span class="has-text-weight-bold">·</span>
-											<span class=" is-size-7"><?php echo sprintf( esc_html__( '%s+ en video', 'arkdewp' ), esc_attr( get_field( 'course_duration', $course_id ) ) ); ?></span>
+											<span class=" is-size-7"><?php echo sprintf( esc_html__( '%s en video', 'arkdewp' ), esc_attr( get_field( 'duration', $item_in_cart->ID ) ) ); ?></span>
 											
 										</div>
 								<?php else : ?>
-									<span class="has-text-grey-light is-size-7"><?php echo sprintf( esc_html__( '%s+ en video', 'arkdewp' ), esc_attr( get_field( 'course_duration', $course_id ) ) ); ?></span>
+									<span class="has-text-grey-light is-size-7"><?php echo sprintf( esc_html__( '%s+ en video', 'arkdewp' ), esc_attr( get_field( 'course_duration', $item_in_cart ) ) ); ?></span>
 								<?php endif; ?>
 								<div class="is-hidden-tablet price" style="padding-top:5px;">
 									<?php
@@ -123,7 +126,7 @@ do_action( 'woocommerce_before_cart' );
 								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									'woocommerce_cart_item_remove_link',
 									sprintf(
-										'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s"><i class="fa-solid fa-trash-can fa-xs"></i></a>',
+										'<a href="%s" class="fa-solid fa-trash-can" aria-label="%s" data-product_id="%s" data-product_sku="%s"></a>',
 										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 										esc_html__( 'Remove this item', 'woocommerce' ),
 										esc_attr( $product_id ),
@@ -152,7 +155,7 @@ do_action( 'woocommerce_before_cart' );
 											'template-parts/course/course',
 											'rating',
 											array(
-												'course_id' => $course_id,
+												'course_id' => $item_in_cart,
 												'size' => 'fa-xs',
 											)
 										);

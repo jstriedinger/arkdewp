@@ -80,11 +80,39 @@ if ( ! function_exists( 'is_login_page' ) ) {
 	}
 }
 
+/**
+ * CSS styles used for login page
+ *
+ * @return void
+ */
 function my_login_stylesheet() {
 	wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/login.css' );
 }
 add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
 
+/**
+ * Used to prevent acces to dashboard page when not logged in
+ *
+ * @return void
+ */
+function dashboard_redirect() {
+	if ( is_page( 'dashboard' ) && ! is_user_logged_in() ) {
+		wp_redirect( home_url() );
+		die;
+	}
+}
+add_action( 'template_redirect', 'dashboard_redirect' );
+
+/**
+ * Redirect all loggedin users to dashboard
+ *
+ * @return void
+ */
+function custom_login_redirect() {
+	return 'home_url()/dashboard';
+}
+
+add_filter( 'login_redirect', 'custom_login_redirect' );
 
 
 

@@ -40,6 +40,7 @@ defined( 'ABSPATH' ) || exit;
 				$args = array(
 					'post__in'  => $cid[0],
 					'post_type' => 'sfwd-courses',
+					'posts_per_page' => -1,
 				);
 
 				$terms = get_the_terms( $product_id, 'product_cat' );
@@ -123,8 +124,8 @@ defined( 'ABSPATH' ) || exit;
 		<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
 
 		<tr class="order-total is-size-5 has-text-weight-bold mb-4">
-			<td><?php esc_html_e( 'Total', 'buddyboss-theme' ); ?></td>
-			<td class="has-text-right">
+			<td class="has-text-left"><?php esc_html_e( 'Total', 'buddyboss-theme' ); ?></td>
+			<td class="has-text-right is-flex has-gap-10">
 			<?php
 			wc_cart_totals_order_total_html();
 			echo get_woocommerce_currency();

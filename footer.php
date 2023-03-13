@@ -10,7 +10,7 @@
  */
 
 ?>
-<?php if ( ! is_cart() && ! is_checkout() && ! is_singular( 'lesson' ) && ! is_singular( 'llms_my_certificate' ) && ! bp_is_register_page() ) : ?>
+<?php if ( ! is_cart() && ! is_checkout() && ! is_singular( array( 'sfwd-lessons', 'sfwd-topic', 'llms_my_certificate' ) ) && ! bp_is_register_page() ) : ?>
 	<footer class="footer">
 		<div class="container">
 			<div class="columns is-variable is-6-widescreen">
@@ -84,7 +84,6 @@
 		</div>
 	</footer><!-- #colophon -->
 <?php endif; ?>
-</div><!-- #page -->
 
 <?php wp_footer(); ?>
 

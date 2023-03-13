@@ -3,38 +3,10 @@
     "title": "WC ARKDE",
     "fields": [
         {
-            "key": "field_607f03aca6e02",
-            "label": "Tipo de curso",
-            "name": "delivery_type",
-            "type": "select",
-            "instructions": "Qué tipo de curso es?",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "selfpaced": "Curso pre-grabado",
-                "bootcamp": "Bootcamp con mentorías",
-                "selfpaced_bootcamp": "Mentorías de curso",
-                "workshop": "Taller",
-                "live": "En VIVO",
-                "career": "Carrera (pack)"
-            },
-            "default_value": "selfpaced",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_5fb299e4ecb60",
             "label": "Carrera ARKDE",
             "name": "career",
+            "aria-label": "",
             "type": "post_object",
             "instructions": "",
             "required": 0,
@@ -54,96 +26,6 @@
             },
             "post_type": [
                 "career"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "multiple": 0,
-            "return_format": "object",
-            "ui": 1
-        },
-        {
-            "key": "field_607f8dc65edf1",
-            "label": "Selecciona el Bootcamp",
-            "name": "bootcamp",
-            "type": "post_object",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_607f03aca6e02",
-                        "operator": "==",
-                        "value": "bootcamp"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "sfwd-courses"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "multiple": 0,
-            "return_format": "object",
-            "ui": 1
-        },
-        {
-            "key": "field_60942665fb033",
-            "label": "Learndash Curso",
-            "name": "ld_course_mentorship",
-            "type": "post_object",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_607f03aca6e02",
-                        "operator": "==",
-                        "value": "selfpaced_bootcamp"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "sfwd-courses"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "multiple": 0,
-            "return_format": "object",
-            "ui": 1
-        },
-        {
-            "key": "field_61246faf90cf0",
-            "label": "Taller",
-            "name": "workshop",
-            "type": "post_object",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_607f03aca6e02",
-                        "operator": "==",
-                        "value": "workshop"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "workshop"
             ],
             "taxonomy": "",
             "allow_null": 0,
@@ -170,5 +52,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674241018
+    "modified": 1676614739
 }

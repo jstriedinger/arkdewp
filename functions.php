@@ -136,10 +136,14 @@ add_action( 'widgets_init', 'arkdewp_widgets_init' );
  * Enqueue scripts and styles.
  */
 function arkdewp_scripts() {
-	// following ASTRA good practice code
+	// following ASTRA good practice code.
 	$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
 	$assets_uri  = ARKDE_THEME_URI . 'assets/';
-	$v           = ( filemtime( $assets_uri . 'arkdewp' . $file_prefix . '.css' ) );
+	if ( file_exists( $assets_uri . 'arkdewp' . $file_prefix . '.css' ) ) {
+		$v = ( filemtime( $assets_uri . 'arkdewp' . $file_prefix . '.css' ) );
+	} else {
+		$v = '';
+	}
 
 	wp_enqueue_style( 'arkdewp-css', $assets_uri . 'arkdewp' . $file_prefix . '.css', array(), $v, 'all' );
 	wp_style_add_data( 'arkdewp-css', 'rtl', 'replace' );
@@ -229,18 +233,18 @@ function meks_which_template_is_loaded() {
 	endforeach;
 
 	// Print all loaded Styles (CSS)
-		
-		echo "<pre>";
+
+		echo '<pre>';
 	global $wp_styles;
-	foreach( $wp_styles->queue as $style ) :
-			$result['styles'][] =  $style . " - " . $wp_styles->registered[$style]->src . ";";
+	foreach ( $wp_styles->queue as $style ) :
+			$result['styles'][] = $style . ' - ' . $wp_styles->registered[ $style ]->src . ';';
 	endforeach;
-	echo "</pre>";
+	echo '</pre>';
 	var_dump( $result );
 
 }
 
-//add_action( 'wp_footer', 'meks_which_template_is_loaded' );
+// add_action( 'wp_footer', 'meks_which_template_is_loaded' );
 
 
 // Write to error log

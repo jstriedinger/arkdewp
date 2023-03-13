@@ -6,6 +6,7 @@
 
 function deregister_buddyboss_stuff() {
 	wp_deregister_style( 'buddyboss-theme-woocommerce' );
+	wp_deregister_style( 'buddyboss-theme-learndash' );
 	// jquery image ligthbox plugin.
 	wp_deregister_style( 'buddyboss-theme-magnific-popup-css' );
 	// font-awesome 4 in buddyboss.
@@ -22,9 +23,8 @@ function deregister_buddyboss_stuff() {
 	wp_deregister_script( 'boss-slick-js' );
 	wp_deregister_script( 'guillotine-js' );
 	wp_deregister_script( 'boss-fitvids-js' );
-	//wp_deregister_script( 'masonry' );
-	//wp_deregister_script( 'buddyboss-theme-main-js' );
-
+	// wp_deregister_script( 'masonry' );
+	// wp_deregister_script( 'buddyboss-theme-main-js' );
 }
 add_action( 'wp_enqueue_scripts', 'deregister_buddyboss_stuff', 9999 );
 

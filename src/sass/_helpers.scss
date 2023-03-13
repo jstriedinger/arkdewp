@@ -11,6 +11,12 @@ Here we have all css that help spacing between css grids and flexbox items
 .has-gap-8 {
 	gap: 4px;
 }
+.has-gap-10 {
+	gap: 5px;
+}
+.has-gap-12 {
+	gap: 6px;
+}
 .has-gap-16 {
 	gap: 1rem;
 }
@@ -30,9 +36,6 @@ Here we have all css that help spacing between css grids and flexbox items
 		}
 	}
 }
-.has-gap-10 {
-	gap: 5px;
-}
 .has-gap-20 {
 	gap: 20px;
 }
@@ -45,4 +48,7 @@ Here we have all css that help spacing between css grids and flexbox items
 }
 .has-lh-1-2 {
 	line-height: 1.2;
+}
+.has-lh-1-5 {
+	line-height: 1.5;
 }

@@ -1,4 +1,4 @@
-<nav class="navbar <?php echo is_cart() || is_checkout() ? 'is-max-widescreen' : ''; ?>" role="navigation" aria-label="main navigation">
+<nav class="navbar <?php echo is_singular( array( 'sfwd-courses', 'career' ) ) ? 'is-full' : ''; ?>" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
 	<?php
 		the_custom_logo();
@@ -12,7 +12,22 @@
 
   <div id="navbar-top" class="navbar-menu">
 		<?php
-		if ( ! is_cart() && ! is_checkout() ) :
+		if ( is_singular( array( 'sfwd-lesson', 'sfwd-topic' ) ) ) :
+			$lesson_data = $post;
+			$course_id;
+			if ( empty( $course_id ) ) {
+				$course_id = learndash_get_course_id( $lesson_data->ID );
+
+				if ( empty( $course_id ) ) {
+					$course_id = buddyboss_theme()->learndash_helper()->ld_30_get_course_id( $lesson_data->ID );
+				}
+			}
+			$course_name = get_the_title( $course_id );
+
+			?>
+		<div class="navbar-item"><?php echo esc_html( $course_name ); ?></div>
+			<?php
+		elseif ( ! is_cart() && ! is_checkout() ) :
 			wp_nav_menu(
 				array(
 					'theme_location' => 'navtop',
@@ -23,7 +38,7 @@
 					'walker'         => new Bulmawalker(),
 				)
 			);
-		endif;
+	  endif;
 		?>
 	<div class="navbar-end">
 		<?php if ( is_user_logged_in() ) : ?>

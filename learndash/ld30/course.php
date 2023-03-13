@@ -56,7 +56,7 @@ $career          = $meta['career'];
 
 
 if ( $has_access ) {
-	$course_progress = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $current_user_id, $course_id );
+	$course_progress = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $user_id, $course_id );
 	$resume_link     = buddyboss_theme()->learndash_helper()->boss_theme_course_resume( $course_id );
 } else {
 	if ( matched_cart_items( $wc_product->ID ) > 0 ) {

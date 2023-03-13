@@ -20,19 +20,18 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>  data-currency="<?php echo get_woocommerce_currency(); ?>">
+<body <?php body_class(); ?>  data-currency="<?php echo get_woocommerce_currency(); ?>" data-theme="">
 <?php wp_body_open(); ?>
 <?php
 if ( is_singular( 'sfwd-courses' ) && ! is_user_logged_in() ) :
 	learndash_load_login_modal_html();
 endif;
 ?>
-<div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'arkdewp' ); ?></a>
 	<?php do_action( THEME_HOOK_PREFIX . 'before_header' ); ?>
 
 	<?php if ( ! bp_is_register_page() ) : ?>
-	<header id="masthead" class="site-header in-body <?php echo ( get_post_type() == 'sfwd-courses' || is_cart() || is_checkout() ) ? 'is-colored' : ''; ?>">
+	<header id="masthead" class="site-header <?php echo ( is_singular( array( 'sfwd-courses', 'career' ) ) || is_front_page() || is_archive( array( 'sfwd-courses' ) ) ) ? 'is-transparent' : ''; ?>">
 		<?php do_action( THEME_HOOK_PREFIX . 'nav' ); ?>
 	</header><!-- #masthead -->
 	<?php endif; ?>
