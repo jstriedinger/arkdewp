@@ -152,7 +152,7 @@ function arkde_dashboard_continue_course( $user_id, $course_id ) {
 		}
 	}
 	if ( ! empty( $course_id ) ) {
-		$progress = learndash_user_get_course_progress( $user_id, $course_id );
+		$progress    = learndash_user_get_course_progress( $user_id, $course_id );
 
 		if ( 'in_progress' === $progress['status'] ) {
 
@@ -163,28 +163,25 @@ function arkde_dashboard_continue_course( $user_id, $course_id ) {
 			// by default next lesson is first one if theres an error finding it
 			$next_lesson = key( reset( $progress['topics'] ) );
 			foreach ( $progress['topics'] as $lesson ) {
-				if($lesson)
-				{
-					while ( $current = current( $lesson ) ) {
-						$key = key( $lesson );
-						if ( $nextone ) {
-							$next_lesson = $key;
-							$found       = true;
-						}
-						if ( $key === $last_topic_id ) {
-							$nextone = true;
-						}
-						$next = next( $lesson );
-						if ( false !== $next && $nextone ) {
-							$found       = true;
-							$next_lesson = key( $lesson );
-								break;
-						}
-					}
-					if ( $found ) {
-						break;
-					}
 
+				while ( $current = current( $lesson ) ) {
+					$key = key( $lesson );
+					if ( $nextone ) {
+						$next_lesson = $key;
+						$found       = true;
+					}
+					if ( $key === $last_topic_id ) {
+						$nextone = true;
+					}
+					$next = next( $lesson );
+					if ( false !== $next && $nextone ) {
+						$found       = true;
+						$next_lesson = key( $lesson );
+							break;
+					}
+				}
+				if ( $found ) {
+					break;
 				}
 			}
 			if ( null !== $next_lesson ) {
@@ -197,7 +194,8 @@ function arkde_dashboard_continue_course( $user_id, $course_id ) {
 			}
 		} elseif ( 'not_started' === $progress['status'] ) {
 			// lesson will be the first one
-			$next_lesson = key( reset( $progress['topics'] ) );
+			$next_lesson = learndash_get_topic_list( learndash_get_lesson_list( $course_id )[0]->ID, $course_id );
+
 			if ( null !== $next_lesson ) {
 				$l_title = get_the_title( $next_lesson );
 				$l_link  = get_the_permalink( $next_lesson );
