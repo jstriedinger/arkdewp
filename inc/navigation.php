@@ -49,7 +49,7 @@ class Bulmawalker extends Walker_Nav_Menu {
 
 	public function end_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 
-		if ( in_array( 'has_children', $item->classes ) ) {
+		if ( is_array( $item->classes ) && in_array( 'has_children', $item->classes ) ) {
 
 				$output .= '</div>';
 		}
