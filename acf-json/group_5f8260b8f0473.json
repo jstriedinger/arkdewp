@@ -3,9 +3,30 @@
     "title": "Front Page Content",
     "fields": [
         {
+            "key": "field_637b39eb06e52",
+            "label": "Tagline",
+            "name": "tagline",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5fcb0fdf196d9",
             "label": "Vimeo background video",
             "name": "vimeo_id",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -25,6 +46,7 @@
             "key": "field_5faeeca6be2db",
             "label": "Bullets",
             "name": "bullets",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -38,12 +60,13 @@
             "min": 0,
             "max": 0,
             "layout": "block",
-            "button_label": "",
+            "button_label": "Add Row",
             "sub_fields": [
                 {
                     "key": "field_5faeecc7be2dc",
                     "label": "Titulo",
                     "name": "header",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -57,12 +80,14 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_5faeeca6be2db"
                 },
                 {
                     "key": "field_5faeecf1be2de",
                     "label": "Texto",
                     "name": "txt",
+                    "aria-label": "",
                     "type": "textarea",
                     "instructions": "",
                     "required": 0,
@@ -76,14 +101,17 @@
                     "placeholder": "",
                     "maxlength": "",
                     "rows": "",
-                    "new_lines": ""
+                    "new_lines": "",
+                    "parent_repeater": "field_5faeeca6be2db"
                 }
-            ]
+            ],
+            "rows_per_page": 20
         },
         {
             "key": "field_607096d31a92b",
             "label": "Cursos en front page",
             "name": "featured_courses",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -109,28 +137,10 @@
             "return_format": "object"
         },
         {
-            "key": "field_637b39eb06e52",
-            "label": "Tagline",
-            "name": "tagline",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_637bd1e3248dd",
             "label": "Partners",
             "name": "partners",
+            "aria-label": "",
             "type": "gallery",
             "instructions": "",
             "required": 0,
@@ -158,6 +168,7 @@
             "key": "field_638c3ad47d925",
             "label": "testimonios",
             "name": "testimonials",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -183,6 +194,7 @@
             "key": "field_638c3b1a7d926",
             "label": "Profesores",
             "name": "teachers",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -223,5 +235,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674240931
+    "modified": 1678783197
 }
