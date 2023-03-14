@@ -114,5 +114,42 @@ function custom_login_redirect() {
 
 add_filter( 'login_redirect', 'custom_login_redirect' );
 
+/**
+ * Get the prev and next topics from buddyboss content urls, with no formatting
+ *
+ * @param array  $url_arr
+ * @param string $current_url
+ * @return void
+ */
+function arkde_theme_custom_next_prev_url( $url_arr = array(), $current_url = '' ) {
+
+	if ( empty( $url_arr ) ) {
+		return;
+	}
+
+	// Protocol
+	$url = ( is_ssl() ? 'https' : 'http' ) . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+	// Get current URL
+	$current_url = trailingslashit( $url );
+	if ( ! $query = parse_url( $current_url, PHP_URL_QUERY ) ) {
+		$current_url = trailingslashit( $current_url );
+	}
+
+	$key = array_search( urldecode( $current_url ), $url_arr );
+
+	$url = array();
+
+	$next = current( array_slice( $url_arr, array_search( $key, array_keys( $url_arr ) ) + 1, 1 ) );
+	$prev = current( array_slice( $url_arr, array_search( $key, array_keys( $url_arr ) ) - 1, 1 ) );
+
+	$last_element = array_values( array_slice( $url_arr, - 1 ) )[0];
+
+	$url['next'] = ( isset( $next ) && $last_element != $current_url ) ? $next : '';
+	$url['prev'] = ( isset( $prev ) && $last_element != $prev ) ? $prev : '';
+
+	return $url;
+}
+
 
 

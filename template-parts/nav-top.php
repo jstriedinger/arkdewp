@@ -12,7 +12,7 @@
 
   <div id="navbar-top" class="navbar-menu">
 		<?php
-		if ( is_singular( array( 'sfwd-lesson', 'sfwd-topic' ) ) ) :
+		if ( is_singular( array( 'sfwd-lessons', 'sfwd-topic' ) ) ) :
 			$lesson_data = $post;
 			$course_id;
 			if ( empty( $course_id ) ) {

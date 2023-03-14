@@ -60,7 +60,7 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 }
 ?>
 
-<div class="lms-topic-sidebar-wrapper sidebar-wrapper <?php echo esc_attr( $side_panel_state_class ); ?>" >
+<div class="lms-topic-sidebar-wrapper sidebar-wrapper<?php echo esc_attr( $side_panel_state_class ); ?>" >
 	<button class="course-sidebar-toggle is-clickable" id="course-sidebar-toggle"></button>
 	<div class="lms-topic-sidebar-data">
 		<?php
@@ -81,40 +81,35 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 		}
 		?>
 
-		<div class="bb-elementor-header-items">
+		<!--<div class="bb-elementor-header-items">
 			<a href="#" id="bb-toggle-theme">
 				<span class="sfwd-dark-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Dark Mode', 'buddyboss-theme' ); ?>"><i class="bb-icon-rl bb-icon-moon"></i></span>
 				<span class="sfwd-light-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Light Mode', 'buddyboss-theme' ); ?>"><i class="bb-icon-l bb-icon-sun"></i></span>
 			</a>
-			<a href="#" class="header-maximize-link course-toggle-view" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Maximize', 'buddyboss-theme' ); ?>"><i class="bb-icon-l bb-icon-expand"></i></a>
-			<a href="#" class="header-minimize-link course-toggle-view" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Minimize', 'buddyboss-theme' ); ?>"><i class="bb-icon-l bb-icon-merge"></i></a>
-		</div>
-
-		<div class="lms-topic-sidebar-course-navigation">
-			<div class="ld-course-navigation">
-				<h2 class="course-entry-title"><?php echo esc_html( $parent_course_title ); ?></h2>
-			</div>
-		</div>
-
-		<div class="lms-topic-sidebar-progress">
-			<div class="course-progress-wrap">
-				<?php
-				learndash_get_template_part(
-					'modules/progress.php',
-					array(
-						'context'   => 'course',
-						'user_id'   => get_current_user_id(),
-						'course_id' => $parent_course->ID,
-					),
-					true
-				);
-				?>
-			</div>
-		</div>
+		</div> -->
 
 		<?php
-		$course_progress = get_user_meta( get_current_user_id(), '_sfwd-course_progress', true );
+		$course_progress     = get_user_meta( get_current_user_id(), '_sfwd-course_progress', true );
+		$course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $user_id, $course_id );
 		?>
+		<div class="is-flex is-align-items-center py-3 px-4 has-gap-16">
+			<div class="course-progress is-small">
+				<svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
+					<circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="transparent"></circle>
+					<circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="3"></circle>
+					<circle class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="3" stroke-dasharray="<?php echo $course_progress_num . ' ' . ( 100 - $course_progress_num ); ?>" stroke-dashoffset="25"></circle>
+				</svg>
+				<i class="fa-solid fa-trophy"></i>
+			</div>
+			<div>
+				<?php if ($course_progress_num < 100 ) : ?>
+					<p class="has-text-weight-bold is-size-6"><?php echo $course_progress_num; ?>% <?php esc_html_e( 'completado ¡Sigue así!', 'arkdewp' ); ?></p>
+					<?php else: ?>
+						<p class="has-text-weight-bold is-size-6"><?php echo $course_progress_num; ?>% <?php esc_html_e( 'completado', 'arkdewp' ); ?></p>
+				<?php endif; ?>
+			</div>
+
+		</div>
 
 		<div class="lms-lessions-list">
 			<?php
@@ -140,7 +135,7 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 							?>
 							<li class="lms-lesson-item <?php echo $lesson->ID === $post->ID ? esc_attr( 'current' ) : esc_attr( 'lms-lesson-turnover' ); ?> <?php echo esc_attr( $lesson_sample . ' ' . $locked_class ); ?> <?php echo ( ! empty( $lesson_topics ) || ! empty( $lesson_quizzes ) ) ? '' : esc_attr( 'bb-lesson-item-no-topics' ); ?>">
 
-								<div class="lesson-header is-flex has-gap-16 is-align-items-center lms-toggle-lesson is-clickable">
+								<div class="lesson-header is-flex has-gap-16 is-align-items-center <?php echo $lesson->ID === $post->ID ? esc_attr( 'current' ) : ''; ?>">
 									<?php
 									if ( isset( $sections[ $lesson->ID ] ) ) :
 										learndash_get_template_part(
@@ -167,12 +162,12 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 												?>
 											<i class="fa-solid fa-circle-check has-text-primary"></i>
 
-								<?php	else : ?>
+									<?php	else : ?>
 											<i class="fa-solid fa-circle-check has-text-grey-lighter"></i>
-							<?php endif; ?>
-										<span class="is-size-14px has-text-grey-darker">
+									<?php endif; ?>
+										<a class="is-size-14px" href="<?php echo esc_url( get_permalink( $lesson->ID ) ); ?>">
 											<?php echo $lesson->post_title; ?>
-										</span>
+										</a>
 										
 											<?php
 
@@ -207,7 +202,9 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 												<?php
 										endif;
 											?>
-
+										<div class="lms-toggle-lesson is-clickable">
+											<span class=""></span>
+										</div>
 								</div>
 
 								<div class="lms-lesson-content" <?php echo $lesson->ID === $post->ID ? '' : 'style="display: none;"'; ?>>
@@ -236,7 +233,7 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 																				<span class="is-size-14px has-text-weight-bold <?php echo $completed ? esc_attr( 'is-line-through' ) : ''; ?>"><?php echo $lesson_topic->post_title; ?></span>
 
 																		<?php else : ?>
-																			<a class="is-flex has-gap-16 is-align-items-center bb-title bb-lms-title-wrap is-size-14px" href="<?php echo esc_url( get_permalink( $lesson_topic->ID ) ); ?>" title="<?php echo esc_attr( $lesson_topic->post_title ); ?>">
+																			<a class="is-flex has-gap-16 is-align-items-center bb-title bb-lms-title-wrap is-size-14px is-flex-grow-1" href="<?php echo esc_url( get_permalink( $lesson_topic->ID ) ); ?>" title="<?php echo esc_attr( $lesson_topic->post_title ); ?>">
 																				<?php if ( $completed ) : ?>
 																					<i class="fa-solid fa-circle  has-text-primary fa-xs"></i>
 																				<?php else : ?>

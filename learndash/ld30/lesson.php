@@ -89,7 +89,7 @@ $prev = learndash_previous_post_link( '', true );
 ?>
 
 <div class="columns is-gapless">
-	<div class="column course-sidebar left-side " id="course-sidebar">
+	<div class="column course-sidebar left-side is-active" id="course-sidebar">
 		<?php
 		if ( ! empty( $course ) ) :
 			include locate_template( '/learndash/ld30/course-sidebar.php' );
@@ -104,12 +104,12 @@ $prev = learndash_previous_post_link( '', true );
 				<div class="ld-video-wrapper">
 					<?php if ( $prev ) : ?>
 						<a href="<?php echo esc_url( $prev ); ?>" class="prev-topic is-flex is-align-items-center" title="Previous lesson">
-							<i class="fa-solid fa-chevron-left fa-2xl mr-2"></i><span class="is-size-7"><?php esc_html_e( 'Anterior', 'arkdewp' ); ?></span>
+							<i class="fa-solid fa-chevron-left fa-2xl mr-2"></i><span class="is-size-7"><?php esc_html_e( 'Anterior clase', 'arkdewp' ); ?></span>
 						</a>
 					<?php endif; ?>
 					<?php if ( $next ) : ?>
 						<a href="<?php echo esc_url( $next ); ?>" class="next-topic is-flex is-align-items-center" title="Next lesson">
-							<span class="is-size-7  mr-2"><?php esc_html_e( 'Siguiente', 'arkdewp' ); ?></span><i class="fa-solid fa-chevron-right fa-2xl"></i>
+							<span class="is-size-7  mr-2"><?php esc_html_e( 'Siguiente clase', 'arkdewp' ); ?></span><i class="fa-solid fa-chevron-right fa-2xl"></i>
 						</a>
 					<?php endif; ?>
 						
@@ -130,7 +130,6 @@ $prev = learndash_previous_post_link( '', true );
 									<span class="is-size-7  mr-2"><?php esc_html_e( 'Siguiente', 'arkdewp' ); ?></span><i class="fa-solid fa-chevron-right fa-lg"></i>
 								</a>
 							<?php endif; ?>
-
 						</div>
 					<?php endif; ?>
 					<?php
@@ -145,8 +144,8 @@ $prev = learndash_previous_post_link( '', true );
 						?>
 					<div class="is-flex has-gap-16 is-justify-content-space-between is-align-items-center">
 						<div>
-							<p class="is-size-14px has-text-grey mb-0"><strong><?php esc_html_e( 'Modulo: ', 'arkdewp' ); ?></strong><?php echo get_the_title( $lesson_post->ID ); ?></p>
-							<h1 class="title is-size-3 mt-1"><?php echo sprintf( esc_html__( '%1$s.%2$s %3$s', 'arkdewp' ), $lesson_no, $topic_no, get_the_title() ); ?></h1>
+							<p class="has-text-grey mb-0 has-text-weight-bold"><?php echo sprintf( esc_html__( 'Modulo %s', 'arkdewp' ), $lesson_no ); ?></p>
+							<h1 class="title is-size-2 mt-1"><?php echo esc_html__( get_the_title() ); ?></h1>
 						</div>
 						<div>
 							
@@ -177,6 +176,7 @@ $prev = learndash_previous_post_link( '', true );
 					?>
 					<div class="content mt-5">
 						<?php echo get_the_content(); ?>
+						
 		
 					</div>
 					<div class="flex bb-position">

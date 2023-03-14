@@ -105,6 +105,7 @@ a#career-preview-launcher {
 //dinu progress bar with simple svg, no animation
 .course-progress {
 	width: 100%;
+	position: relative;
 	//animation: donutfade 1s;
 	.fa-solid {
 		position: absolute;
@@ -116,6 +117,18 @@ a#career-preview-launcher {
 	p {
 		color: white;
 		text-align: center;
+	}
+	&.is-small {
+		width: 75px;
+		.fa-solid{
+			font-size: 1.6rem;
+			top: calc(50% - 0.8rem);
+			left: calc(50% - 0.9rem);
+
+		} 
+		.donut-ring {
+			stroke: darken($white-ter, 5%);
+		}
 	}
 }
 .donut-ring {
@@ -203,13 +216,15 @@ body.learndash-cpt.learndash-embed-responsive
 				max-height: 75vh;
 			}
 		}
-		.learndash_mark_complete_button {
-			@extend .button, .is-primary, .is-simple;
-		}
+	}
+	.learndash_mark_complete_button {
+		@extend .button, .is-primary, .is-simple;
 	}
 
 	
 }
+
+
 .prev-topic,
 .next-topic {
 	position: absolute;
@@ -229,6 +244,9 @@ body.learndash-cpt.learndash-embed-responsive
 	color: white;
 	&.no-video {
 		position: relative;
+		margin-right: auto;
+		left: 0;
+		right: 0;
 		
 		i, span {
 			opacity: 1;
@@ -239,6 +257,10 @@ body.learndash-cpt.learndash-embed-responsive
 .next-topic {
 	right: 10px;
 	left: unset;
+	&.no-video {
+		margin-left: auto;
+		margin-right: unset;
+	}
 }
 
 .ld-video-wrapper {
@@ -337,23 +359,33 @@ body.learndash-cpt.learndash-embed-responsive
 			}
 			.lesson-header {
 				padding: 1rem;
+
+				a:hover {
+					color: var(--color-secondary);
+				}
 				
 				border-bottom: 1px solid $grey-lighter;
-				&:after {
-					content: "\f078";
-					font-family: "Font Awesome 6 Free";
-					font-size: 1rem;
-					position: relative;
-					font-weight: 600;
-					margin-left:auto;
+				.lms-toggle-lesson {
+					margin-left: auto;
+					span:after {
+						content: "\f077";
+						font-family: "Font Awesome 6 Free";
+						font-size: 1rem;
+						position: relative;
+						font-weight: 600;
+						margin-left: auto;
+					}
 				}
+
+				&.current {
+					font-weight: bold;
+				}
+				
 			}
 			&:first-child {
 				border-top: 1px solid $grey-lighter;
 			}
-			&:last-child {
-
-			}
+			
 		
 			&:nth-child(odd) {
 				.lesson-header {
@@ -365,8 +397,10 @@ body.learndash-cpt.learndash-embed-responsive
 			{
 				//chevron down
 				.lesson-header {
-					&:after {
-						content: "\f077";
+					.lms-toggle-lesson {
+						span:after {
+							content: "\f078";
+						}
 					}
 				}
 			}
