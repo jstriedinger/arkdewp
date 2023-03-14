@@ -50,7 +50,7 @@ if ( $course ) :
 			?>
 			<a href="<?php echo $permalink; ?>" class="is-size-5 has-text-weight-bold mb-4 mt-1"><?php echo $course->post_title; ?></a>
 			<?php get_template_part( 'template-parts/cards/course', 'teachers', array( 'teachers' => $teachers ) ); ?>
-			<?php if ( $has_access && $next_lesson) : ?>
+			<?php if ( $has_access && $next_lesson ) : ?>
 				<p class="is-size-6 has-text-weight-bold has-text-grey mt-5 mb-2"><?php echo $course_progress; ?>% <?php esc_html_e( 'completado', 'arkdewp' ); ?></p>
 				<a href="<?php echo esc_url( $next_lesson['link'] ); ?>" class="button is-purple is-small ">
 					<?php esc_html_e( 'Continua con el curso', 'arkdewp' ); ?>

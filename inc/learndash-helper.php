@@ -4,8 +4,6 @@
  */
 
 
-use LearnDash_Settings_Section;
-
 /**
  * Get all the URLs of current course ( lesson, topic, quiz )
  *
@@ -160,28 +158,33 @@ function arkde_dashboard_continue_course( $user_id, $course_id ) {
 
 			$last_topic_id = $progress['last_id'];
 			// now we must run through the topics to fidn the last one and what would be the next one then
-			$found       = false;
-			$nextone     = false;
-			$next_lesson = null;
+			$found   = false;
+			$nextone = false;
+			// by default next lesson is first one if theres an error finding it
+			$next_lesson = key( reset( $progress['topics'] ) );
 			foreach ( $progress['topics'] as $lesson ) {
-				while ( $current = current( $lesson ) ) {
-					$key = key( $lesson );
-					if ( $nextone ) {
-						$next_lesson = $key;
-						$found       = true;
+				if($lesson)
+				{
+					while ( $current = current( $lesson ) ) {
+						$key = key( $lesson );
+						if ( $nextone ) {
+							$next_lesson = $key;
+							$found       = true;
+						}
+						if ( $key === $last_topic_id ) {
+							$nextone = true;
+						}
+						$next = next( $lesson );
+						if ( false !== $next && $nextone ) {
+							$found       = true;
+							$next_lesson = key( $lesson );
+								break;
+						}
 					}
-					if ( $key === $last_topic_id ) {
-						$nextone = true;
+					if ( $found ) {
+						break;
 					}
-					$next = next( $lesson );
-					if ( false !== $next && $nextone ) {
-						$found       = true;
-						$next_lesson = key( $lesson );
-							break;
-					}
-				}
-				if ( $found ) {
-					break;
+
 				}
 			}
 			if ( null !== $next_lesson ) {
