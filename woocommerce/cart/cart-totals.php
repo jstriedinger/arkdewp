@@ -18,10 +18,12 @@
 defined( 'ABSPATH' ) || exit;
 
 $discount_total = 0;
+$subtotal       = 0;
 foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
 	$product = $values['data'];
 	if ( $product->is_on_sale() ) {
 		$regular_price   = $product->get_regular_price();
+		$subtotal       += $regular_price;
 		$sale_price      = $product->get_sale_price();
 		$discount        = ( (float) $regular_price - (float) $sale_price ) * (int) $values['quantity'];
 		$discount_total += $discount;
@@ -35,7 +37,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
 		<table cellspacing="0" class="shop_table shop_table_responsive">
 			<tr class="cart-subtotal is-size-14px">
 				<td class="has-text-left"><?php esc_html_e( 'Subtotal', 'arkdewp' ); ?></td>
-				<td class="has-text-right" data-title="<?php esc_attr_e( 'Subtotal', 'arkdewp' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
+				<td class="has-text-right" data-title="<?php esc_attr_e( 'Subtotal', 'arkdewp' ); ?>"><?php echo wc_price( $subtotal );; ?></td>
 			</tr>
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 			<tr class="cart-discount is-size-14px coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
@@ -81,7 +83,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
 		<tr class="order-discounts is-size-14px">
 			<td class="has-text-left"><?php esc_html_e( 'Descuentos', 'woocommerce' ); ?></td>
 			<td class="has-text-right" data-title="<?php esc_attr_e( 'Descuentos', 'woocommerce' ); ?>">
-											  <?php	echo '-'.wc_price( $discount_total ); ?>
+					<?php	echo '-' . wc_price( $discount_total ); ?>
 			 </td>
 		</tr>
 		<tr class="order-total is-size-4 has-text-weight-bold">

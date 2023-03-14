@@ -50,7 +50,7 @@ $teachers        = $meta['teachers'];
 $duration        = $meta['course_duration'];
 $challenges      = $meta['info']['challenges'];
 $level           = get_the_terms( $course, 'level' )[0];
-$related_courses = $meta['related_courses'];
+$related_courses = isset( $meta['related_courses'] ) ?  $meta['related_courses'] : array();
 $career          = $meta['career'];
 
 
@@ -181,7 +181,7 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 											esc_attr( $product->get_id() ),
 											esc_attr( $product->get_sku() ),
 											$product->is_purchasable() ? 'add_to_cart_button' : '',
-											esc_attr( $product->product_type ),
+											esc_attr( $product->get_type() ),
 											esc_html__( 'Compra ahora', 'arkdewp' )
 										),
 										$product
@@ -334,7 +334,7 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 														esc_attr( $product->get_id() ),
 														esc_attr( $product->get_sku() ),
 														$product->is_purchasable() ? 'add_to_cart_button' : '',
-														esc_attr( $product->product_type ),
+														esc_attr( $product->get_type() ),
 														esc_html__( 'Compra ahora', 'arkdewp' )
 													),
 													$product

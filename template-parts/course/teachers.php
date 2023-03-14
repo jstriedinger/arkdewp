@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $teachers = $args[0];
-$career   = $args[1];
+$career   = isset( $args[1] ) ? true : false;
 ?>
 
 <h3 class="subtitle is-size-4 has-text-weight-bold pt-4 <?php echo $career ? 'has-text-white' : ''; ?>"><?php count( $teachers ) > 1 ? esc_html_e( 'Tus instructores', 'arkdewp' ) : esc_html_e( 'Tu instructor', 'arkdewp' ); ?></h3>
@@ -12,8 +12,8 @@ $career   = $args[1];
 	foreach ( $teachers as $teacher ) :
 		$img     = get_the_post_thumbnail_url( $teacher->ID );
 		$meta    = get_fields( $teacher->ID );
-		$company = $meta['company'];
-		$rol     = $meta['position'];
+		$company = isset( $meta['company'] ) ? $meta['company'] : false;
+		$rol     = isset( $meta['position'] ) ? $meta['position'] : false;
 		$bio     = $meta['bio'];
 		?>
 		<div class="column is-full">
@@ -24,7 +24,7 @@ $career   = $args[1];
 					</figure>
 					<div class="is-flex is-flex-direction-column">
 						<span class="subtitle is-size-4 mb-2 has-text-weight-bold <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo esc_html( $teacher->post_title ); ?></span>
-						<?php if ( empty( $company ) ) : ?>
+						<?php if ( ! $company ) : ?>
 							<span class="subtitle is-size-6 mb-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo esc_attr( $rol ); ?></span>
 						<?php else : ?>
 								<span class="subtitle is-size-6 mb-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo sprintf( __( '%s en', 'arkdewp' ), esc_attr( $rol ) ); ?></span>

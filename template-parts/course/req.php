@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $reqs  = $args[0];
-$white = $args[1];
+$white = isset( $args[1] ) ? true : false;
 ?>
 
 <h3 class="subtitle is-size-4  has-text-weight-bold pt-4 <?php echo $white ? 'has-text-white' : ''; ?>"><?php esc_html_e( '¿Qué necesitas saber?', 'arkdewp' ); ?></h2>

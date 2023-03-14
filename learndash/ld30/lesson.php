@@ -80,7 +80,9 @@ foreach ( $topics as $topic ) {
 // lets get the video
 $matches = array();
 preg_match( '#<div class="ld-video" (.*?)>(.*?)</div>#', $content, $matches );
-$video = $matches[0];
+if ( ! empty( $matches ) ) {
+	$video = $matches[0];
+}
 
 // previous and next likns
 $next = learndash_next_post_link( '', true );
@@ -100,7 +102,7 @@ $prev = learndash_previous_post_link( '', true );
 	<div class="column">
 			<!-- video lesson -->
 			
-			<?php if ( $video ) : ?>
+			<?php if ( isset( $video ) ) : ?>
 				<div class="ld-video-wrapper">
 					<?php if ( $prev ) : ?>
 						<a href="<?php echo esc_url( $prev ); ?>" class="prev-topic is-flex is-align-items-center" title="Previous lesson">
@@ -117,8 +119,8 @@ $prev = learndash_previous_post_link( '', true );
 				</div>
 			<?php endif; ?>
 			<div class="container is-max-desktop">
-				<div class="column is-fulll <?php echo $video ? '' : 'mt-4'; ?>">
-					<?php	if ( ! $video ) : ?>
+				<div class="column is-fulll <?php echo isset( $video ) ? 'mt-2' : 'mt-4'; ?>">
+					<?php	if ( ! isset( $video ) ) : ?>
 						<div class="is-flex is-align-items-center mb-5">
 							<?php if ( $pagination_urls['prev'] ) : ?>
 								<a href="<?php echo esc_url( $pagination_urls['prev'] ); ?>" class="prev-topic is-flex is-align-items-center no-video" title="Previous lesson">

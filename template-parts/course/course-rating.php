@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $course_id = $args['course_id'];
-$size      = $args['size'] ? $args['size'] : '';
+$size      = isset( $args['size'] ) ? $args['size'] : '';
 $avg_size  = $size ? ( $size === 'fa-xs' ? 'is-size-7' : ( $size === 'fa-sm' ? 'is-size-6' : '' ) ) : 'is-size-5';
 if ( function_exists( 'rrf_get_course_rating_details' ) ) :
 	$rating_details = rrf_get_course_rating_details( $course_id );

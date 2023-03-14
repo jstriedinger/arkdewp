@@ -37,7 +37,7 @@ if ( ! empty( $reviews ) ) :
 						</div>
 						<p class="is-size-14px has-text-white is-italic">
 						<?php
-						$course_name = get_the_title( get_post_meta( $testimonial->ID, 'wdm_course_review_review_on_course' )[0] );
+						$course_name = get_the_title( get_post_meta( $review->ID, 'wdm_course_review_review_on_course' )[0] );
 						/* translators: %s : human-readable time difference */
 						echo esc_html( sprintf( esc_html( 'Curso:  %s', 'arkdewp' ), $course_name ) );
 						?>

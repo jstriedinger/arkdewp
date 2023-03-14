@@ -53,7 +53,7 @@ foreach ( $meta['courses'] as $course ) {
 	$course_access_users = learndash_get_course_users_access_from_meta( $course->ID );
 	$course_user_ids     = array_merge( $course_user_ids, $course_access_users );
 
-	$course_groups_users = learndash_get_course_groups_users_access( $course_id );
+	$course_groups_users = learndash_get_course_groups_users_access( $course->ID );
 	$course_user_ids     = array_merge( $course_user_ids, $course_groups_users );
 
 	if ( ! empty( $course_user_ids ) ) {
@@ -179,7 +179,7 @@ while ( have_posts() ) :
 											esc_attr( $career_product->get_id() ),
 											esc_attr( $career_product->get_sku() ),
 											$career_product->is_purchasable() ? 'add_to_cart_button' : '',
-											esc_attr( $career_product->product_type ),
+											esc_attr( $career_product->get_type() ),
 											esc_html__( 'Compra ahora', 'arkdewp' )
 										),
 										$career_product
