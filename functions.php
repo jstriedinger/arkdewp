@@ -65,24 +65,8 @@ function arkdewp_setup() {
 		)
 	);
 
-
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
-
-	/**
-	 * Add support for core custom logo.
-	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
-	 */
-	add_theme_support(
-		'custom-logo',
-		array(
-			'height'      => 150,
-			'width'       => 150,
-			'flex-width'  => true,
-			'flex-height' => true,
-		)
-	);
 
 	// deregister Buddyboss customizer
 	remove_action( 'wp_head', 'buddyboss_customizer_css' );
@@ -128,11 +112,12 @@ function arkdewp_scripts() {
 	// following ASTRA good practice code.
 	$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
 	$assets_uri  = ARKDE_THEME_URI . 'assets/';
-	if ( file_exists( $assets_uri . 'arkdewp' . $file_prefix . '.css' ) ) {
-		$v = ( filemtime( $assets_uri . 'arkdewp' . $file_prefix . '.css' ) );
+	if ( file_exists( get_stylesheet_directory() . '/assets/arkdewp' . $file_prefix . '.css' ) ) {
+		$v = ( filemtime( get_stylesheet_directory() . '/assets/arkdewp' . $file_prefix . '.css' ) );
 	} else {
 		$v = '';
 	}
+	write_log( $v );
 
 	wp_enqueue_style( 'arkdewp-css', $assets_uri . 'arkdewp' . $file_prefix . '.css', array(), $v, 'all' );
 	wp_style_add_data( 'arkdewp-css', 'rtl', 'replace' );

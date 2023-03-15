@@ -86,7 +86,8 @@ function get_courses_preview_info() {
 						|| ( current_user_can( 'administrator' ) && LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_Admin_User', 'courses_autoenroll_admin_users' ) ) ) {
 					$course_info['enrolled'] = true;
 					// no need to get the price, bc link would to course.
-					$course_info['cta_link'] = arkdewp_ld_course_resume( $course_id );
+					$next_topic = arkde_dashboard_continue_course( $current_user_id, $course_id );
+					$course_info['cta_link'] = $next_topic ? $next_topic['link'] : get_the_permalink( $course_id );
 					$course_info['cta_txt']  = esc_html__( 'Sigue con el curso', 'arkdewp' );
 				} else {
 					$course_info['enrolled'] = false;

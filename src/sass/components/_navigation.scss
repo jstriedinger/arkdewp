@@ -35,7 +35,9 @@ header#masthead {
 		padding: 0 1rem;
 		gap: 16px;
 
-		
+		.navbar-brand {
+			align-items: center;
+		}
 		
 		@include touch {
 			.navbar-menu {

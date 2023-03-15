@@ -15,7 +15,11 @@
 		<div class="container">
 			<div class="columns is-variable is-6-widescreen">
 				<div class="column is-one-quarter">
-					<img src="<?php echo get_theme_mod( 'secondary_logo' ); ?>" alt="ARKDE logo">
+					<?php
+						$logo_id = buddyboss_theme_get_option( 'logo', 'id' );
+						$logo    = wp_get_attachment_image( $logo_id, 'full', '' );
+						echo $logo;
+					?>
 					<p class="mb-1 is-size-14px">© <?php echo Date( 'Y' ); ?> - <?php esc_html_e( 'Todos los derechos reservados', 'arkdewp' ); ?></p>
 					<p class="is-size-14px">
 						<?php
