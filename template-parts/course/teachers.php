@@ -13,8 +13,7 @@ $career   = isset( $args[1] ) ? true : false;
 		$img     = get_the_post_thumbnail_url( $teacher->ID );
 		$meta    = get_fields( $teacher->ID );
 		$company = isset( $meta['company'] ) ? $meta['company'] : false;
-		$rol     = isset( $meta['position'] ) ? $meta['position'] : false;
-		$bio     = $meta['bio'];
+		$bio     = isset( $meta['bio'] ) ? $meta['bio'] : false;
 		?>
 		<div class="column is-full">
 			<div class="teacher-horizontal-card">
@@ -24,17 +23,19 @@ $career   = isset( $args[1] ) ? true : false;
 					</figure>
 					<div class="is-flex is-flex-direction-column">
 						<span class="subtitle is-size-4 mb-2 has-text-weight-bold <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo esc_html( $teacher->post_title ); ?></span>
-						<?php if ( ! $company ) : ?>
-							<span class="subtitle is-size-6 mb-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo esc_attr( $rol ); ?></span>
+						<?php if ( ! isset( $company['name'] ) ) : ?>
+							<span class="subtitle is-size-6 mb-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo esc_attr( $company['position'] ); ?></span>
 						<?php else : ?>
-								<span class="subtitle is-size-6 mb-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo sprintf( __( '%s en', 'arkdewp' ), esc_attr( $rol ) ); ?></span>
-								<img src="<?php echo esc_url( $career ? $company['img_bw'] : $company['img_color'] ); ?>" alt="<?php echo esc_attr( $company['name'] ); ?>" width="90px">
+								<span class="subtitle is-size-6 mb-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo sprintf( __( '%s en', 'arkdewp' ), esc_attr( $company['position'] ) ); ?></span>
+								<img src="<?php echo esc_url( $career ? $company['img_bw'] : $company['img_color'] ); ?>" alt="<?php echo esc_attr( $company['name'] ); ?>" width="125px">
 						<?php endif; ?>
 					</div>
 				</div>
-				<div class="content mt-4 <?php echo $career ? 'has-text-white' : ''; ?>">
-					<?php echo $bio; ?>
-				</div>
+				<?php if ( $bio ) : ?>
+					<div class="content mt-4 <?php echo $career ? 'has-text-white' : ''; ?>">
+						<?php echo $bio; ?>
+					</div>
+				<?php endif; ?>
 			</div>
 		</div>
 		

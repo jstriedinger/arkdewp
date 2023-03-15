@@ -6,6 +6,7 @@
             "key": "field_5ed867d28aa6d",
             "label": "Mini bio",
             "name": "mini_bio",
+            "aria-label": "",
             "type": "text",
             "instructions": "Usado en home section y espacios pequeños",
             "required": 1,
@@ -25,6 +26,7 @@
             "key": "field_5fae12bec3cec",
             "label": "Descripción",
             "name": "bio",
+            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 1,
@@ -44,6 +46,7 @@
             "key": "field_60aef8c3a7191",
             "label": "Empresa actual",
             "name": "company",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -56,9 +59,10 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_63cb9ec7b10a1",
-                    "label": "Nombre",
-                    "name": "name",
+                    "key": "field_63be553784d00",
+                    "label": "Rol",
+                    "name": "position",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -69,15 +73,36 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": "",
                     "placeholder": "",
                     "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "append": ""
+                },
+                {
+                    "key": "field_63cb9ec7b10a1",
+                    "label": "Nombre empresa",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_63cb9ecdb10a2",
                     "label": "Imagen color",
                     "name": "img_color",
+                    "aria-label": "",
                     "type": "image",
                     "instructions": "",
                     "required": 0,
@@ -102,6 +127,7 @@
                     "key": "field_63cb9f00b10a3",
                     "label": "Images blanco y negro",
                     "name": "img_bw",
+                    "aria-label": "",
                     "type": "image",
                     "instructions": "",
                     "required": 0,
@@ -125,35 +151,10 @@
             ]
         },
         {
-            "key": "field_63be553784d00",
-            "label": "Rol",
-            "name": "position",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_60aef8c3a7191",
-                        "operator": "!=empty"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_5cd98e3b4341a",
             "label": "Imagen de fondo",
             "name": "bgimg",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -201,5 +202,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674288950
+    "modified": 1678858820
 }

@@ -86,7 +86,7 @@ if ( ! function_exists( 'is_login_page' ) ) {
  * @return void
  */
 function my_login_stylesheet() {
-	wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/style.css' );
+	wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/login.css' );
 }
 add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
 
