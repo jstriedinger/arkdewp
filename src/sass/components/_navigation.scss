@@ -37,6 +37,9 @@ header#masthead {
 
 		.navbar-brand {
 			align-items: center;
+			img {
+				max-width: 90px;
+			}
 		}
 		
 		@include touch {
