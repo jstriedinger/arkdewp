@@ -8,7 +8,7 @@
 			</div>
 			<div class="card-content">
 				<p class="is-size-4 has-text-weight-bold" id="course-preview-card-title">lorem ipsum joder</p>
-				<div class="level mb-0 has-text-grey-light" id="course-preview-card-details">
+				<div class="level mb-4 mt-2 has-text-grey-light" id="course-preview-card-details">
 						<div class="level-item is-justify-content-flex-start">
 							<div class="course-teachers">
 								<img src="" alt="">
@@ -42,7 +42,7 @@
 						</div>
 				</div>
 				<p id="course-preview-card-desc" class="is-size-14px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime rerum, nisi reiciendis cumque saepe amet deleniti molestiae inventore alias voluptates ipsum sapiente, non nulla voluptate sit ratione? Non, rerum tenetur</p>
-				<div class="level is-mobile has-gap-10 mt-5" id="course-preview-price">
+				<div class="level is-mobile has-gap-10 mt-6" id="course-preview-price">
 						<div class="level-item is-justify-content-flex-end is-align-items-flex-end " id="course-preview-price-not-free">
 						</div>
 						<div class="level-item is-justify-content-flex-end is-align-items-flex-end" id="course-preview-price-free">

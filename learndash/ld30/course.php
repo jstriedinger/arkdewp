@@ -42,6 +42,7 @@ $login_modal     = LearnDash_Settings_Section::get_section_setting( 'LearnDash_S
 $login_url       = wp_login_url( get_the_permalink( $course_id ) );
 $currency        = get_woocommerce_currency();
 $preview_url     = $meta['course_video_preview'];
+$description     = $meta['course_description'];
 $course_image    = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 $bullets         = $meta['info']['what_to_learn'];
 $new_course      = $meta['info']['new_course'];
@@ -114,7 +115,7 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 							</div>
 						</div>
 						<h1 class="title has-text-white is-size-2 is-size-1-fullhd mt-0 has-text-weight-bold"><?php the_title(); ?></h1>
-						<p class="is-size-6 has-text-white mb-5 has-text-justified"><?php echo wp_strip_all_tags( get_the_excerpt() ); ?></p>
+						<p class="is-size-6 has-text-white mb-5 has-text-justified"><?php echo esc_html( $description ); ?></p>
 						<?php
 						if ( $has_access ) :
 							?>
