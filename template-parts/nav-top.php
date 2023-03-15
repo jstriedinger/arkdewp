@@ -1,10 +1,12 @@
 <nav class="navbar <?php echo is_singular( array( 'sfwd-courses', 'career' ) ) ? 'is-full' : ''; ?>" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-	<?php
-	$logo_id = buddyboss_theme_get_option( 'logo', 'id' );
-	$logo    = wp_get_attachment_image( $logo_id, 'full', '' );
-	echo $logo;
-	?>
+		<a href="<?php echo esc_url( get_home_url() ); ?>">
+			<?php
+			$logo_id = buddyboss_theme_get_option( 'logo', 'id' );
+			$logo    = wp_get_attachment_image( $logo_id, 'full', '' );
+			echo $logo;
+			?>
+		</a>
 	<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-top" id="navbar-burger">
 	  <span aria-hidden="true"></span>
 	  <span aria-hidden="true"></span>
