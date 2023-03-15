@@ -324,7 +324,7 @@
 			position: relative;
 			z-index: 0;
 			img {
-				max-width: 60%;
+				max-width: 60% !important;
 				margin: 0 auto;
 			}
 			> * {
