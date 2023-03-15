@@ -8,9 +8,10 @@ if ( $lessons && ! empty( $lessons ) ) : ?>
 	<div class="course-pensum mb-6">
 	<?php
 	foreach ( $lessons as $lesson ) :
-		$lesson  = $lesson['post'];
-		$topics  = ! empty( $lesson_topics ) && ! empty( $lesson_topics[ $lesson->ID ] ) ? $lesson_topics[ $lesson->ID ] : '';
-		$is_free = learndash_is_sample( $lesson );
+		$lesson          = $lesson['post'];
+		$topics          = ! empty( $lesson_topics ) && ! empty( $lesson_topics[ $lesson->ID ] ) ? $lesson_topics[ $lesson->ID ] : '';
+		$is_free         = learndash_is_sample( $lesson );
+		$lesson_duration = get_field( 'duration', $lesson->ID );
 		?>
 		<div class="lesson-row">
 			<div class="lesson-row-header is-flex is-align-items-center is-clickable">
@@ -24,7 +25,7 @@ if ( $lessons && ! empty( $lessons ) ) : ?>
 					endif;
 					?>
 
-					<span class="is-size-14px has-text-grey item-duration"><?php echo sprintf( __( '%s clases', 'arkdewp' ), esc_attr( count( $topics ) ) ); ?></span>
+					<span class="is-size-14px has-text-grey item-duration"><?php echo sprintf( __( '%1$s - %2$s clases', 'arkdewp' ), esc_attr( $lesson_duration ), esc_attr( count( $topics ) ) ); ?></span>
 			</div>
 			<div class="lesson-row-topics">
 					<?php

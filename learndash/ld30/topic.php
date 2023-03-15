@@ -153,6 +153,7 @@ $prev = learndash_previous_post_link( '', true );
 						<div>
 							
 								<?php
+
 								learndash_get_template_part(
 									'modules/course-steps.php',
 									array(
@@ -178,7 +179,11 @@ $prev = learndash_previous_post_link( '', true );
 					endif;
 					?>
 					<div class="content mt-5">
-						<?php echo get_the_content(); ?>
+
+						<?php
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Might output HTML
+						echo do_shortcode( $topic->post_content );
+						?>
 		
 					</div>
 					<div class="flex bb-position">

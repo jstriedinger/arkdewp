@@ -51,7 +51,7 @@ $teachers        = $meta['teachers'];
 $duration        = $meta['course_duration'];
 $challenges      = $meta['info']['challenges'];
 $level           = get_the_terms( $course, 'level' )[0];
-$related_courses = isset( $meta['related_courses'] ) ?  $meta['related_courses'] : array();
+$related_courses = isset( $meta['related_courses'] ) ? $meta['related_courses'] : array();
 $career          = $meta['career'];
 
 
@@ -208,9 +208,9 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 					</div>
 					<div class="column">
 						<div class="card course-preview" style="background-image: url(<?php echo esc_attr( $course_image ); ?>)" id="course-preview-launcher" data-preview="<?php echo esc_attr( $preview_url ); ?>">
-							<video id="background-video" autoplay loop muted poster="<?php echo esc_attr( $course_image ); ?>">
+							<!--<video id="background-video" autoplay loop muted poster="<?php echo esc_attr( $course_image ); ?>">
 							<source src="https://assets.codepen.io/6093409/river.mp4" type="video/mp4">
-							</video>
+							</video>-->
 							<i class="fa-regular fa-circle-play has-text-white"></i>
 						</div>
 					</div>

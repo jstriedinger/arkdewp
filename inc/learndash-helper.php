@@ -57,7 +57,7 @@ function arkde_dashboard_continue_course( $user_id, $course_id ) {
 		}
 	}
 	if ( ! empty( $course_id ) ) {
-		$progress    = learndash_user_get_course_progress( $user_id, $course_id );
+		$progress = learndash_user_get_course_progress( $user_id, $course_id );
 
 		if ( 'in_progress' === $progress['status'] ) {
 
@@ -113,5 +113,28 @@ function arkde_dashboard_continue_course( $user_id, $course_id ) {
 	}
 	return null;
 }
+
+/**
+ * Get the course certificate
+ *
+ * @param [type] $atts
+ * @return void
+ */
+function check_ld_certificate( $atts ) {
+	global $post;
+	$id = $post->id;
+	ob_start();
+	get_template_part(
+		'template-parts/arkde_certificate',
+		null,
+		array(
+			'course_id' => learndash_get_course_id( $id ),
+			'user_id'   => get_current_user_id(),
+		)
+	);
+	return ob_get_clean();
+	// return include(locate_template('template-parts/arkde_certificate.php'));
+}
+add_shortcode( 'arkde_certificate', 'check_ld_certificate' );
 
 
