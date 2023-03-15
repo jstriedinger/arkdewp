@@ -43,7 +43,7 @@ $vimeo_id         = $meta['vimeo_id']
 				<?php if ( $tagline ) : ?>
 					<p class="subtitle is-size-4 has-text-white"><?php echo esc_html( $tagline ); ?></p> 
 				<?php endif; ?>
-				<a href="" class="button is-medium is-gold">Empieza aquí</a>
+				<a href="<?php echo get_post_type_archive_link( 'sfwd-courses' ); ?>" class="button is-medium is-gold"><?php esc_html_e( 'Mira los cursos', 'arkdewp' ); ?></a>
 
 			</div>
 
@@ -82,7 +82,7 @@ $vimeo_id         = $meta['vimeo_id']
 							if ( $partners ) :
 								foreach ( $partners as $partner ) :
 									?>
-										<img src="<?php echo esc_url( $partner['url'] ); ?>" alt="<?php echo esc_attr( $partner['alt'] ); ?>" >
+										<img src="<?php echo esc_url( $partner['url'] ); ?>" alt="<?php echo esc_attr( $partner['alt'] ); ?>" style="max-width: 120px" >
 									<?php
 				  endforeach;
 							endif;
@@ -102,7 +102,7 @@ $vimeo_id         = $meta['vimeo_id']
 	</section>
 	<section class="section ">
 		<div class="container mt-6 mb-6">
-			<div class="columns is-8  is-variable is-vcentered">
+			<div class="columns is-8  is-variable is-vcentered is-multiline">
 				<div class="column is-full is-one-third-desktop">
 					<h3 class="is-size-2 has-text-weight-bold"><?php echo esc_html__( 'Con profesionales de la industria', 'arkdewp' ); ?></h3>
 					<p><?php echo esc_html__( 'Aprende directamente de desarrolladores y artistas trabajando en la industria latina y de habla hispana.', 'arkdewp' ); ?></p>
@@ -113,7 +113,7 @@ $vimeo_id         = $meta['vimeo_id']
 						</span>
 					</a>
 				</div>
-				<div class="column">
+				<div class="column is-full is-two-thirds-desktop">
 							<div class="columns is-variable is-4 anim-right-left-children" >
 							<?php
 							if ( $teachers ) {
@@ -149,9 +149,23 @@ $vimeo_id         = $meta['vimeo_id']
 				<?php
 					$t1 = $testimonials[ $i ];
 					$t2 = $testimonials[ $i + 1 ];
-					get_template_part( 'template-parts/cards/testimonial', '', array( 'testimonial' => $t1, 'extra' => true ) );
+					get_template_part(
+						'template-parts/cards/testimonial',
+						'',
+						array(
+							'testimonial' => $t1,
+							'extra'       => true,
+						)
+					);
 				if ( $t2 ) {
-					get_template_part( 'template-parts/cards/testimonial', '', array( 'testimonial' => $t2, 'extra' => true ) );
+					get_template_part(
+						'template-parts/cards/testimonial',
+						'',
+						array(
+							'testimonial' => $t2,
+							'extra'       => true,
+						)
+					);
 				}
 				?>
 			</div>
@@ -199,7 +213,7 @@ $vimeo_id         = $meta['vimeo_id']
 					<div class="column is-8 has-text-centered">
 						<h3 class="title is-size-3 is-size-2-desktop"><?php echo esc_html__( '¿Qué estás esperando?', 'arkdewp' ); ?></h3>
 						<p class="subtitle is-size-6 is-size-4-desktop"><?php echo esc_html__( 'Empieza con uno de nuestros cursos gratis', 'arkdewp' ); ?></p>
-						<a href="" class="button is-medium is-gold">Registrate aquí</a>
+						<a href="<?php echo wp_registration_url(); ?>" class="button is-medium is-gold"><?php esc_html_e( 'Registrate aquí', 'arkdewp' ); ?></a>
 					</div>
 				</div>
 
