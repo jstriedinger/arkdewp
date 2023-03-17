@@ -46,8 +46,6 @@ if ( empty( $course_id ) ) {
 	}
 }
 
-var_dump( $course_id );
-
 $lession_list    = learndash_get_course_lessons_list( $course_id, null, array( 'num' => - 1 ) );
 $lession_list    = array_column( $lession_list, 'post' );
 $content_urls    = buddyboss_theme()->learndash_helper()->buddyboss_theme_ld_custom_pagination( $course_id, $lession_list );
