@@ -112,7 +112,7 @@ if ( ! empty( $courses ) ) {
 						</div>
 					</div>
 			</div>
-			<h2 class="title is-4 has-text-weight-bold mb-4 mt-6"><?php echo esc_html_e( 'Mis cursos', 'arkdewp' ); ?></h2>
+			<h2 class="title is-4 has-text-weight-bold mb-4 mt-6" id="my-courses"><?php echo esc_html_e( 'Mis cursos', 'arkdewp' ); ?></h2>
 			<div class="columns">
 				<?php if ( empty( $courses ) ) : ?>
 					<div class="column is-full">
