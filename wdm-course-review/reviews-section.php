@@ -109,7 +109,7 @@ if ( is_user_logged_in() ) {
 					echo $review_prompt_text; // WPCS : XSS ok.
 					?>
 				</p>
-				<button class="write-a-review button is-small is-purple" data-course_id="<?php echo esc_attr( $course_id ); ?>">
+				<button class="write-a-review button is-small is-purple <?php echo esc_attr( $class ); ?>" data-course_id="<?php echo esc_attr( $course_id ); ?>">
 					<?php echo esc_html( $review_btn_text ); ?>
 				</button>
 			</div>

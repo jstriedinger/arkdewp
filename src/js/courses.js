@@ -2,7 +2,6 @@ import { modals } from './modals.js'
 import YTPlayer from 'yt-player'
 import { isMobile } from './tools'
 
-
 class UICoursesGrid {
 	/**
 	 * This method is run automatically when the module is imported,
@@ -39,11 +38,14 @@ class UICoursesGrid {
 				[ ...this.coursePreviews ].forEach( ( coursePreviewData ) => {
 					const courseCard = document.getElementById( `course-card-${ coursePreviewData.id }` )
 					const cardHeader = courseCard.querySelector( '.card-header' )
-					if ( coursePreviewData.preview_url !== null ) {
+					console.log(coursePreviewData);
+					if ( coursePreviewData.preview_url ) {
 						//add the class
 						cardHeader.classList.add( 'course-card-preview-link' )
+						cardHeader.addEventListener( 'click', ( event ) => this.showCoursePreview( event, coursePreviewData ) )
+					} else {
+						cardHeader.addEventListener( 'click', ( event ) => window.location = cardHeader.dataset.href )
 					}
-					cardHeader.addEventListener( 'click', ( event ) => this.showCoursePreview( event, coursePreviewData ) )
 				} )
 			}
 		}
@@ -61,7 +63,6 @@ class UICoursesGrid {
 			this.prepareCoursePreviews()
 			this.ytPlayer = new YTPlayer( '#course-video-preview', { related: false, modestBranding: true } )
 			this.ytPlayer.mute()
-			console.log( 'starting player' )
 
 			//lets map add_to_cart buttons
 			this.addToCartBtns = document.getElementsByClassName( 'add_to_cart_button' )
@@ -131,7 +132,6 @@ class UICoursesGrid {
 			this.ytPlayer.stop()
 			this.ytPlayer.unMute()
 			this.ytPlayer.play()
-			console.log( 'Playing first step' )
 			this.lastLoadedPreview = videoPreviewUrl
 
 			//2. put the info

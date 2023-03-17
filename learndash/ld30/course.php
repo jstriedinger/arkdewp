@@ -53,7 +53,8 @@ $challenges      = $meta['info']['challenges'];
 $level           = get_the_terms( $course, 'level' )[0];
 $related_courses = isset( $meta['related_courses'] ) ? $meta['related_courses'] : array();
 $career          = $meta['career'];
-
+$open            = $meta['open'];
+$visible_reviews = $meta['visible_reviews'];
 
 
 if ( $has_access ) {
@@ -66,16 +67,18 @@ if ( $has_access ) {
 		$in_cart = false;
 	}
 	$product = wc_get_product( $wc_product->ID );
-	if ( $currency === 'COP' ) {
-		$price         = number_format( $product->get_price(), 0, ',', '.' );
-		$regular_price = number_format( $product->get_regular_price(), 0, ',', '.' );
-	} else {
-		$price         = number_format( $product->get_price() );
-		$regular_price = number_format( $product->get_regular_price() );
-	}
-	$is_on_sale = $product->is_on_sale();
-	if ( $is_on_sale ) {
-		$discount = strval( ceil( 100 - ( ( $price * 100 ) / $regular_price ) ) );
+	if ( $product ) {
+		if ( 'COP' === $currency ) {
+			$price         = number_format( $product->get_price(), 0, ',', '.' );
+			$regular_price = number_format( $product->get_regular_price(), 0, ',', '.' );
+		} else {
+			$price         = number_format( $product->get_price() );
+			$regular_price = number_format( $product->get_regular_price() );
+		}
+		$is_on_sale = $product->is_on_sale();
+		if ( $is_on_sale ) {
+			$discount = strval( ceil( 100 - ( ( $price * 100 ) / $regular_price ) ) );
+		}
 	}
 }
 
@@ -91,12 +94,14 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 		<div class="hero-body">
 			<div class="container">
 				<div class="columns is-variable is-8">
-					<div class="column is-6 ">
+					<div class="column is-6">
 						<div class="level mb-2 is-mobile">
 							<div class="level-left">
+								<?php if ( $visible_reviews ) : ?>
 								<div class="level-item">
 									<?php get_template_part( 'template-parts/course/course', 'rating', array( 'course_id' => $course->ID ) ); ?>
 								</div>
+								<?php endif; ?>
 								<?php if ( $members > 10 ) : ?>
 									<div class="level-item">
 										<span class="icon-text has-text-white">
@@ -133,85 +138,89 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 								<a href="<?php echo esc_url( $resume_link ); ?>" class="button is-primary is-medium"><?php esc_html_e( 'Ir al curso', 'arkdewp' ); ?></a>
 								<?php
 							endif;
-						else :
+						elseif ( $open ) :
 							if ( 'free' === $course_settings['course_price_type'] ) {
 								?>
-								<p class="is-size-3 has-text-weight-bold mb-2">$0 <span class="is-size-5"> (<?php esc_html_e( 'Gratis!', 'arkdewp' ); ?>)</span></p>
-								<?php
-								if ( ! is_user_logged_in() ) :
-									?>
-									<div class="learndash_join_button">
-										<a href="<?php echo esc_url( $login_url ); ?>"
-												class="button is-primary is-medium"><?php esc_html_e( 'Empieza el curso', 'arkdewp' ); ?></a>
-									</div>
+									<p class="is-size-3 has-text-weight-bold mb-2">$0 <span class="is-size-5"> (<?php esc_html_e( 'Gratis!', 'arkdewp' ); ?>)</span></p>
 									<?php
-								else :
-									?>
-									<div class="learndash_join_button">
-										<form method="post">
-												<input type="hidden" value="<?php echo esc_attr( $course_id ); ?>" name="course_id"/>
-												<input type="hidden" name="course_join"
-																value="<?php echo wp_create_nonce( 'course_join_' . $user_id . '_' . $course_id ); ?>"/>
-
-												<button type="submit" class="button is-primary is-medium"><?php esc_html_e( 'Empieza ahora', 'arkdewp' ); ?></button>
-										</form>
-									</div>
+									if ( ! is_user_logged_in() ) :
+										?>
+										<div class="learndash_join_button">
+											<a href="<?php echo esc_url( $login_url ); ?>"
+													class="button is-primary is-medium"><?php esc_html_e( 'Empieza el curso', 'arkdewp' ); ?></a>
+										</div>
 										<?php
-								endif;
+									else :
+										?>
+										<div class="learndash_join_button">
+											<form method="post">
+													<input type="hidden" value="<?php echo esc_attr( $course_id ); ?>" name="course_id"/>
+													<input type="hidden" name="course_join"
+																	value="<?php echo wp_create_nonce( 'course_join_' . $user_id . '_' . $course_id ); ?>"/>
+	
+													<button type="submit" class="button is-primary is-medium"><?php esc_html_e( 'Empieza ahora', 'arkdewp' ); ?></button>
+											</form>
+										</div>
+											<?php
+									endif;
 							} else {
 								// not free and does not have access. Show options
 								?>
-								<p class="is-size-3 has-text-weight-bold mb-1">$<?php echo esc_html( $price ); ?><small class="ml-1 is-size-4"><?php echo esc_html( $currency ); ?></small> 
-								<?php
-								if ( $is_on_sale ) :
-									?>
-									<span class="is-size-5 is-line-through has-text-weight-normal has-text-grey-light">$<?php echo esc_html( $regular_price ); ?></span>
+									<p class="is-size-3 has-text-weight-bold mb-1">$<?php echo esc_html( $price ); ?><small class="ml-1 is-size-4"><?php echo esc_html( $currency ); ?></small> 
 									<?php
-								endif;
+									if ( $is_on_sale ) :
+										?>
+										<span class="is-size-5 is-line-through has-text-weight-normal has-text-grey-light">$<?php echo esc_html( $regular_price ); ?></span>
+										<?php
+									endif;
 
-								?>
-								</p>
-
-								<?php
-								if ( ! $in_cart ) {
-									echo apply_filters(
-										'woocommerce_loop_add_to_cart_link',
-										sprintf(
-											'<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button is-primary is-medium %s product_type_%s">%s</a>',
-											esc_url( $product->add_to_cart_url() ),
-											esc_attr( $product->get_id() ),
-											esc_attr( $product->get_sku() ),
-											$product->is_purchasable() ? 'add_to_cart_button' : '',
-											esc_attr( $product->get_type() ),
-											esc_html__( 'Compra ahora', 'arkdewp' )
-										),
-										$product
-									);
-								} else {
 									?>
-									<div class="icon-text mb-2 has-text-white">
-										<span class="icon">
-											<i class="fa-solid fa-circle-check"></i>
-										</span>
-										<span class="is-size-14px"><?php esc_html_e( 'Ya está en tu carrito', 'arkdewp' ); ?></span>
-									</div>
-								<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="button is-primary is-medium" ><?php esc_html_e( 'Termina tu compra', 'arkdewp' ); ?></a>
-
+									</p>
+	
 									<?php
-								}
+									if ( ! $in_cart ) {
+										echo apply_filters(
+											'woocommerce_loop_add_to_cart_link',
+											sprintf(
+												'<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button is-primary is-medium %s product_type_%s">%s</a>',
+												esc_url( $product->add_to_cart_url() ),
+												esc_attr( $product->get_id() ),
+												esc_attr( $product->get_sku() ),
+												$product->is_purchasable() ? 'add_to_cart_button' : '',
+												esc_attr( $product->get_type() ),
+												esc_html__( 'Compra ahora', 'arkdewp' )
+											),
+											$product
+										);
+									} else {
+										?>
+										<div class="icon-text mb-2 has-text-white">
+											<span class="icon">
+												<i class="fa-solid fa-circle-check"></i>
+											</span>
+											<span class="is-size-14px"><?php esc_html_e( 'Ya está en tu carrito', 'arkdewp' ); ?></span>
+										</div>
+									<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="button is-primary is-medium" ><?php esc_html_e( 'Termina tu compra', 'arkdewp' ); ?></a>
+	
+										<?php
+									}
 							}
+						else :
 							?>
-
+							<div class="notification not-open-sale py-2 px-3 m-0">
+								<p class="has-text-centered is-size-14px" ><i class="fa-solid fa-triangle-exclamation mr-2"></i><?php esc_html_e( 'Este curso ya no está en venta', 'arkdewp' ); ?></p>
+							</div>
 							<?php
-							endif;
+					endif;
 						?>
 					</div>
 					<div class="column">
-						<div class="card course-preview" style="background-image: url(<?php echo esc_attr( $course_image ); ?>)" id="course-preview-launcher" data-preview="<?php echo esc_attr( $preview_url ); ?>">
+						<div class="card course-preview <?php echo $preview_url ? '' : 'no-video'; ?>" style="background-image: url(<?php echo esc_attr( $course_image ); ?>)" id="course-preview-launcher" data-preview="<?php echo esc_attr( $preview_url ); ?>">
+							<?php if ( $preview_url ) : ?>
 							<!--<video id="background-video" autoplay loop muted poster="<?php echo esc_attr( $course_image ); ?>">
 							<source src="https://assets.codepen.io/6093409/river.mp4" type="video/mp4">
 							</video>-->
-							<i class="fa-regular fa-circle-play has-text-white"></i>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
@@ -223,7 +232,7 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 	<section class="section mt-0" id="course-content">
 		<div class="container">
 			<div class="columns is-variable is-8 is-multiline">
-				<div class="column is-full is-8-widescreen">
+				<div class="column is-full is-8-widescreen course-career-titles">
 					
 					<?php
 					if ( $career ) {
@@ -246,7 +255,9 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 					get_template_part( 'template-parts/course/req', '', array( $reqs ) );
 					do_action( 'learndash-course-content-list-after', $course_id, $user_id );
 					get_template_part( 'template-parts/course/teachers', '', array( $teachers ) );
-					echo do_shortcode( '[rrf_course_review course_id="{$course_id}""]' );
+					if ( $visible_reviews ) {
+						echo do_shortcode( '[rrf_course_review course_id="{$course_id}""]' );
+					}
 					if ( ! empty( $related_courses ) ) {
 						get_template_part( 'template-parts/course/related-courses', '', array( $related_courses ) );
 
@@ -276,9 +287,10 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 											<a href="<?php echo esc_url( $resume_link ); ?>" class="button is-primary is-medium is-fullwidth"><?php esc_html_e( 'Ir al curso', 'arkdewp' ); ?></a>
 											<?php
 										endif;
-									else :
-										if ( 'free' === $course_settings['course_price_type'] ) {
-											?>
+								elseif ( $open ) :
+
+									if ( 'free' === $course_settings['course_price_type'] ) {
+										?>
 											<p class="is-size-3 has-text-weight-bold mb-2">$0 <span class="is-size-5"> (<?php esc_html_e( 'Gratis!', 'arkdewp' ); ?>)</span></p>
 											<?php
 											if ( ! is_user_logged_in() ) :
@@ -301,18 +313,18 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 												</div>
 													<?php
 											endif;
-										} else {
-											// not free and does not have access. Show options
-											?>
+									} else {
+										// not free and does not have access. Show options
+										?>
 											<div class="is-flex is-align-items-flex-end mb-4">
 												<div class="is-flex is-flex-direction-column">
-													<?php
-													if ( $is_on_sale ) :
-														?>
+												<?php
+												if ( $is_on_sale ) :
+													?>
 														<span class="is-size-5 is-line-through has-text-weight-normal has-text-grey-light ml-2 mb-0">$<?php echo esc_html( $regular_price ); ?></span>
 														<?php
 													endif;
-													?>
+												?>
 													<span class="is-size-3 has-text-weight-bold has-lh-one">$<?php echo esc_html( $price ); ?><small class="ml-1 is-size-4"><?php echo esc_html( $currency ); ?></small> </span>
 													
 												</div>
@@ -352,11 +364,14 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 
 												<?php
 											}
-										}
+									}
+									else :
 										?>
-
+										<div class="notification not-open-sale py-2 px-3 m-0">
+											<p class="has-text-centered is-size-14px" ><i class="fa-solid fa-triangle-exclamation mr-2"></i><?php esc_html_e( 'Este curso ya no está en venta', 'arkdewp' ); ?></p>
+										</div>
 										<?php
-										endif;
+					  endif;
 									?>
 									<div class="is-flex mt-5 pt-1">
 										<ul>

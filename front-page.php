@@ -82,7 +82,7 @@ $vimeo_id         = $meta['vimeo_id']
 							if ( $partners ) :
 								foreach ( $partners as $partner ) :
 									?>
-										<img src="<?php echo esc_url( $partner['url'] ); ?>" alt="<?php echo esc_attr( $partner['alt'] ); ?>" style="max-width: 120px" >
+										<img src="<?php echo esc_url( $partner['url'] ); ?>" alt="<?php echo esc_attr( $partner['alt'] ); ?>" style="max-width: 120px; max-height: 60px;" >
 									<?php
 				  endforeach;
 							endif;

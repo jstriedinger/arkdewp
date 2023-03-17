@@ -8,7 +8,7 @@
 			</div>
 			<div class="card-content">
 				<p class="is-size-4 has-text-weight-bold" id="course-preview-card-title">lorem ipsum joder</p>
-				<div class="level mb-4 mt-2 has-text-grey-light" id="course-preview-card-details">
+				<div class="level mb-4 mt-2 has-text-grey-dark" id="course-preview-card-details">
 						<div class="level-item is-justify-content-flex-start">
 							<div class="course-teachers">
 								<img src="" alt="">

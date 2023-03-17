@@ -88,10 +88,16 @@ if ( ! empty( $matches ) ) {
 $next = learndash_next_post_link( '', true );
 $prev = learndash_previous_post_link( '', true );
 
+// check if lesson sidebar is closed.
+$sidebar_open_class = '';
+if ( ( isset( $_COOKIE['coursesidebar'] ) && 'open' === $_COOKIE['coursesidebar'] ) ) {
+	$sidebar_open_class = 'is-active';
+}
+
 ?>
 
 <div class="columns is-gapless">
-	<div class="column course-sidebar left-side " id="course-sidebar">
+	<div class="column course-sidebar left-side <?php echo esc_attr( $sidebar_open_class ); ?>" id="course-sidebar">
 		<?php
 		if ( ! empty( $course ) ) :
 			include locate_template( '/learndash/ld30/course-sidebar.php' );

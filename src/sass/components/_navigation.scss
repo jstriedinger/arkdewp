@@ -77,10 +77,16 @@ header#masthead {
 				}
 				a.navbar-item {
 					color: $text;
+					&:hover,&:focus {
+						background: $white-ter !important;
+					}
 				}
 
 			}
 
+			a.notification-link {
+				position: relative;
+			}
 			.header-cart-link {
 				position: relate;
 				span.count {
@@ -93,6 +99,8 @@ header#masthead {
 					padding: 1px 5px;
 					line-height: 1.2;
 					font-weight: bold;
+					right: -10px;
+					top: -5px;
 				}
 			}
 			

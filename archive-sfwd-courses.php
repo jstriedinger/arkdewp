@@ -89,7 +89,11 @@ $careers = get_posts( $args );
 							the_post();
 					?>
 						<?php
-						get_template_part( 'template-parts/cards/course', '', array( 'course' => $post ) );
+						$open = get_field( 'open' );
+						if ( $open ) {
+							get_template_part( 'template-parts/cards/course', '', array( 'course' => $post ) );
+
+						}
 						endwhile;
 				?>
 				</div>

@@ -1,6 +1,6 @@
 <?php
 
-global $post, $wpdb;
+global $post;
 
 $parent_course_data = learndash_get_setting( $post, 'course' );
 if ( 0 === $parent_course_data ) {
@@ -19,80 +19,35 @@ $current_user_id     = get_current_user_id();
 $get_course_groups   = learndash_get_course_groups( $parent_course->ID );
 $course_id           = $parent_course->ID;
 $admin_enrolled      = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_Admin_User', 'courses_autoenroll_admin_users' );
-$members_count       = 0;
+$certificate_link    = learndash_get_course_certificate_link( $parent_course->ID, $current_user_id );
+$course_status       = learndash_course_status( $parent_course->ID, $current_user_id, true );
+$is_admin            = current_user_can( 'administrator' );
 
-if ( buddyboss_theme_get_option( 'learndash_course_participants', null, true ) ) {
-	$members_count = buddyboss_theme()->learndash_helper()->buddyboss_theme_ld_course_enrolled_users_list( $parent_course->ID );
-	$members_arr   = learndash_get_users_for_course( $course_id, array( 'number' => 5 ), false );
-	if ( ( $members_arr instanceof WP_User_Query ) && ( property_exists( $members_arr, 'results' ) ) && ( ! empty( $members_arr->results ) ) ) {
-		$members = $members_arr->get_results();
-	} else {
-		$members = array();
-	}
-}
 
-if ( isset( $get_course_groups ) && ! empty( $get_course_groups ) && ( function_exists( 'buddypress' ) && bp_is_active( 'groups' ) ) ) {
-	foreach ( $get_course_groups as $k => $group ) {
-		$bp_group_id = (int) get_post_meta( $group, '_sync_group_id', true );
-		if ( ! groups_is_user_member( bp_loggedin_user_id(), $bp_group_id ) ) {
-			if ( ( $key = array_search( $group, $get_course_groups ) ) !== false ) {
-				unset( $get_course_groups[ $key ] );
-			}
-		}
-	}
-}
-
-if ( sfwd_lms_has_access( $course_id, $current_user_id ) ) {
+// check if it has access.
+if ( sfwd_lms_has_access( $course_id, $current_user_id ) || $is_admin ) {
 	$is_enrolled = true;
 } else {
 	$is_enrolled = false;
 }
 
-// if admins are enrolled.
-if ( current_user_can( 'administrator' ) && 'yes' === $admin_enrolled ) {
-	$is_enrolled = true;
-}
-
-// check if lesson sidebar is closed.
-$side_panel_state_class = '';
-if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] ) ) {
-	$side_panel_state_class = 'lms-topic-sidebar-close';
-}
+// get course progres
+$course_progress     = get_user_meta( get_current_user_id(), '_sfwd-course_progress', true )[ $course_id ];
+$course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $user_id, $course_id );
 ?>
 
-<div class="lms-topic-sidebar-wrapper sidebar-wrapper<?php echo esc_attr( $side_panel_state_class ); ?>" >
+<div class="lms-topic-sidebar-wrapper sidebar-wrapper" >
 	<button class="course-sidebar-toggle is-clickable" id="course-sidebar-toggle"></button>
 	<div class="lms-topic-sidebar-data">
-		<?php
-		$course_progress = learndash_course_progress(
-			array(
-				'user_id'   => get_current_user_id(),
-				'course_id' => $parent_course->ID,
-				'array'     => true,
-			)
-		);
-
-		if ( empty( $course_progress ) ) {
-			$course_progress = array(
-				'percentage' => 0,
-				'completed'  => 0,
-				'total'      => 0,
-			);
-		}
-		?>
-
-		<!--<div class="bb-elementor-header-items">
+		
+		<!--<di class="bb-elementor-header-items">
 			<a href="#" id="bb-toggle-theme">
 				<span class="sfwd-dark-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Dark Mode', 'buddyboss-theme' ); ?>"><i class="bb-icon-rl bb-icon-moon"></i></span>
 				<span class="sfwd-light-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Light Mode', 'buddyboss-theme' ); ?>"><i class="bb-icon-l bb-icon-sun"></i></span>
 			</a>
 		</div> -->
 
-		<?php
-		$course_progress     = get_user_meta( get_current_user_id(), '_sfwd-course_progress', true );
-		$course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $user_id, $course_id );
-		?>
-		<div class="is-flex is-align-items-center py-3 px-4 has-gap-16">
+				<div class="is-flex is-align-items-center py-3 px-4 has-gap-16">
 			<div class="course-progress is-small">
 				<svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
 					<circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="transparent"></circle>
@@ -102,10 +57,36 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 				<i class="fa-solid fa-trophy"></i>
 			</div>
 			<div>
-				<?php if ($course_progress_num < 100 ) : ?>
-					<p class="has-text-weight-bold is-size-6"><?php echo $course_progress_num; ?>% <?php esc_html_e( 'completado ¡Sigue así!', 'arkdewp' ); ?></p>
-					<?php else: ?>
-						<p class="has-text-weight-bold is-size-6"><?php echo $course_progress_num; ?>% <?php esc_html_e( 'completado', 'arkdewp' ); ?></p>
+				<p class="has-text-weight-bold is-size-6"><?php echo $course_progress_num; ?>% <?php esc_html_e( 'completado', 'arkdewp' ); ?></p>
+				<?php
+				
+				if ( 'completed' !== $course_progress['status'] && $course_progress_num < 100) :
+					
+					?>
+					<p class="is-size-6"><?php esc_html_e( '¡Sigue así!', 'arkdewp' ); ?></p>
+					<?php else : ?>
+						<?php
+						$learndash_certificate_link = learndash_get_course_certificate_link( $course_id, $current_user_id );
+						$user_course_review         = rrf_get_user_course_review_id( $current_user_id, $course_id );
+						if ( $user_course_review ) {
+							// he has a review, you can download certificate
+							?>
+							<a href="<?php echo esc_url( $learndash_certificate_link ); ?>" target="_blank" class="button is-primary is-small is-simple mt-1">
+								<span><?php esc_html_e( 'Tu certificado', 'arkdewp' ); ?></span>
+								<span class="icon">
+									<i class="fas fa-download"></i>
+								</span>
+							</a>
+							
+							<?php
+						} else {
+							?>
+							<button class="write-a-review button is-small not-rated" data-course_id="<?php echo esc_attr( $course_id ); ?>">
+								<?php echo esc_html( 'Deja una reseña', 'arkdewp' ); ?>
+							</button>
+							<?php
+						}
+						?>
 				<?php endif; ?>
 			</div>
 
@@ -153,7 +134,7 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 	
 										<?php
 										$lesson_progress = buddyboss_theme()->learndash_helper()->learndash_get_lesson_progress( $lesson->ID, $course_id );
-										$completed       = ! empty( $course_progress[ $course_id ]['lessons'][ $lesson->ID ] ) && 1 === $course_progress[ $course_id ]['lessons'][ $lesson->ID ];
+										$completed       = ! empty( $course_progress['lessons'][ $lesson->ID ] ) && 1 === $course_progress['lessons'][ $lesson->ID ];
 										if ( ! $is_enrolled && ! $is_sample ) :
 											?>
 											<i class="fa-solid fa-lock has-text-grey-darker"></i>
@@ -219,7 +200,7 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 
 															$topic_settings       = learndash_get_setting( $lesson_topic );
 															$lesson_video_enabled = isset( $topic_settings['lesson_video_enabled'] ) ? $topic_settings['lesson_video_enabled'] : null;
-															$completed            = ! empty( $course_progress[ $course_id ]['topics'][ $lesson->ID ][ $lesson_topic->ID ] ) && 1 === $course_progress[ $course_id ]['topics'][ $lesson->ID ][ $lesson_topic->ID ];
+															$completed            = ! empty( $course_progress['topics'][ $lesson->ID ][ $lesson_topic->ID ] ) && 1 === $course_progress['topics'][ $lesson->ID ][ $lesson_topic->ID ];
 															?>
 													<li class="lms-topic-item is-flex has-gap-16 is-align-items-center <?php echo $lesson_topic->ID === $post->ID ? esc_attr( 'current' ) : ''; ?>">
 															
@@ -396,69 +377,6 @@ if ( ( isset( $_COOKIE['lessonpanel'] ) && 'closed' === $_COOKIE['lessonpanel'] 
 			</div>
 			<?php
 		endif;
-
-		if ( buddyboss_theme_get_option( 'learndash_course_participants', null, true ) && ! empty( $members ) ) :
-			?>
-			<div class="lms-course-members-list">
-				<h4 class="lms-course-sidebar-heading">
-					<?php esc_html_e( 'Participants', 'buddyboss-theme' ); ?>
-					<span class="lms-count"><?php echo esc_html( $members_count ); ?></span>
-				</h4>
-				<input type="hidden" name="buddyboss_theme_learndash_course_participants_course_id" id="buddyboss_theme_learndash_course_participants_course_id" value="<?php echo esc_attr( $course_id ); ?>">
-				<div class="bb-course-member-wrap">
-
-					<ul class="course-members-list">
-						<?php
-						$count = 0;
-						foreach ( $members as $course_member ) :
-							if ( $count > 4 ) {
-								break;
-							}
-							?>
-							<li>
-
-								<?php if ( class_exists( 'BuddyPress' ) ) { ?>
-								<a href="<?php echo esc_url( bp_core_get_user_domain( (int) $course_member ) ); ?>">
-									<?php } ?>
-									<img class="round" src="<?php echo esc_url( get_avatar_url( (int) $course_member, array( 'size' => 96 ) ) ); ?>" alt=""/>
-									<?php
-									if ( class_exists( 'BuddyPress' ) ) {
-										?>
-										<span><?php echo bp_core_get_user_displayname( (int) $course_member ); ?></span>
-										<?php
-									} else {
-										$course_member = get_userdata( (int) $course_member );
-										?>
-										<span><?php echo $course_member->display_name; ?></span>
-										<?php
-									}
-									if ( class_exists( 'BuddyPress' ) ) {
-										?>
-								</a>
-										<?php
-									}
-									?>
-							</li>
-							<?php
-							$count ++;
-						endforeach;
-						?>
-					</ul>
-
-					<ul class="course-members-list course-members-list-extra">
-					</ul>
-					<?php
-					if ( $members_count > 5 ) {
-						?>
-						<a href="javascript:void(0);" class="list-members-extra lme-more"><span class="members-count-g"></span> <?php esc_html_e( 'Show more', 'buddyboss-theme' ); ?><i class="bb-icon-l bb-icon-angle-down"></i></a>
-						<?php
-					}
-					?>
-				</div>
-			</div>
-			<?php
-		endif;
-
 		?>
 	</div>
 </div>

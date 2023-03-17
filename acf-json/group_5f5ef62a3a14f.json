@@ -84,8 +84,8 @@
         },
         {
             "key": "field_5fbfbee1e1b8f",
-            "label": "En desarrollo?",
-            "name": "under_development",
+            "label": "Abierto a ventas",
+            "name": "open",
             "aria-label": "",
             "type": "true_false",
             "instructions": "",
@@ -97,7 +97,7 @@
                 "id": ""
             },
             "message": "",
-            "default_value": 0,
+            "default_value": 1,
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
@@ -387,5 +387,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678864096
+    "modified": 1678993701
 }

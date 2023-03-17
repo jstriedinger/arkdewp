@@ -137,4 +137,35 @@ function check_ld_certificate( $atts ) {
 }
 add_shortcode( 'arkde_certificate', 'check_ld_certificate' );
 
+/**
+ * Auto complete a topic when it has the autocomplete LD tag
+ */
+function ld_auto_mark_complete() {
+	global $template;
+	global $post;
+	global $wp;
+	$user_id = get_current_user_id();
+	// write_log( 'LD tipoc before hook fired!' );
+
+	if ( ! is_object( $post ) || get_post_type() != 'sfwd-topic' || $post->post_status == 'trash' || $post->post_status == 'draft'
+	|| str_contains( $wp->request, 'admin' ) ) {
+		return;
+	}
+
+	$topic_id = $post->ID;
+	$tags     = get_the_terms( $topic_id, 'ld_topic_tag' );
+	if ( ! empty( $tags ) && ! is_admin() ) {
+		$tag = $tags[0];
+		if ( $tag->slug == 'auto-complete' ) {
+			// has the autocomplete
+			$course_id = learndash_get_course_id( $topic_id );
+			if ( ! empty( $course_id ) && ! learndash_is_topic_complete( $user_id, $topic_id, $course_id ) ) {
+				write_log( 'autocomplete' );
+				learndash_process_mark_complete( $user_id, $topic_id );
+			}
+		}
+	}
+	return;
+}
+add_action( 'wp', 'ld_auto_mark_complete' );
 

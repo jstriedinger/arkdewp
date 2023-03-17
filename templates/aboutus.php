@@ -69,10 +69,9 @@ $testimonials = $meta['testimonials'];
 							<p>
 							<?php
 							esc_html_e(
-								'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis tempus ligula, ut iaculis sapien. 
-							Pellentesque hendrerit molestie dolor, vel molestie velit dapibus sed. 
-							Donec euismod fermentum fermentum. Aenean a sem dapibus libero dapibus accumsan. 
-							Suspendisse fermentum justo sit amet placerat sagittis',
+								'En 2022 fuimos un proyecto ganador de un Mega grant de Epic Games, la empresa detrás de Unreal Engine y Fornite.
+							El Epic Games Mega grant es un fondo internacional para apoyar proyectos innovadores en la industria de videojuegos; ya sean videojuegos en si  
+							o proyectos de educación como lo es ARKDE.',
 								'arkdewp'
 							);
 							?>
@@ -142,7 +141,7 @@ $testimonials = $meta['testimonials'];
 					<div class="column is-8 has-text-centered">
 						<h3 class="title is-size-3 is-size-2-desktop"><?php echo esc_html__( '¿Qué estás esperando?', 'arkdewp' ); ?></h3>
 						<p class="subtitle is-size-6 is-size-4-desktop"><?php echo esc_html__( 'Empieza con uno de nuestros cursos gratis', 'arkdewp' ); ?></p>
-						<a href="" class="button is-medium is-gold">Registrate aquí</a>
+						<a href="<?php echo wp_registration_url(); ?>" class="button is-medium is-gold">Registrate aquí</a>
 					</div>
 				</div>
 
@@ -150,4 +149,5 @@ $testimonials = $meta['testimonials'];
 		</div>
 	</section>
 </main><!-- #main -->
-<?php get_footer();
+<?php
+get_footer();

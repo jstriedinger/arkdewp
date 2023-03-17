@@ -29,7 +29,7 @@
 			$course_name = get_the_title( $course_id );
 
 			?>
-		<div class="navbar-item"><?php echo esc_html( $course_name ); ?></div>
+		<a class="navbar-item" href="<?php echo esc_url( get_the_permalink( $course_id ) ); ?>"><?php echo esc_html( $course_name ); ?></a>
 			<?php
 		elseif ( ! is_cart() && ! is_checkout() ) :
 			wp_nav_menu(

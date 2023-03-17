@@ -6,7 +6,7 @@ $reqs  = $args[0];
 $white = isset( $args[1] ) ? true : false;
 ?>
 
-<h3 class="subtitle is-size-4  has-text-weight-bold pt-4 <?php echo $white ? 'has-text-white' : ''; ?>"><?php esc_html_e( '¿Qué necesitas saber?', 'arkdewp' ); ?></h2>
+<h3 class="subtitle is-size-4  has-text-weight-bold pt-4 <?php echo $white ? 'has-text-white' : ''; ?>"><?php esc_html_e( '¿Qué necesitas?', 'arkdewp' ); ?></h2>
 <ul class="is-flex is-flex-wrap-wrap bullet-points mb-6">
 	<?php foreach ( $reqs as $req ) : ?>
 		<li class="is-flex is-align-items-baseline <?php echo $white ? 'has-text-white' : ''; ?>">

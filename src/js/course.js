@@ -101,12 +101,13 @@ class Course {
 		}
 
 		if ( this.sideBarToggle ) {
-			console.log( this.courseSidebar )
 			this.sideBarToggle.addEventListener( 'click', ( ) => {
 				if ( this.courseSidebar.classList.contains( 'is-active' ) ) {
 					this.courseSidebar.classList.remove( 'is-active' )
+					document.cookie = 'coursesidebar=closed; path=/;'
 				} else {
 					this.courseSidebar.classList.add( 'is-active' )
+					document.cookie = 'coursesidebar=open; path=/;'
 				}
 			} )
 		}

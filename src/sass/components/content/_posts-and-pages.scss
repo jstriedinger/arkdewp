@@ -314,3 +314,19 @@ ul.bullet-points {
 		}
 	}
 }
+
+//course-career titles stand out
+.course-career-titles {
+	>.subtitle.is-size-4, #course-reviews-section >.subtitle.is-size-4 {
+		position: relative;
+		&:before {
+			position: absolute;
+			content: "";
+			width: 10px;
+			height: 3px;
+			background: var(--color-gold);
+			left: -20px;
+			bottom: calc(50% - 8px);
+		}
+	}
+}

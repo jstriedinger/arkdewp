@@ -114,12 +114,14 @@ while ( have_posts() ) :
 					</div>
 				</div>
 				<p class="subtitle is-size-6 has-text-white pt-3 mb-6"><?php echo esc_html( $desc ); ?></p> 
+				<?php if ( $preview_url ) :?>
 				<div>
 					<a href="" id="career-preview-launcher" data-preview="<?php echo esc_attr( $preview_url ); ?>">
 						<i class="fa-solid fa-circle-play has-text-light-gold"></i>
 					</a>
 					<p class="has-text-white is-size-6 mt-1"><?php esc_html_e( 'Clic para mirar el trailer', 'arkdewp' ); ?></p>
 				</div>
+				<?php endif; ?>
 			</div>
 
 		</div>
@@ -127,7 +129,7 @@ while ( have_posts() ) :
 	<section class="section" id="course-content">
 		<div class="container">
 			<div class="columns is-variable is-8 is-multiline">
-				<div class="column is-full is-8-widescreen">
+				<div class="column is-full is-8-widescreen course-career-titles">
 					<?php
 						get_template_part(
 							'template-parts/course/bulletpoints',

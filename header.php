@@ -31,7 +31,7 @@ endif;
 	<?php do_action( THEME_HOOK_PREFIX . 'before_header' ); ?>
 
 	<?php if ( ! bp_is_register_page() ) : ?>
-	<header id="masthead" class="site-header <?php echo ( is_singular( array( 'sfwd-courses', 'career' ) ) || is_front_page() || is_archive( array( 'sfwd-courses' ) ) ) ? 'is-transparent' : ''; ?>">
+	<header id="masthead" class="site-header <?php echo ( is_singular( array( 'sfwd-courses', 'career' ) ) || is_front_page() || is_archive( array( 'sfwd-courses' ) ) || str_contains( get_page_template_slug(), 'aboutus' ) ) ? 'is-transparent' : ''; ?>">
 		<?php do_action( THEME_HOOK_PREFIX . 'nav' ); ?>
 	</header><!-- #masthead -->
 	<?php endif; ?>

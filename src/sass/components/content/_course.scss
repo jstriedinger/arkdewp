@@ -119,11 +119,11 @@ a#career-preview-launcher {
 		text-align: center;
 	}
 	&.is-small {
-		width: 75px;
+		width: 85px;
 		.fa-solid{
-			font-size: 1.6rem;
-			top: calc(50% - 0.8rem);
-			left: calc(50% - 0.9rem);
+			font-size: 1.9rem;
+			top: calc(50% - 1.1rem);
+			left: calc(50% - 1.1rem);
 
 		} 
 		.donut-ring {
@@ -423,8 +423,13 @@ body.learndash-cpt.learndash-embed-responsive
 
 		}
 	}
+}
 
-	
-
-
+.notification.not-open-sale
+{
+	border: 2px solid $yellow;
+	background: lighten($yellow, 20%);
+	span, p {
+		color: darken($yellow,25%) !important;
+	}
 }
