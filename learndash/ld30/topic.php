@@ -81,7 +81,9 @@ foreach ( $topics as $topic ) {
 $matches = array();
 preg_match( '#<div class="ld-video" (.*?)>(.*?)</div>#', $content, $matches );
 if ( ! empty( $matches ) ) {
+	echo 'video found!';
 	$video = $matches[0];
+	var_dump( $video );
 }
 
 // previous and next likns
