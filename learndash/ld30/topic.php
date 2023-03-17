@@ -78,21 +78,15 @@ foreach ( $topics as $topic ) {
 	}
 	$topic_no ++;
 }
-echo 'Topic num: ' . $topic_no;
-echo 'Lesson num: ' . $lesson_no;
 
-// lets get the video
+// lets get the video.
 $matches = array();
 preg_match( '#<div class="ld-video" (.*?)>(.*?)</div>#', $content, $matches );
 if ( ! empty( $matches ) ) {
-	 echo 'video found!';
 	$video = $matches[0];
-	 var_dump( $video );
-} else {
-	echo 'no video?';
 }
 
-// previous and next likns
+// previous and next likns.
 $next = learndash_next_post_link( '', true );
 $prev = learndash_previous_post_link( '', true );
 
