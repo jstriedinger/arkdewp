@@ -46,6 +46,8 @@ if ( empty( $course_id ) ) {
 	}
 }
 
+var_dump( $course_id );
+
 $lession_list    = learndash_get_course_lessons_list( $course_id, null, array( 'num' => - 1 ) );
 $lession_list    = array_column( $lession_list, 'post' );
 $content_urls    = buddyboss_theme()->learndash_helper()->buddyboss_theme_ld_custom_pagination( $course_id, $lession_list );
@@ -76,16 +78,18 @@ foreach ( $topics as $topic ) {
 	}
 	$topic_no ++;
 }
+echo 'Topic num: ' . $topic_no;
+echo 'Lesson num: ' . $lesson_no;
 
 // lets get the video
 $matches = array();
 preg_match( '#<div class="ld-video" (.*?)>(.*?)</div>#', $content, $matches );
 if ( ! empty( $matches ) ) {
-	// echo 'video found!';
+	 echo 'video found!';
 	$video = $matches[0];
-	// var_dump( $video );
+	 var_dump( $video );
 } else {
-	// echo 'no video?';
+	echo 'no video?';
 }
 
 // previous and next likns
