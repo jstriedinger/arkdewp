@@ -84,6 +84,8 @@ if ( ! empty( $matches ) ) {
 	echo 'video found!';
 	$video = $matches[0];
 	var_dump( $video );
+} else {
+	echo 'no video?';
 }
 
 // previous and next likns
