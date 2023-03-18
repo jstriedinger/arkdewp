@@ -308,7 +308,7 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 															<input type="hidden" name="course_join"
 																			value="<?php echo wp_create_nonce( 'course_join_' . $user_id . '_' . $course_id ); ?>"/>
 
-															<button type="submit" class="button is-primary is-medium"><?php esc_html_e( 'Empieza ahora', 'arkdewp' ); ?></button>
+															<button type="submit" class="button is-primary is-medium is-fullwidth"><?php esc_html_e( 'Empieza ahora', 'arkdewp' ); ?></button>
 													</form>
 												</div>
 													<?php
