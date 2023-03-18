@@ -30,7 +30,7 @@ if ( $career ) :
 						<p class="is-size-4 is-size-3-widescreen has-text-weight-bold has-lh-1-2"><?php echo esc_html( $header['name'] ); ?></p>
 					</div>
 				</div>
-				<div class="card-content has-gap-64">
+				<div class="card-content has-gap-64 responsive-gap">
 					<ul>
 						<li>
 							<span class="icon-text">

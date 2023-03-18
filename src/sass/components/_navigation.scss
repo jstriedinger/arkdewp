@@ -27,6 +27,8 @@ header#masthead {
 	position: relative;
 	z-index: 3;
 
+	
+
 	nav.navbar {
 		background: transparent;
 		max-width: $widescreen;
@@ -35,11 +37,29 @@ header#masthead {
 		padding: 0 1rem;
 		gap: 16px;
 
+		.navbar-burger {
+			color: white;
+		}
+
 		.navbar-brand {
 			align-items: center;
 			img {
 				max-width: 90px;
 			}
+		}
+
+		@include mobile {
+			.navbar-menu
+			{
+				box-shadow: none;
+				.navbar-item, a, i {
+					color: whitesmoke !important;
+					&:hover,&:focus {
+						background: transparent !important;
+					}
+				}
+			}
+
 		}
 		
 		@include touch {
@@ -153,6 +173,9 @@ header#masthead {
 		width: 100%;
 		top: 0;
 		background: transparent;
+		@include mobile {
+			background: var(--color-navbar-bg) !important;
+		}
 		&:not(.is-colored) {
 			+ main > section:first-of-type, + main > .learndash_post_sfwd-courses > section:first-of-type, + main > .woocommerce, + main > .container  {
 				padding-top: $navbar-height;

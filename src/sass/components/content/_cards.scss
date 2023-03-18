@@ -428,9 +428,11 @@
 		}
 		.card-content {
 			padding-top: 1.75rem;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: flex-end;
+			@include desktop {
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: flex-end;
+			}
 			
 		}
 		.card-footer {
