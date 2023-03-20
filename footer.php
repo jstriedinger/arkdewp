@@ -20,7 +20,8 @@
 						$logo    = wp_get_attachment_image( $logo_id, 'full', '' );
 						echo $logo;
 					?>
-					<p class="mb-1 is-size-14px">© <?php echo Date( 'Y' ); ?> - <?php esc_html_e( 'Todos los derechos reservados', 'arkdewp' ); ?></p>
+					<img src="<?php echo ARKDE_THEME_URI . 'assets/img/Epic_MegaGrants_Recipient_logo_horizontal.png'; ?>" class="mt-1 mb-2" style="display:block" alt="epic mega grants recipient" width="200px">
+					<p class="mb-1 is-size-14px">©<?php echo Date( 'Y' ); ?> - <?php esc_html_e( 'Todos los derechos reservados', 'arkdewp' ); ?></p>
 					<p class="is-size-14px">
 						<?php
 							printf( esc_html__( 'Creado por %1$s', 'arkdewp' ), '<a href="https://www.jstriedinger.com">Jose Striedinger</a>' );
@@ -83,6 +84,7 @@
 						</div>
 					</div>
 					<p class="is-size-14px"><?php esc_html_e( 'Dudas? Escribenos a ', 'arkdewp' ); ?><a href="mailto:info@arkde.com">info@arkde.com</a></p>
+					
 				</div>
 			</div>
 		</div>

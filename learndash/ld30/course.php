@@ -59,7 +59,8 @@ $visible_reviews = $meta['visible_reviews'];
 
 if ( $has_access ) {
 	$course_progress = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $user_id, $course_id );
-	$resume_link     = buddyboss_theme()->learndash_helper()->boss_theme_course_resume( $course_id );
+	$next_lesson     = arkde_dashboard_continue_course( $user_id, $course_id );
+	$resume_link     = $next_lesson ? $next_lesson['link'] : null;
 } else {
 	if ( matched_cart_items( $wc_product->ID ) > 0 ) {
 		$in_cart = true;
@@ -126,7 +127,7 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 							?>
 							<div class="mb-3">
 								<span class="is-size-6 has-text-white mb-1"><?php echo sprintf( esc_html__( '%s%% completado', 'arkdewp' ), esc_attr( $course_progress ) ); ?></span>
-								<progress class="progress is-primary is-small" value="<?php echo esc_attr( strval( $course_progress ) ); ?>" max="100"><?php echo esc_html( $course_progress ); ?>%</progress>
+								<progress class="progress is-primary is-small mb-2" value="<?php echo esc_attr( strval( $course_progress ) ); ?>" max="100"><?php echo esc_html( $course_progress ); ?>%</progress>
 							</div>
 							<?php
 							if ( $course_progress < 100 ) :
@@ -276,7 +277,7 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 								if ( $has_access ) :
 									?>
 											<span class="is-size-6 mb-1"><?php echo sprintf( esc_html__( '%s%% completado', 'arkdewp' ), esc_attr( $course_progress ) ); ?></span>
-											<progress class="progress is-primary is-small" value="<?php echo esc_attr( strval( $course_progress ) ); ?>" max="100"><?php echo esc_html( $course_progress ); ?>%</progress>
+											<progress class="progress is-primary is-small mb-2" value="<?php echo esc_attr( strval( $course_progress ) ); ?>" max="100"><?php echo esc_html( $course_progress ); ?>%</progress>
 										<?php
 										if ( $course_progress < 100 ) :
 											?>

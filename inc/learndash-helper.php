@@ -99,11 +99,26 @@ function arkde_dashboard_continue_course( $user_id, $course_id ) {
 			}
 		} elseif ( 'not_started' === $progress['status'] ) {
 			// lesson will be the first one
-			$next_lesson = learndash_get_topic_list( learndash_get_lesson_list( $course_id )[0]->ID, $course_id );
+			$next_topic = learndash_get_topic_list( learndash_get_lesson_list( $course_id )[0]->ID, $course_id );
 
-			if ( null !== $next_lesson ) {
-				$l_title = get_the_title( $next_lesson );
-				$l_link  = get_the_permalink( $next_lesson );
+			if ( null !== $next_topic ) {
+				$l_title = get_the_title( $next_topic );
+				$l_link  = get_the_permalink( $next_topic );
+				return array(
+					'title' => $l_title,
+					'link'  => $l_link,
+				);
+			}
+		} elseif ( 'completed' === $progress['status'] ) {
+			// if completed just go to the last topic page.
+			$lessons        = learndash_get_lesson_list( $course_id );
+			$last_lesson_id = end( $lessons )->ID;
+			$topics         = learndash_get_topic_list( $last_lesson_id, $course_id );
+			$last_topic     = end( $topics );
+
+			if ( null !== $last_topic ) {
+				$l_title = get_the_title( $last_topic );
+				$l_link  = get_the_permalink( $last_topic );
 				return array(
 					'title' => $l_title,
 					'link'  => $l_link,
