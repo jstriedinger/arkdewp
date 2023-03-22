@@ -99,7 +99,9 @@ function arkde_dashboard_continue_course( $user_id, $course_id ) {
 			}
 		} elseif ( 'not_started' === $progress['status'] ) {
 			// lesson will be the first one
-			$next_topic = learndash_get_topic_list( learndash_get_lesson_list( $course_id )[0]->ID, $course_id );
+			$lessons    = learndash_get_lesson_list( $course_id );
+			$topics     = learndash_get_topic_list( $lessons[0]->ID, $course_id );
+			$next_topic = $topics[0];
 
 			if ( null !== $next_topic ) {
 				$l_title = get_the_title( $next_topic );
