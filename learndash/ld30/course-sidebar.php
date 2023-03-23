@@ -32,8 +32,8 @@ if ( sfwd_lms_has_access( $course_id, $current_user_id ) || $is_admin ) {
 }
 
 // get course progres
-$course_progress = get_user_meta( $user_id, '_sfwd-course_progress', true )[ $course_id ];
-if ( $course_progress === null ) {
+$progress = get_user_meta( $user_id, '_sfwd-course_progress', true );
+if ( ! isset( $progress[ $course_id ] ) ) {
 	// if is not on the meta then get it from db
 	$course_progress = learndash_user_get_course_progress( $user_id, $course_id );
 }
