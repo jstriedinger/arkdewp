@@ -32,7 +32,11 @@ if ( sfwd_lms_has_access( $course_id, $current_user_id ) || $is_admin ) {
 }
 
 // get course progres
-$course_progress     = get_user_meta( get_current_user_id(), '_sfwd-course_progress', true )[ $course_id ];
+$course_progress = get_user_meta( $user_id, '_sfwd-course_progress', true )[ $course_id ];
+if ( $course_progress === null ) {
+	// if is not on the meta then get it from db
+	$course_progress = learndash_user_get_course_progress( $user_id, $course_id );
+}
 $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $user_id, $course_id );
 ?>
 
@@ -59,9 +63,10 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 			<div>
 				<p class="has-text-weight-bold is-size-6"><?php echo $course_progress_num; ?>% <?php esc_html_e( 'completado', 'arkdewp' ); ?></p>
 				<?php
-				
-				if ( 'completed' !== $course_progress['status'] && $course_progress_num < 100) :
-					
+				echo '----------';
+				var_dump( $course_progress );
+				if ( 'completed' !== $course_progress['status'] && $course_progress_num < 100 ) :
+
 					?>
 					<p class="is-size-6"><?php esc_html_e( '¡Sigue así!', 'arkdewp' ); ?></p>
 					<?php else : ?>
