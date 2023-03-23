@@ -63,8 +63,6 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 			<div>
 				<p class="has-text-weight-bold is-size-6"><?php echo $course_progress_num; ?>% <?php esc_html_e( 'completado', 'arkdewp' ); ?></p>
 				<?php
-				echo '----------';
-				var_dump( $course_progress );
 				if ( 'completed' !== $course_progress['status'] && $course_progress_num < 100 ) :
 
 					?>
