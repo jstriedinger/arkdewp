@@ -35,21 +35,29 @@ if ( ( $members instanceof WP_User_Query ) && ( property_exists( $members, 'resu
 }
 
 // extra variables.
-$meta            = get_fields();
-$wc_product      = get_field( 'wc_product', $course_id );
-$in_cart         = false;
-$login_modal     = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Theme_LD30', 'login_mode_enabled' );
-$login_url       = wp_login_url( get_the_permalink( $course_id ) );
-$currency        = get_woocommerce_currency();
-$preview_url     = $meta['course_video_preview'];
-$description     = $meta['course_description'];
-$course_image    = get_the_post_thumbnail_url( get_the_ID(), 'full' );
-$bullets         = $meta['info']['what_to_learn'];
-$new_course      = $meta['info']['new_course'];
-$reqs            = $meta['info']['requirements'];
-$teachers        = $meta['teachers'];
-$duration        = $meta['course_duration'];
-$challenges      = $meta['info']['challenges'];
+$meta               = get_fields();
+$wc_product         = get_field( 'wc_product', $course_id );
+$in_cart            = false;
+$login_modal        = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Theme_LD30', 'login_mode_enabled' );
+$login_url          = wp_login_url( get_the_permalink( $course_id ) );
+$currency           = get_woocommerce_currency();
+$preview_url        = $meta['course_video_preview'];
+$description        = $meta['course_description'];
+$course_image       = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+$bullets            = $meta['info']['what_to_learn'];
+$new_course         = $meta['info']['new_course'];
+$reqs               = $meta['info']['requirements'];
+$teachers           = $meta['teachers'];
+$duration           = $meta['course_duration'];
+$challenges         = $meta['info']['challenges'];
+$preview_gif        = $meta['preview_gif'];
+$course_cover_photo = false;
+if ( class_exists( '\BuddyBossTheme\BuddyBossMultiPostThumbnails' ) ) {
+	$course_cover_photo = \BuddyBossTheme\BuddyBossMultiPostThumbnails::get_post_thumbnail_url(
+		'sfwd-courses',
+		'course-cover-image'
+	);
+}
 $level           = get_the_terms( $course, 'level' )[0];
 $related_courses = isset( $meta['related_courses'] ) ? $meta['related_courses'] : array();
 $career          = $meta['career'];
@@ -91,7 +99,7 @@ foreach ( $lesson_topics as $lesson_topic ) {
 get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' => 'course-preview-modal' ) );
 
 ?>
-	<section class="hero is-medium background-gradient-purple has-image mb-0" style="background-image: url(<?php echo $course_image; ?>)" id="course-top-section">
+	<section class="hero is-medium background-gradient-purple has-image mb-0" style="background-image: url(<?php echo esc_url( $course_cover_photo ? $course_cover_photo : $course_image ); ?>)" id="course-top-section">
 		<div class="hero-body">
 			<div class="container">
 				<div class="columns is-variable is-8">
@@ -216,7 +224,7 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 						?>
 					</div>
 					<div class="column">
-						<div class="card course-preview <?php echo $preview_url ? '' : 'no-video'; ?>" style="background-image: url(<?php echo esc_attr( $course_image ); ?>)" id="course-preview-launcher" data-preview="<?php echo esc_attr( $preview_url ); ?>">
+						<div class="card course-preview <?php echo $preview_url ? '' : 'no-video'; ?>" style="background-image: url(<?php echo esc_attr( $preview_gif ? $preview_gif : $course_image ); ?>)" id="course-preview-launcher" data-preview="<?php echo esc_attr( $preview_url ); ?>">
 							<?php if ( $preview_url ) : ?>
 							<!--<video id="background-video" autoplay loop muted poster="<?php echo esc_attr( $course_image ); ?>">
 							<source src="https://assets.codepen.io/6093409/river.mp4" type="video/mp4">

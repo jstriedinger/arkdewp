@@ -32,10 +32,12 @@ if ( sfwd_lms_has_access( $course_id, $current_user_id ) || $is_admin ) {
 }
 
 // get course progres
-$progress = get_user_meta( $user_id, '_sfwd-course_progress', true );
-if ( ! isset( $progress[ $course_id ] ) ) {
+$course_progress = get_user_meta( $user_id, '_sfwd-course_progress', true );
+if ( ! isset( $course_progress[ $course_id ] ) ) {
 	// if is not on the meta then get it from db
 	$course_progress = learndash_user_get_course_progress( $user_id, $course_id );
+} else {
+	$course_progress = $course_progress[ $course_id ];
 }
 $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $user_id, $course_id );
 ?>
@@ -43,7 +45,6 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 <div class="lms-topic-sidebar-wrapper sidebar-wrapper" >
 	<button class="course-sidebar-toggle is-clickable" id="course-sidebar-toggle"></button>
 	<div class="lms-topic-sidebar-data">
-		
 		<!--<di class="bb-elementor-header-items">
 			<a href="#" id="bb-toggle-theme">
 				<span class="sfwd-dark-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Dark Mode', 'buddyboss-theme' ); ?>"><i class="bb-icon-rl bb-icon-moon"></i></span>
