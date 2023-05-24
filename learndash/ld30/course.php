@@ -52,6 +52,8 @@ $duration           = $meta['course_duration'];
 $challenges         = $meta['info']['challenges'];
 $preview_gif        = $meta['preview_gif'];
 $course_cover_photo = false;
+$sponsor            = $meta['sponsor'];
+var_dump( $sponsor );
 if ( class_exists( '\BuddyBossTheme\BuddyBossMultiPostThumbnails' ) ) {
 	$course_cover_photo = \BuddyBossTheme\BuddyBossMultiPostThumbnails::get_post_thumbnail_url(
 		'sfwd-courses',
@@ -222,6 +224,18 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 							<?php
 					endif;
 						?>
+						<?php if ( ! empty( $sponsor ) ) : ?>
+							<div class="level mt-5">
+								<div class="level-left">
+									<div class="level-item">
+										<span class="is-size-7 has-text-white"><?php esc_html_e( 'Con el patrocinio de ', 'arkdewp' ); ?></span>
+									</div>
+									<div class="level-item">
+										<img src="<?php echo esc_url( $sponsor ); ?>" alt="patrocinador curso ARKDE" width="100px">
+									</div>
+								</div>
+							</div>
+						<?php endif; ?>
 					</div>
 					<div class="column">
 						<div class="card course-preview <?php echo $preview_url ? '' : 'no-video'; ?>" style="background-image: url(<?php echo esc_attr( $preview_gif ? $preview_gif : $course_image ); ?>)" id="course-preview-launcher" data-preview="<?php echo esc_attr( $preview_url ); ?>">
