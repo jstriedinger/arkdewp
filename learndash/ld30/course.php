@@ -225,15 +225,13 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 					endif;
 						?>
 						<?php if ( ! empty( $sponsor ) ) : ?>
-							<div class="level mt-5">
-								<div class="level-left">
-									<div class="level-item">
-										<span class="is-size-7 has-text-white"><?php esc_html_e( 'Con el patrocinio de ', 'arkdewp' ); ?></span>
+							<div class="is-flex has-gap-20 mt-5 is-align-items-flex-end">
+									<div >
+										<span class="is-size-7 has-text-white mb-2"><?php esc_html_e( 'Con el patrocinio de ', 'arkdewp' ); ?></span>
 									</div>
-									<div class="level-item">
-										<img src="<?php echo esc_url( $sponsor ); ?>" alt="patrocinador curso ARKDE" width="100px">
+									<div >
+										<img src="<?php echo esc_url( $sponsor ); ?>" alt="patrocinador curso ARKDE" width="115px">
 									</div>
-								</div>
 							</div>
 						<?php endif; ?>
 					</div>
