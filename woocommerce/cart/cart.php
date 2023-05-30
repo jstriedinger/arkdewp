@@ -36,7 +36,7 @@ do_action( 'woocommerce_before_cart' );
 						$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 						$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
-						$terms       = get_the_terms( $product_id, 'product_cat' );
+						$terms = get_the_terms( $product_id, 'product_cat' );
 
 						$term = null;
 						if ( ! empty( $terms ) ) {
@@ -45,21 +45,21 @@ do_action( 'woocommerce_before_cart' );
 
 						$is_pack = false;
 						$course  = null;
-						$cid          = get_post_meta( $product_id, '_related_course' );
-						$args         = array(
-							'post__in'  => $cid[0],
-							'post_type' => 'sfwd-courses',
+						$cid     = get_post_meta( $product_id, '_related_course' );
+						$args    = array(
+							'post__in'       => $cid[0],
+							'post_type'      => 'sfwd-courses',
 							'posts_per_page' => -1,
 						);
 
 						if ( 'career' == $term->slug ) {
-							$is_pack = true;
-							$courses = ( new WP_Query( $args ) )->posts;
+							$is_pack      = true;
+							$courses      = ( new WP_Query( $args ) )->posts;
 							$item_in_cart = get_field( 'career', $product_id );
 						} else {
 							// only one course.
 							$item_in_cart = get_post_meta( $product_id, '_related_course' )[0][0];
-							
+
 						}
 						?>
 							<li class='cart-item <?php echo $is_pack ? 'career' : ''; ?> is-flex is-align-items-flex-start py-5 has-gap-16'>
@@ -74,7 +74,7 @@ do_action( 'woocommerce_before_cart' );
 							<div class="media">
 							<?php echo get_the_post_thumbnail( $_product->get_id(), 'thumbnail' ); ?>
 							</div>
-							<div class="is-flex <?php echo $is_pack ? '' : 'has-gap-8';?> is-flex-direction-column is-align-self-center">
+							<div class="is-flex <?php echo $is_pack ? '' : 'has-gap-8'; ?> is-flex-direction-column is-align-self-center">
 								<?php if ( $is_pack ) : ?>
 									<span class="is-size-7 has-text-gold has-text-weight-bold is-uppercase"><?php esc_html_e( 'Pack de cursos', 'arkdewp' ); ?></span>
 								<?php else : ?>
@@ -84,12 +84,12 @@ do_action( 'woocommerce_before_cart' );
 										'rating',
 										array(
 											'course_id' => $item_in_cart,
-											'size' => 'fa-xs',
+											'size'      => 'fa-xs',
 										)
 									);
 									?>
 								<?php endif; ?>
-								<p class="subtitle is-size-6 has-text-weight-bold mb-0"><?php echo get_the_title($item_in_cart); ?></p>
+								<p class="subtitle is-size-6 has-text-weight-bold mb-0"><?php echo get_the_title( $item_in_cart ); ?></p>
 								<?php if ( $is_pack ) : ?>
 										<div class="is-flex has-gap-8 is-align-items-center has-text-grey-light">
 											<span class=" is-size-7"><?php echo sprintf( esc_html__( '%s cursos', 'arkdewp' ), esc_attr( count( $courses ) ) ); ?></span>
@@ -117,7 +117,7 @@ do_action( 'woocommerce_before_cart' );
 									echo '<p class="has-text-weight-bold is-size-14px">$' . number_format( $price, 0, ',', '.' ) . '<small class="ml-1">' . $currency . '</small></p>';
 									echo "<span class='is-line-through is-size-14px has-text-grey-light'>$" . number_format( $reg_price, 0, ',', '.' ) . '</span>';
 								} else {
-									echo '<p class="has-text-weight-bold is-size-14px">$' . number_format( $price, 0, ',', '.' ) . '<small class="ml-1>' . $currency . '</small></p>';
+									echo '<p class="has-text-weight-bold is-size-14px">$' . number_format( $price, 0, ',', '.' ) . '<small class="ml-1">' . $currency . '</small></p>';
 								}
 								?>
 							</div>
