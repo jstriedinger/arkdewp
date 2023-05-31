@@ -50,6 +50,7 @@ $reqs               = $meta['info']['requirements'];
 $teachers           = $meta['teachers'];
 $duration           = $meta['course_duration'];
 $challenges         = $meta['info']['challenges'];
+$resources          = $meta['info']['resources'];
 $preview_gif        = $meta['preview_gif'];
 $course_cover_photo = false;
 $sponsor            = $meta['sponsor'];
@@ -413,6 +414,14 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 														<i class="fa-solid fa-feather"></i>
 													</div>
 													<span class="is-size-14px"><?php echo sprintf( esc_html__( '%s desafios', 'arkdewp' ), esc_attr( $challenges ) ); ?></span>
+												</li>
+											<?php endif; ?>
+											<?php if ( $resources ) : ?>
+												<li class="mt-2">
+													<div class="icon mr-1">
+														<i class="fa-solid fa-cloud-arrow-down"></i>
+													</div>
+													<span class="is-size-14px"><?php echo sprintf( esc_html__( '%s de recursos', 'arkdewp' ), esc_attr( $resources ) ); ?></span>
 												</li>
 											<?php endif; ?>
 											<li class="mt-2">

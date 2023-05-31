@@ -326,7 +326,7 @@
                     "label": "Recursos descargables?",
                     "name": "resources",
                     "aria-label": "",
-                    "type": "number",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -336,12 +336,10 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": "",
                     "placeholder": "",
                     "prepend": "",
-                    "append": "",
-                    "min": "",
-                    "max": "",
-                    "step": ""
+                    "append": ""
                 }
             ]
         },
@@ -437,5 +435,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1684954633
+    "modified": 1685572828
 }
