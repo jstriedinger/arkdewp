@@ -205,25 +205,17 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 															$topic_settings       = learndash_get_setting( $lesson_topic );
 															$lesson_video_enabled = isset( $topic_settings['lesson_video_enabled'] ) ? $topic_settings['lesson_video_enabled'] : null;
 															$completed            = ! empty( $course_progress['topics'][ $lesson->ID ][ $lesson_topic->ID ] ) && 1 === $course_progress['topics'][ $lesson->ID ][ $lesson_topic->ID ];
+															$is_assignment        = get_field( 'is_assignment', $lesson_topic->ID );
 															?>
 													<li class="lms-topic-item is-flex has-gap-16 is-align-items-center <?php echo $lesson_topic->ID === $post->ID ? esc_attr( 'current' ) : ''; ?>">
-															
 															<?php if ( $is_sample || $is_enrolled ) : ?>
 																		<?php if ( $lesson_topic->ID === $post->ID ) : ?>
-																				<?php if ( $completed ) : ?>
-																					<i class="fa-solid fa-circle  has-text-primary fa-xs"></i>
-																				<?php else : ?>
-																					<i class="fa-solid fa-circle  has-text-grey-lighter fa-xs"></i>
-																				<?php endif; ?>
+																				<i class="fa-solid <?php echo ( $is_assignment ? 'fa-feather' : 'fa-circle fa-xs' ); ?> <?php echo ( $completed ? 'has-text-primary' : 'has-text-grey-lighter' ); ?>"></i>
 																				<span class="is-size-14px has-text-weight-bold <?php echo $completed ? esc_attr( 'is-line-through' ) : ''; ?>"><?php echo $lesson_topic->post_title; ?></span>
 
 																		<?php else : ?>
 																			<a class="is-flex has-gap-16 is-align-items-center bb-title bb-lms-title-wrap is-size-14px is-flex-grow-1" href="<?php echo esc_url( get_permalink( $lesson_topic->ID ) ); ?>" title="<?php echo esc_attr( $lesson_topic->post_title ); ?>">
-																				<?php if ( $completed ) : ?>
-																					<i class="fa-solid fa-circle  has-text-primary fa-xs"></i>
-																				<?php else : ?>
-																					<i class="fa-solid fa-circle  has-text-grey-lighter fa-xs"></i>
-																				<?php endif; ?>
+																				<i class="fa-solid <?php echo ( $is_assignment ? 'fa-feather' : 'fa-circle fa-xs' ); ?> <?php echo ( $completed ? 'has-text-primary' : 'has-text-grey-lighter' ); ?> "></i>
 																				<span class="is-size-14px <?php echo $completed ? esc_attr( 'is-line-through' ) : ''; ?>"><?php echo $lesson_topic->post_title; ?></span>	
 																			</a>
 																		<?php endif; ?>
@@ -233,7 +225,6 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 																	<span class="is-size-14px"><?php echo $lesson_topic->post_title; ?></span>
 																<?php endif; ?>
 															<?php endif; ?>
-															
 																<?php
 																$topic_quizzes = learndash_get_lesson_quiz_list( $lesson_topic->ID, get_current_user_id(), $course_id );
 																if ( ! empty( $topic_quizzes ) ) :
