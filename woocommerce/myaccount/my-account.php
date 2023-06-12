@@ -57,7 +57,7 @@ if ( ( end( $request ) == 'my-account' && is_account_page() ) ) {
 				<ul class="is-flex is-flex-direction-column is-align-items-stretch has-gap-10 profile-links">
 					<li class="<?php echo ( isset( $request[1] ) && 'edit-account' === $request[1] ) ? 'is-active' : ''; ?>">
 						<?php if ( ( ! isset( $request[1] ) || 'edit-account' !== $request[1] ) ) : ?>
-							<a href="<?php echo esc_url( wc_customer_edit_account_url() ); ?>" title="<?php esc_html_e( 'Perfil y contraseña', 'arkdewp' ); ?>"><?php esc_html_e( 'Perfil contraseña', 'arkdewp' ); ?></a>
+							<a href="<?php echo esc_url( wc_customer_edit_account_url() ); ?>" title="<?php esc_html_e( 'Perfil y contraseña', 'arkdewp' ); ?>"><?php esc_html_e( 'Perfil y contraseña', 'arkdewp' ); ?></a>
 						<?php else : ?>
 							<?php esc_html_e( 'Perfil y contraseña', 'arkdewp' ); ?>
 						<?php endif; ?>	
@@ -66,6 +66,13 @@ if ( ( end( $request ) == 'my-account' && is_account_page() ) ) {
 					<li>
 							<a href="<?php echo esc_url( home_url() . '/members/' . $current_user->nickname . '/profile/change-avatar' ); ?>" title="<?php esc_html_e( 'Editar perfil', 'arkdewp' ); ?>" title="<?php esc_html_e( 'Cambiar foto', 'arkdewp' ); ?>"><?php esc_html_e( 'Cambiar foto', 'arkdewp' ); ?></a>
 					</li>
+					<li class="<?php echo ( isset( $request[1] ) && 'orders' === $request[1] ) ? 'is-active' : ''; ?>">
+						<?php if ( ( ! isset( $request[1] ) || 'orders' !== $request[1] ) ) : ?>
+							<a href="<?php echo esc_url(  wc_get_endpoint_url( 'orders' ) ); ?>" title="<?php esc_html_e( 'Tus pedidos', 'arkdewp' ); ?>"><?php esc_html_e( 'Tus pedidos', 'arkdewp' ); ?></a>
+						<?php else : ?>
+							<?php esc_html_e( 'Tus pedidos', 'arkdewp' ); ?>
+						<?php endif; ?>	
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -73,7 +80,7 @@ if ( ( end( $request ) == 'my-account' && is_account_page() ) ) {
 	</div>
 	<div class="column">
 		<div class="bsMyAccount <?php echo $dashBoardClass; ?>">
-			<div class="woocommerce-MyAccount-content">
+			<div class="woocommerce-MyAccount-content m-5">
 				<?php
 				/**
 				 * My Account content.
