@@ -61,6 +61,7 @@ $current_action = bp_current_action();
 							<a href="<?php echo esc_url(  wc_get_endpoint_url('orders', '', get_permalink(get_option('woocommerce_myaccount_page_id'))) );?>" title="Tus pedidos"><?php esc_html_e( 'Tus pedidos', 'arkdewp' ); ?></a>
 						</li>
 						
+						
 					</ul>
 				</div>
 			</div>
