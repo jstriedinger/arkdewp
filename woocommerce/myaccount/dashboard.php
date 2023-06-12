@@ -51,10 +51,10 @@ $allowed_html = array(
 		$my_orders_columns = apply_filters(
 			'woocommerce_my_account_my_orders_columns',
 			array(
-				'order-number'  => __( 'Order', 'buddyboss-theme' ),
-				'order-date'    => __( 'Date', 'buddyboss-theme' ),
-				'order-status'  => __( 'Status', 'buddyboss-theme' ),
-				'order-total'   => __( 'Total', 'buddyboss-theme' ),
+				'order-number'  => __( 'Pedido', 'arkdewp' ),
+				'order-date'    => __( 'Fecha', 'arkdewp' ),
+				'order-status'  => __( 'Estado', 'arkdewp' ),
+				'order-total'   => __( 'Total', 'arkdewp' ),
 				'order-actions' => '&nbsp;',
 			)
 		);
@@ -104,7 +104,7 @@ $allowed_html = array(
 			
 										<?php elseif ( 'order-number' === $column_id ) : ?>
 											<span>
-												<?php echo _x( '#', 'hash before order number', 'buddyboss-theme' ) . $order->get_order_number(); ?>
+												#<?php echo $order->get_order_number(); ?>
 											</span>
 			
 										<?php elseif ( 'order-date' === $column_id ) : ?>
@@ -116,7 +116,7 @@ $allowed_html = array(
 										<?php elseif ( 'order-total' === $column_id ) : ?>
 											<?php
 											/* translators: 1: formatted order total 2: total order items */
-											printf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'buddyboss-theme' ), $order->get_formatted_order_total(), $item_count );
+											printf( _n( '%1$s por %2$s curso', '%1$s por %2$s cursos', $item_count, 'arkdewp' ), $order->get_formatted_order_total(), $item_count );
 											?>
 			
 										<?php elseif ( 'order-actions' === $column_id ) : ?>

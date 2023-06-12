@@ -25,7 +25,7 @@ if ( bp_has_profile() ) :
 					<?php
 					if ( bp_is_my_profile() ) {
 						?>
-						<a href="<?php echo esc_url( $edit_profile_link . bp_get_the_profile_group_id() ); ?>" class="push-right button outline small"><?php esc_attr_e( 'Edit', 'buddyboss-theme' ); ?></a>
+						<a href="<?php echo esc_url( $edit_profile_link . bp_get_the_profile_group_id() ); ?>" class="push-right button outline small"><?php esc_attr_e( 'Editar', 'arkdewp' ); ?></a>
 						<?php
 					}
 					?>
@@ -86,9 +86,9 @@ else :
 		<p>
 			<?php
 			if ( bp_is_my_profile() ) {
-				esc_html_e( 'You have not yet added details to your profile.', 'buddyboss-theme' );
+				esc_html_e( 'No has ingresado detalles de tu perfil.', 'arkdewp' );
 			} else {
-				esc_html_e( 'This member has not yet added details to their profile.', 'buddyboss-theme' );
+				esc_html_e( 'Este miembro no ha ingresado detalles de su perfil.', 'arkdewp' );
 			}
 			?>
 		</p>

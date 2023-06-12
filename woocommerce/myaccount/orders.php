@@ -54,7 +54,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders );
 
 							<?php elseif ( 'order-number' === $column_id ) : ?>
 								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
-									<?php echo esc_html( _x( '#', 'hash before order number', 'buddyboss-theme' ) . $order->get_order_number() ); ?>
+									#<?php echo esc_html( $order->get_order_number() ); ?>
 								</a>
 
 							<?php elseif ( 'order-date' === $column_id ) : ?>
@@ -66,7 +66,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders );
 							<?php elseif ( 'order-total' === $column_id ) : ?>
 								<?php
 								/* translators: 1: formatted order total 2: total order items */
-								echo wp_kses_post( sprintf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'buddyboss-theme' ), $order->get_formatted_order_total(), $item_count ) );
+								echo wp_kses_post( sprintf( _n( '%1$s por %2$s curso', '%1$s por %2$s cursos', $item_count, 'arkdewp' ), $order->get_formatted_order_total(), $item_count ) );
 								?>
 
 							<?php elseif ( 'order-actions' === $column_id ) : ?>
@@ -94,11 +94,11 @@ do_action( 'woocommerce_before_account_orders', $has_orders );
 	<?php if ( 1 < $customer_orders->max_num_pages ) : ?>
 		<div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
 			<?php if ( 1 !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php esc_html_e( 'Previous', 'buddyboss-theme' ); ?></a>
+				<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php esc_html_e( 'Anterior', 'arkdewp' ); ?></a>
 			<?php endif; ?>
 
 			<?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php esc_html_e( 'Next', 'buddyboss-theme' ); ?></a>
+				<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php esc_html_e( 'Sgte', 'arkdewp' ); ?></a>
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
@@ -106,10 +106,8 @@ do_action( 'woocommerce_before_account_orders', $has_orders );
 <?php else : ?>
 	<div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info wc-MyAccount-fix-center">
 		<div class="wc-MyAccount-sub-icon"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/svg/order.svg" alt="Orders" /></div>
-		<div class="wc-MyAccount-sub-tagline"><?php esc_html_e( 'No order has been made yet.', 'buddyboss-theme' ); ?></div>
-		<a class="woocommerce-Button button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php esc_html_e( 'Go to the shop', 'buddyboss-theme' ); ?>
-		</a>	
+		<div class="wc-MyAccount-sub-tagline"><?php esc_html_e( 'Todavia no has comprado ningún curso.', 'arkdewp' ); ?></div>
+			
 	</div>
 <?php endif; ?>
 

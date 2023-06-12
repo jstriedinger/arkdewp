@@ -47,8 +47,8 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 	<div class="lms-topic-sidebar-data">
 		<!--<di class="bb-elementor-header-items">
 			<a href="#" id="bb-toggle-theme">
-				<span class="sfwd-dark-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Dark Mode', 'buddyboss-theme' ); ?>"><i class="bb-icon-rl bb-icon-moon"></i></span>
-				<span class="sfwd-light-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Light Mode', 'buddyboss-theme' ); ?>"><i class="bb-icon-l bb-icon-sun"></i></span>
+				<span class="sfwd-dark-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Dark Mode', 'arkdewp' ); ?>"><i class="bb-icon-rl bb-icon-moon"></i></span>
+				<span class="sfwd-light-mode" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Light Mode', 'arkdewp' ); ?>"><i class="bb-icon-l bb-icon-sun"></i></span>
 			</a>
 		</div> -->
 
@@ -112,8 +112,6 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 						$is_sample            = learndash_is_sample( $lesson );
 						$bb_lesson_has_access = sfwd_lms_has_access( $lesson->ID, $user_id );
 						$bb_available_date    = learndash_course_step_available_date( $lesson->ID, $course_id, $user_id, true );
-						$atts                 = apply_filters( 'learndash_quiz_row_atts', ( ( isset( $bb_lesson_has_access ) && ! $bb_lesson_has_access && ! $is_sample ) || ( ! empty( $bb_available_date ) && ! $is_sample ) ? 'data-balloon-pos="up" data-balloon="' . __( "You don't currently have access to this content", 'buddyboss-theme' ) . '"' : '' ) );
-						$atts_access_marker   = apply_filters( 'learndash_quiz_row_atts', ( ( isset( $bb_lesson_has_access ) && ! $bb_lesson_has_access && ! $is_sample ) || ( ! empty( $bb_available_date ) && ! $is_sample ) ? '<span class="lms-is-locked-ico"><i class="bb-icon-f bb-icon-lock"></i></span>' : '' ) );
 						$locked_class         = apply_filters( 'learndash_quiz_row_atts', ( ( isset( $bb_lesson_has_access ) && ! $bb_lesson_has_access && ! $is_sample ) || ( ! empty( $bb_available_date ) && ! $is_sample ) ? 'lms-is-locked' : 'lms-not-locked' ) );
 
 						if ( $bb_lesson_has_access || ( ! $bb_lesson_has_access && apply_filters( 'bb_theme_ld_show_locked_lessons', true ) ) ) {
@@ -173,17 +171,7 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 											}
 											if ( $content_count['quizzes'] > 0 ) :
 												?>
-											<div class="bb-lesson-quizzes-count">
-												<?php
-												echo sprintf( esc_html__( '%s', 'buddyboss-theme' ), $content_count['quizzes'] ) . ' ' .
-													_n(
-														sprintf( esc_html__( '%s', 'buddyboss-theme' ), LearnDash_Custom_Label::get_label( 'quiz' ) ),
-														sprintf( esc_html__( '%s', 'buddyboss-theme' ), LearnDash_Custom_Label::get_label( 'quizzes' ) ),
-														$content_count['quizzes'],
-														'buddyboss-theme'
-													);
-												?>
-											</div>
+											
 												<?php
 										endif;
 											?>
@@ -229,44 +217,7 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 																$topic_quizzes = learndash_get_lesson_quiz_list( $lesson_topic->ID, get_current_user_id(), $course_id );
 																if ( ! empty( $topic_quizzes ) ) :
 																	?>
-															<ol class="lms-quiz-list">
-																		<?php
-																		foreach ( $topic_quizzes as $topic_quiz ) {
-																			$bb_quiz_has_access = sfwd_lms_has_access( $topic_quiz['post']->ID, $user_id );
-																			if ( $bb_quiz_has_access || ( ! $bb_quiz_has_access && apply_filters( 'bb_theme_ld_show_locked_quizzes', true ) ) ) {
-																				?>
-																		<li class="lms-quiz-item <?php echo esc_attr( $topic_quiz['post']->ID == $post->ID ? esc_attr( 'current' ) : '' ); ?>">
-																			<a class="flex bb-title bb-lms-title-wrap" href="<?php echo esc_url( get_permalink( $topic_quiz['post']->ID ) ); ?>" title="<?php echo esc_attr( $topic_quiz['post']->post_title ); ?>">
-																				<span class="bb-lms-ico bb-lms-ico-quiz"><i class="bb-icon-rl bb-icon-question"></i></span>
-																				<span class="flex-1 bb-lms-title <?php echo learndash_is_quiz_complete( $user_id, $topic_quiz['post']->ID, $course_id ) ? esc_attr( 'bb-completed-item' ) : esc_attr( 'bb-not-completed-item' ); ?>">
-																					<?php echo wp_kses_post( apply_filters( 'the_title', $topic_quiz['post']->post_title, $topic_quiz['post']->ID ) ); ?>
-																				</span>
-																				<?php
-																				if ( learndash_is_quiz_complete( $user_id, $topic_quiz['post']->ID, $course_id ) ) :
-																					?>
-																					<div class="bb-completed bb-lms-status" data-balloon-pos="left" data-balloon="<?php esc_attr_e( 'Completed', 'buddyboss-theme' ); ?>">
-																						<div class="i-progress i-progress-completed">
-																							<i class="bb-icon-l bb-icon-check"></i>
-																						</div>
-																					</div>
-																					<?php
-																						else :
-																							?>
-																					<div class="bb-not-completed bb-lms-status" data-balloon-pos="left" data-balloon="<?php esc_attr_e( 'Not Completed', 'buddyboss-theme' ); ?>">
-																						<div class="i-progress i-progress-not-completed">
-																							<i class="bb-icon-l bb-icon-circle"></i>
-																						</div>
-																					</div>
-																							<?php
-																						endif;
-																						?>
-																			</a>
-																		</li>
-																				<?php
-																			}
-																		}
-																		?>
-															</ol>
+															
 																	<?php
 																endif;
 																?>
@@ -279,42 +230,8 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 												<?php
 									endif;
 
-											$lesson_quizzes = learndash_get_lesson_quiz_list( $lesson->ID, get_current_user_id(), $course_id );
-											if ( ! empty( $lesson_quizzes ) ) :
-												?>
-										<ul class="lms-quiz-list">
-													<?php
-													foreach ( $lesson_quizzes as $lesson_quiz ) {
-														$bb_quiz_has_access = sfwd_lms_has_access( $lesson_quiz['post']->ID, $user_id );
-														if ( $bb_quiz_has_access || ( ! $bb_quiz_has_access && apply_filters( 'bb_theme_ld_show_locked_quizzes', true ) ) ) {
-															?>
-													<li class="lms-quiz-item <?php echo esc_attr( $lesson_quiz['post']->ID == $post->ID ? esc_attr( 'current' ) : '' ); ?>">
-														<a class="flex bb-title bb-lms-title-wrap" href="<?php echo esc_url( get_permalink( $lesson_quiz['post']->ID ) ); ?>" title="<?php echo esc_attr( $lesson_quiz['post']->post_title ); ?>">
-															<span class="bb-lms-ico bb-lms-ico-quiz"><i class="bb-icon-rl bb-icon-question"></i></span>
-															<span class="flex-1 bb-lms-title <?php echo learndash_is_quiz_complete( $user_id, $lesson_quiz['post']->ID, $course_id ) ? esc_attr( 'bb-completed-item' ) : esc_attr( 'bb-not-completed-item' ); ?>"><?php echo $lesson_quiz['post']->post_title; ?></span>
-															<?php
-															if ( learndash_is_quiz_complete( $user_id, $lesson_quiz['post']->ID, $course_id ) ) :
-																?>
-																<div class="bb-completed bb-lms-status" data-balloon-pos="left" data-balloon="<?php esc_attr_e( 'Completed', 'buddyboss-theme' ); ?>">
-																	<div class="i-progress i-progress-completed"><i class="bb-icon-l bb-icon-check"></i></div>
-																</div>
-																<?php
-																	else :
-																		?>
-																<div class="bb-not-completed bb-lms-status" data-balloon-pos="left" data-balloon="<?php esc_attr_e( 'Not Completed', 'buddyboss-theme' ); ?>">
-																	<div class="i-progress i-progress-not-completed"><i class="bb-icon-l bb-icon-circle"></i></div>
-																</div>
-																		<?php
-																	endif;
-																	?>
-														</a>
-													</li>
-															<?php
-														}
-													}
-													?>
-										</ul>
-											<?php endif; ?>
+											$lesson_quizzes = learndash_get_lesson_quiz_list( $lesson->ID, get_current_user_id(), $course_id ); ?>
+											
 								</div><?php /*lms-lesson-content*/ ?>
 							</li>
 											<?php
@@ -324,54 +241,5 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 				</ol>
 			<?php endif; ?>
 		</div>
-
-		<?php
-		$course_quizzes = learndash_get_course_quiz_list( $course_id );
-		if ( ! empty( $course_quizzes ) ) :
-			?>
-			<div class="lms-course-quizzes-list">
-				<h4 class="lms-course-quizzes-heading"><?php echo LearnDash_Custom_Label::get_label( 'quizzes' ); ?></h4>
-				<ul class="lms-quiz-list bb-type-list">
-					<?php
-					foreach ( $course_quizzes as $course_quiz ) {
-
-						$is_sample          = ( isset( $lesson->sample ) ? $lesson->sample : false );
-						$bb_quiz_has_access = sfwd_lms_has_access( $course_quiz['post']->ID, $user_id );
-						$atts               = apply_filters( 'learndash_quiz_row_atts', ( isset( $bb_quiz_has_access ) && ! $bb_quiz_has_access && ! $is_sample ? 'data-balloon-pos="up" data-balloon="' . __( "You don't currently have access to this content", 'buddyboss-theme' ) . '"' : '' ) );
-						$atts_access_marker = apply_filters( 'learndash_quiz_row_atts', ( isset( $bb_quiz_has_access ) && ! $bb_quiz_has_access && ! $is_sample ? '<span class="lms-is-locked-ico"><i class="bb-icon-f bb-icon-lock"></i></span>' : '' ) );
-						$locked_class       = apply_filters( 'learndash_quiz_row_atts', ( isset( $bb_quiz_has_access ) && ! $bb_quiz_has_access && ! $is_sample ? 'lms-is-locked' : 'lms-not-locked' ) );
-
-						?>
-						<li class="lms-quiz-item <?php echo $course_quiz['post']->ID == $post->ID ? esc_attr( 'current' ) : ''; ?> <?php echo esc_attr( $locked_class ); ?>">
-							<a class="flex bb-title bb-lms-title-wrap" href="<?php echo esc_url( get_permalink( $course_quiz['post']->ID ) ); ?>" title="<?php echo esc_attr( $course_quiz['post']->post_title ); ?>">
-								<span class="bb-lms-ico bb-lms-ico-quiz"><i class="bb-icon-rl bb-icon-question"></i></span>
-								<span class="flex-1 push-left bb-lms-title <?php echo learndash_is_quiz_complete( $user_id, $course_quiz['post']->ID, $course_id ) ? esc_attr( 'bb-completed-item' ) : esc_attr( 'bb-not-completed-item' ); ?>">
-									<span class="bb-quiz-title"><?php echo $course_quiz['post']->post_title; ?></span>
-									<?php echo $atts_access_marker; ?>
-								</span>
-								<?php
-								if ( learndash_is_quiz_complete( $user_id, $course_quiz['post']->ID, $course_id ) ) :
-									?>
-									<div class="bb-completed bb-lms-status" data-balloon-pos="left" data-balloon="<?php esc_attr_e( 'Completed', 'buddyboss-theme' ); ?>">
-										<div class="i-progress i-progress-completed"><i class="bb-icon-check"></i></div>
-									</div>
-									<?php
-								else :
-									?>
-									<div class="bb-not-completed bb-lms-status" data-balloon-pos="left" data-balloon="<?php esc_attr_e( 'Not Completed', 'buddyboss-theme' ); ?>">
-										<div class="i-progress i-progress-not-completed"><i class="bb-icon-l bb-icon-circle"></i>
-										</div>
-									</div>
-									<?php
-								endif;
-								?>
-							</a>
-						</li>
-					<?php } ?>
-				</ul>
-			</div>
-			<?php
-		endif;
-		?>
 	</div>
 </div>

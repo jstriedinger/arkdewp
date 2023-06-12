@@ -75,13 +75,13 @@ defined( 'ABSPATH' ) || exit;
 	
 					<?php if ( is_user_logged_in() && $order->get_user_id() === get_current_user_id() && $order->get_billing_email() ) : ?>
 						<li class="woocommerce-order-overview__email email is-size-14px">
-							<?php esc_html_e( 'Email:', 'buddyboss-theme' ); ?><br>
+							<?php esc_html_e( 'Email:', 'arkdewp' ); ?><br>
 							<span><?php echo $order->get_billing_email(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 						</li>
 					<?php endif; ?>
 	
 					<li class="woocommerce-order-overview__total total is-size-14px">
-						<?php esc_html_e( 'Total:', 'buddyboss-theme' ); ?><br>
+						<?php esc_html_e( 'Total:', 'arkdewp' ); ?><br>
 						<span><?php echo $order->get_formatted_order_total() . ' ' . $order->get_currency(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</li>
 	
@@ -102,7 +102,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php else : ?>
 
-		<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'buddyboss-theme' ), null ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+		<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Gracias. Tu pedido ha sido recibido.', 'arkdewp' ), null ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
 	<?php endif; ?>
 
