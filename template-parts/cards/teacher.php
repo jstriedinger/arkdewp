@@ -14,7 +14,11 @@ if ( $teacher ) :
 			<p class="is-size-4 is-size-3-fullhd has-text-weight-bold"><?php echo $teacher->post_title; ?></p>
 			<p class="mb-5 mt-4"><?php echo get_field( 'mini_bio', $teacher->ID ); ?></p>
 			<?php if ( ! empty( $company ) ) : ?>
-				<img src="<?php echo esc_url( $company['img_bw'] ); ?>" alt="<?php echo esc_attr( $company['name'] ); ?>">
+				<?php if ( ! $company['img_bw'] && ! $company['img_color'] ) : ?>
+					<p class="has-text-weight-bold is-size-4"><?php echo esc_attr( $company['name'] ); ?></p>
+				<?php else : ?>
+					<img src="<?php echo esc_url( $company['img_bw'] ); ?>" alt="<?php echo esc_attr( $company['name'] ); ?>">
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 	</div>	

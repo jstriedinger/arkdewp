@@ -27,7 +27,11 @@ $career   = isset( $args[1] ) ? true : false;
 							<span class="subtitle is-size-6 mb-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo esc_attr( $company['position'] ); ?></span>
 						<?php else : ?>
 								<span class="subtitle is-size-6 mb-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php echo sprintf( __( '%s en', 'arkdewp' ), esc_attr( $company['position'] ) ); ?></span>
-								<img src="<?php echo esc_url( $career ? $company['img_bw'] : $company['img_color'] ); ?>" alt="<?php echo esc_attr( $company['name'] ); ?>" width="125px">
+								<?php if ( ! $company['img_bw'] && ! $company['img_color'] ) : ?>
+									<span class="subtitle is-size-6 mb-2 has-text-weight-bold"><?php echo esc_attr( $company['name'] ); ?></span>
+								<?php else : ?>
+									<img src="<?php echo esc_url( $career ? $company['img_bw'] : $company['img_color'] ); ?>" alt="<?php echo esc_attr( $company['name'] ); ?>" width="125px">
+								<?php endif; ?>
 						<?php endif; ?>
 					</div>
 				</div>
