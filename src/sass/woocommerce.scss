@@ -231,6 +231,33 @@ table.shop_table.shop_table_responsive {
 				margin: 0
 			}
 		}
+		&.processing {
+			&:after {
+				position: absolute;
+				width: 50%;
+				height: 50%;
+				content: "\f110";
+				font-family: 'Font Awesome 6 Free';
+				font-size: 4rem;
+				font-weight: 900;
+				top: 25%;
+				left: 25%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 1001;
+				animation: rotation 2s infinite linear;
+			}
+		}
+	}
+}
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
 	}
 }
 
@@ -308,6 +335,7 @@ ul.wc_payment_methods {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		flex-wrap: wrap;
 		img {
 			max-height: 25px;
 		}
@@ -322,7 +350,10 @@ ul.wc_payment_methods {
 			margin: 0;
 		}
 		.payment_box {
-			display: none !important;
+			.payment_method_stripe
+			{
+
+			}
 		}
 	}
 }

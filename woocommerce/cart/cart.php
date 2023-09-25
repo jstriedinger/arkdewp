@@ -188,7 +188,7 @@ do_action( 'woocommerce_before_cart' );
 
 			<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
 			<p class="is-size-14px has-text-grey mb-2 mt-5"><?php esc_html_e( 'Medios de pago disponibles', 'arkdewp' ); ?></p>
-			<img src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/img/cards.png" alt="metodos de pago arkde"  width="190px" style="padding-top:5px;">
+			<img src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/img/cards.png" alt="metodos de pago arkde"  width="210px" style="padding-top:5px;">
 
 		</div>
 		<div class="column">
