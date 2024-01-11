@@ -3,6 +3,9 @@ $course     = $args['course'];
 $user_id    = get_current_user_id();
 $has_access = sfwd_lms_has_access( $course->ID, $user_id );
 
+
+
+
 if ( $has_access ) {
 	// lets get all the info needed
 	$course_progress = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage( $user_id, $course->ID );
@@ -28,6 +31,23 @@ if ( $course ) :
 	?>
 	
 	<div class="card course-card vertical-100" data-course="<?php echo esc_attr( $course->ID ); ?>" id="course-card-<?php echo esc_attr( $course->ID ); ?>" data-categories="<?php echo esc_attr( $course_cats_string ); ?>">
+		
+	<?php
+	if ( 'closed' == $course_price_type ) {
+		$wc_product = get_field( 'wc_product', $course->ID );
+		$product    = wc_get_product( $wc_product->ID );
+		if ( $product ) {
+			$is_on_sale = $product->is_on_sale();
+			if ( $is_on_sale ) {
+				$discount = strval( ceil( 100 - ( ( $product->get_price() * 100 ) / $product->get_regular_price() ) ) );
+				?>
+				<div class="card-sale-badge">
+					-<?php echo $discount;?>%
+				</div>
+<?php	}
+		}
+	}
+	?>
 		<div class="card-header" data-href="<?php echo $permalink; ?>" >
 			<?php if ( $course_price_type == 'free' || $course_price_type == 'open' ) : ?>
 					<span class="tag is-success is-light is-medium"><?php echo esc_html__( 'Gratis', 'arkdewp' ); ?></span>

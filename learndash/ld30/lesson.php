@@ -142,7 +142,7 @@ if ( ( isset( $_COOKIE['coursesidebar'] ) && 'open' === $_COOKIE['coursesidebar'
 					<?php
 					$can_complete = false;
 
-					if ( $all_quizzes_completed && $logged_in && ! empty( $course_id ) ) :
+					if ( $logged_in && ! empty( $course_id ) ) :
 						/** This filter is documented in themes/ld30/templates/lesson.php */
 						$can_complete = apply_filters( 'learndash-lesson-can-complete', true, get_the_ID(), $course_id, $user_id );
 					endif;
