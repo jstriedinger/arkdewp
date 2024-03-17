@@ -117,7 +117,6 @@ function arkdewp_scripts() {
 	} else {
 		$v = '';
 	}
-	write_log( $v );
 
 	wp_enqueue_style( 'arkdewp-css', $assets_uri . 'arkdewp' . $file_prefix . '.css', array(), $v, 'all' );
 	wp_style_add_data( 'arkdewp-css', 'rtl', 'replace' );
