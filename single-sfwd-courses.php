@@ -19,7 +19,8 @@ get_header();
 			if ( 'draft' == get_post_status() ) {
 				do_action( THEME_HOOK_PREFIX . '_single_template_part_content', get_post_type() );
 			} else {
-				the_content();
+				get_template_part( 'template-parts/content', 'sfwd' );
+				// the_content();
 			}
 
 		endwhile; // End of the loop.
