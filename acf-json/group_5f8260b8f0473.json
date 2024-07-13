@@ -43,6 +43,26 @@
             "maxlength": ""
         },
         {
+            "key": "field_669300aff22e2",
+            "label": "Video background",
+            "name": "video_file",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
             "key": "field_5faeeca6be2db",
             "label": "Bullets",
             "name": "bullets",
@@ -235,5 +255,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678783197
+    "modified": 1720910092
 }

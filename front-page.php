@@ -14,7 +14,8 @@ $testimonials     = $meta['testimonials'];
 $tagline          = $meta['tagline'];
 $num_users        = count_users()['total_users'];
 $bullets          = $meta['bullets'];
-$vimeo_id         = $meta['vimeo_id']
+$vimeo_id         = $meta['vimeo_id'];
+$video_bg         = $meta['video_file'];
 
 
 ?>
@@ -23,7 +24,7 @@ $vimeo_id         = $meta['vimeo_id']
 	<section class="section pb-0 pr-0 pl-0 background-gradient-purple has-image has-video" id="main-section" style="background-image: url(<?php echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?>)">
 		<?php if ( $vimeo_id != '' ) : ?>
 			<div class="video-bg-wrapper">
-				<iframe id="video-background" class="fitvidsignore" data-src="https://player.vimeo.com/video/<?php echo esc_attr( $vimeo_id ); ?>?background=1&autoplay=1&loop=1&byline=0&title=0"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>
+				<video class="fitvidsignore" id="video-background" data-src="<?php echo esc_url( $video_bg ); ?>" muted autoplay loop ></video>
 			</div>
 		<?php endif; ?>
 		<div class="container columns is-centered has-text-centered pt-6 pb-5 mt-6 mb-6">
