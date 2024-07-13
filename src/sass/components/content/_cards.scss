@@ -503,6 +503,9 @@
 		}
 		.card-header {
 			height: 250px;
+			border-top-left-radius: var(--card-radius-big);
+			border-bottom-left-radius: var(--card-radius-big);
+			overflow: hidden;
 			@include desktop {
 				width: 40%;
 				max-width: 500px;
