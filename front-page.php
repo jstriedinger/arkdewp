@@ -14,7 +14,6 @@ $testimonials     = $meta['testimonials'];
 $tagline          = $meta['tagline'];
 $num_users        = count_users()['total_users'];
 $bullets          = $meta['bullets'];
-$vimeo_id         = $meta['vimeo_id'];
 $video_bg         = $meta['video_file'];
 
 
@@ -22,7 +21,7 @@ $video_bg         = $meta['video_file'];
 
 <main id="primary">
 	<section class="section pb-0 pr-0 pl-0 background-gradient-purple has-image has-video" id="main-section" style="background-image: url(<?php echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?>)">
-		<?php if ( $vimeo_id != '' ) : ?>
+		<?php if ( $video_bg != '' ) : ?>
 			<div class="video-bg-wrapper">
 				<video class="fitvidsignore" id="video-background" data-src="<?php echo esc_url( $video_bg ); ?>" muted autoplay loop ></video>
 			</div>
