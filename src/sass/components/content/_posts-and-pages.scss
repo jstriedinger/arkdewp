@@ -222,6 +222,11 @@ ul.bullet-points {
 		}
 	}
 }
+.has-text-white {
+	p,a,strong {
+		color: white;
+	}
+}
 
 .course-description {
 	position: relative;
