@@ -38,6 +38,7 @@ if ( 'career' === $term->slug ) {
 } elseif ( 'course' === $term->slug ) {
 	$item_in_cart = ( ( new WP_Query( $args ) )->posts )[0];
 }
+
 ?>
 
 <li class="cart-item <?php echo $term->slug == 'career' ? 'career' : 'single-course'; ?> is-flex is-align-items-flex-start py-5 has-gap-16">
@@ -52,7 +53,7 @@ if ( 'career' === $term->slug ) {
 			else :
 				$resume_link = buddyboss_theme()->learndash_helper()->boss_theme_course_resume( $item_in_cart->ID );
 				?>
-				<a class="subtitle is-size-6 has-text-weight-bold mb-0" href="<?php echo esc_url( $resume_link ); ?>"><?php echo $item_in_cart->get_title(); ?></p>
+				<a class="subtitle is-size-6 has-text-weight-bold mb-0" href="<?php echo esc_url( $resume_link ); ?>"><?php echo get_the_title( $item_in_cart ); ?></p>
 		<?php endif; ?>
 		<?php if ( 'career' === $term->slug ) : ?>
 				<span class=" is-size-7 has-text-grey-light"><?php echo sprintf( esc_html__( '%s cursos', 'arkdewp' ), esc_attr( count( $courses ) ) ); ?></span>

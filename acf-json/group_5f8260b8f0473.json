@@ -23,11 +23,11 @@
             "maxlength": ""
         },
         {
-            "key": "field_5fcb0fdf196d9",
-            "label": "Vimeo background video",
-            "name": "vimeo_id",
+            "key": "field_669300aff22e2",
+            "label": "Video background",
+            "name": "video_file",
             "aria-label": "",
-            "type": "text",
+            "type": "file",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -36,11 +36,11 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": ""
         },
         {
             "key": "field_5faeeca6be2db",
@@ -235,5 +235,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678783197
+    "modified": 1720939901
 }

@@ -10,7 +10,7 @@
 get_header();
 $currency    = get_woocommerce_currency();
 $meta        = get_fields();
-$bg_video_id = $meta['bg_video_id'];
+$video_bg    = $meta['video_file'];
 $career_icon = $meta['icon'];
 $title_tech  = $meta['header']['tech'];
 $title_name  = $meta['header']['name'];
@@ -72,9 +72,9 @@ while ( have_posts() ) :
 	the_post();
 	?>
 	<section class="section pr-0 pl-0 background-gradient-purple background-career has-image has-video" id="main-section" style="background-image: url(<?php echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?>)">
-		<?php if ( $bg_video_id != '' ) : ?>
+		<?php if ( $video_bg != '' ) : ?>
 			<div class="video-bg-wrapper">
-				<iframe id="video-background" class="fitvidsignore" data-src="https://player.vimeo.com/video/<?php echo esc_attr( $bg_video_id ); ?>?background=1&autoplay=1&loop=1&byline=0&title=0"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>
+				<video class="fitvidsignore" id="video-background" data-src="<?php echo esc_url( $video_bg ); ?>" muted autoplay loop ></video>
 			</div>
 		<?php endif; ?>
 		<div class="container columns is-centered has-text-centered pt-6 pb-5 mt-6 mb-6">
@@ -114,7 +114,7 @@ while ( have_posts() ) :
 					</div>
 				</div>
 				<p class="subtitle is-size-6 has-text-white pt-3 mb-6"><?php echo esc_html( $desc ); ?></p> 
-				<?php if ( $preview_url ) :?>
+				<?php if ( $preview_url ) : ?>
 				<div>
 					<a href="" id="career-preview-launcher" data-preview="<?php echo esc_attr( $preview_url ); ?>">
 						<i class="fa-solid fa-circle-play has-text-light-gold"></i>

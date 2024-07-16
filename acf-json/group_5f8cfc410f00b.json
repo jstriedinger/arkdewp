@@ -6,6 +6,7 @@
             "key": "field_6393fc3346360",
             "label": "Titulo carrera",
             "name": "header",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -21,6 +22,7 @@
                     "key": "field_6393fc4746361",
                     "label": "tech",
                     "name": "tech",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -40,6 +42,7 @@
                     "key": "field_6393fc4d46362",
                     "label": "Nombre",
                     "name": "name",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -61,6 +64,7 @@
             "key": "field_607870408b37f",
             "label": "Icono",
             "name": "icon",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -84,8 +88,9 @@
         {
             "key": "field_5fcb116efdd82",
             "label": "Video background",
-            "name": "bg_video_id",
-            "type": "text",
+            "name": "video_file",
+            "aria-label": "",
+            "type": "file",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -94,16 +99,17 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4"
         },
         {
             "key": "field_63ca4fad14411",
             "label": "Trailer careera",
             "name": "career_video_preview",
+            "aria-label": "",
             "type": "text",
             "instructions": "ID de Youtube",
             "required": 0,
@@ -123,6 +129,7 @@
             "key": "field_5f8cff2c782b4",
             "label": "Descripcion",
             "name": "desc",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -142,6 +149,7 @@
             "key": "field_5fca9036ba06d",
             "label": "Qué vas a aprender?",
             "name": "objectives",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -155,12 +163,13 @@
             "min": 0,
             "max": 0,
             "layout": "table",
-            "button_label": "",
+            "button_label": "Add Row",
             "sub_fields": [
                 {
                     "key": "field_5fca9043ba06e",
                     "label": "text",
                     "name": "txt",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -174,14 +183,17 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_5fca9036ba06d"
                 }
-            ]
+            ],
+            "rows_per_page": 20
         },
         {
             "key": "field_63cb986ab67d4",
             "label": "Qué necesitas saber?",
             "name": "requirements",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -195,12 +207,13 @@
             "min": 0,
             "max": 0,
             "layout": "table",
-            "button_label": "",
+            "button_label": "Add Row",
             "sub_fields": [
                 {
                     "key": "field_63cb98b1b67d5",
                     "label": "Item",
                     "name": "txt",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -214,14 +227,17 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_63cb986ab67d4"
                 }
-            ]
+            ],
+            "rows_per_page": 20
         },
         {
             "key": "field_5fca905734e75",
             "label": "Cursos",
             "name": "courses",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -248,6 +264,7 @@
             "key": "field_63cb7ce3d73eb",
             "label": "Número de clases",
             "name": "num_topics",
+            "aria-label": "",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -269,6 +286,7 @@
             "key": "field_611b33ae35b87",
             "label": "Duración total",
             "name": "duration",
+            "aria-label": "",
             "type": "text",
             "instructions": "Formato: xh Ymin. Si este valor no existe se intenta agarrar los de los cursos y sumarlos",
             "required": 0,
@@ -288,6 +306,7 @@
             "key": "field_5f8cfd88782b0",
             "label": "Product WC",
             "name": "wc_product",
+            "aria-label": "",
             "type": "post_object",
             "instructions": "",
             "required": 0,
@@ -310,6 +329,7 @@
             "key": "field_5f8cfdbb782b1",
             "label": "Partner",
             "name": "partner",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -334,6 +354,7 @@
             "key": "field_5f8cfdd3782b2",
             "label": "Instructores",
             "name": "teachers",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -363,6 +384,7 @@
             "key": "field_5fb5d4c9dc4b3",
             "label": "Testimonios de Carrera",
             "name": "reviews",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -404,5 +426,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674294841
+    "modified": 1720938946
 }

@@ -27,9 +27,17 @@ input#wp-submit.button {
 	padding: 1rem;
 	border-radius: 5px;
 	background: linear-gradient(to right bottom, #6a11cb, #4A00E0);
-
+	
+	img.bs-cs-login-logo {
+		display: none;
+	}
 }
 
 .login.bb-login #login h1 a {
 	margin: 0 auto !important;
+	background: url(https://www.arkde.com/wp-content/uploads/2020/11/arkde.png) no-repeat;
+	width: 175px;
+	height: 45px !important;
+	background-size: 175px 45px;
+
 }

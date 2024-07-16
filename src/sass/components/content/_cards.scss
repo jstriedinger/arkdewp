@@ -18,6 +18,9 @@
 			height: 100%;
 		}
 	}
+	.card {
+		overflow: hidden;
+	}
 
 	.stack-card {
 		position: absolute;
@@ -43,7 +46,7 @@
 .card, a .card, a.card {
 	background: var(--card-background-color);
 	border-radius: var(--card-radius-big);
-	overflow: hidden;
+	//overflow: hidden;
 	position: relative;
 	img.avatar {
 		margin: 0 auto;
@@ -144,6 +147,32 @@
 			bottom:0;
 			z-index: 2;
 		}
+		.card-sale-badge {
+			position: absolute;
+			top: -9px;
+			right: 0;
+			font-weight: 700;
+			font-size: 1rem;
+			z-index: 1;
+			transform: rotate(-10deg);
+			color: white;
+			&:before {
+					content: "\f0a3";
+					z-index: -1;
+					font-size: 4rem;
+					position: absolute;
+					top: -34px;
+					right: -10px;
+					font-family: "Font Awesome 6 Free";
+					font-weight: 600;
+					color: #d63031;
+					background: linear-gradient(106deg,#48dbfb, #10ac84);
+					//background: -webkit-gradient(linear, left top, left bottom, from(#f00), to(#333));
+						-webkit-background-clip: text;
+						-webkit-text-fill-color: transparent;
+			
+				}
+		}
 		box-shadow: var(--card-clay-white);
 		.card-content {
 			h4 {
@@ -163,6 +192,8 @@
 			overflow: hidden;
 			position: relative;
 			cursor: pointer;
+			border-top-left-radius: var(--card-radius-big);
+			border-top-right-radius: var(--card-radius-big);
 			img {
 				left: 0;
 				margin: 0 auto;
@@ -180,6 +211,7 @@
 				left: 16px;
 				top: 16px;
 			}
+
 			&.course-card-preview-link {
 				&:before {
 						position: absolute;
@@ -471,6 +503,9 @@
 		}
 		.card-header {
 			height: 250px;
+			border-top-left-radius: var(--card-radius-big);
+			border-bottom-left-radius: var(--card-radius-big);
+			overflow: hidden;
 			@include desktop {
 				width: 40%;
 				max-width: 500px;
