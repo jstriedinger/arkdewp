@@ -48,7 +48,9 @@ if ( $show_downloads ) {
 
 		<div class="card with-shadows p-5 mt-5">
 			<h2 class="woocommerce-order-details__title is-size-4 mb-0"><?php esc_html_e( 'Resumen de tu compra', 'arkdewp' ); ?></h2>
+			<?php if( $order->has_Status('completed') || $order->has_status('epayco_completed')): ?>
 			<p class="is-size-14px mb-3"><?php esc_html_e( '(Haz clic en los cursos para empezar)', 'arkdewp' ); ?></p>
+			<?php endif; ?>
 			<ul>
 				<?php
 				do_action( 'woocommerce_order_details_before_order_table_items', $order );

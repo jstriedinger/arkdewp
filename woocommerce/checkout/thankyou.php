@@ -22,28 +22,26 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php
 	if ( $order ) :
-
 		do_action( 'woocommerce_before_thankyou', $order->get_id() );
 		?>
 	
 		<div class="woocommerce-order-over has-text-centered">
-
-		<?php if ( $order->has_status( 'failed' ) || $order->has_status( 'epayco-failed' ) ) : ?>
+		<?php if ( $order->has_status( 'failed' ) || $order->has_status( 'epayco-failed' ) || $order->has_status( 'cancelled' ) ) : ?>
 
 			<i class="icon is-large has-text-danger">
 				<span class="fa-solid fa-face-sad-tear is-size-1"></span>
 			</i>
 			<h1 class="order-result subtitle is-size-2 has-text-weight-bold"><?php esc_html_e( 'Tu pedido ha fallado', 'arkdewp' ); ?></h1>
 			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Hubo un problema al procesar tu pago. Por favor intenta de nuevo o ponte en contacto con nosotros.', 'arkdewp' ); ?></p>
-			
+			<br>
 			<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay is-primary"><?php esc_html_e( 'Paga aquí', 'arkdewp' ); ?></a>
 			
-		<?php elseif ( $order->has_status( 'epayco-on-hold' ) ) : ?>
+		<?php elseif ( $order->has_status( 'epayco-on-hold' ) || $order->has_status( 'on-hold' ) ) : ?>
 				<i class="icon is-large has-text-warning">
 					<span class="fa-solid fa-triangle-exclamation is-size-1"></span>
 				</i>
-			<h1 class="order-result subtitle is-size-2 has-text-weight-bold"><i class="bb-icons bb-icon-alert-octagon"></i><?php esc_html_e( 'Tu pedido está pendiente', 'arkdewp' ); ?></h1>
-			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Tu pedido está en esta Pendiente hasta recibir confirmación con tu banco. Esto puede suceder por diferentes razones de validación. Te confirmaremos cuando el pago haya sido confirmado.', 'arkdewp' ); ?></p>
+			<h1 class="order-result subtitle is-size-2 has-text-weight-bold"><?php esc_html_e( 'Tu pedido está pendiente', 'arkdewp' ); ?></h1>
+			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Tu pedido está en estado Pendiente hasta recibir confirmación con tu banco. Esto puede suceder por diferentes razones de validación. Te confirmaremos cuando el pago haya sido aceptado.', 'arkdewp' ); ?></p>
 
 		<?php else : ?>
 			<?php
@@ -99,16 +97,24 @@ defined( 'ABSPATH' ) || exit;
 		<?php do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() ); ?>
 		</div> <?php // woocommerce-order-over ?>
 		<?php do_action( 'woocommerce_thankyou', $order->get_id() ); ?>
+		
 
 	<?php else : ?>
-
-		<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Gracias. Tu pedido ha sido recibido.', 'arkdewp' ), null ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+		<div class="woocommerce-order-over has-text-centered">
+			<i class="icon is-large has-text-danger">
+				<span class="fa-solid fa-circle-xmark is-size-1"></span>
+			</i>
+			<h1 class="order-result subtitle is-size-2 has-text-weight-bold"><?php esc_html_e( 'Este pedido no existe', 'arkdewp' ); ?></h1>
+			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Este pedido que estás buscando no existe o no tienes acceso a ver su información. Si crees que es un error, escribenos a info@arkde.com.', 'arkdewp' ); ?></p>
+			
+		</div>
 
 	<?php endif; ?>
-
+	<?php if ($order && $order->has_status( 'completed' ) ) : ?>
 	<div class="pt-5 pb-6 has-text-centered">
 		<h3 class="is-size-4 has-text-weight-bold"><?php _e( 'Gracias por tu compra!', 'arkdewp' ); ?></h3>
-		<p ><?php _e( "Recibirás en tu correo una copia de conformación de tu compra", 'arkdewp' ); ?></p>
+		<p ><?php _e( 'Recibirás en tu correo una copia de conformación de tu compra', 'arkdewp' ); ?></p>
 	</div>
+	<?php endif; ?>
 </div>
 
