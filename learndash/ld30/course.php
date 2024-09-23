@@ -96,7 +96,11 @@ if ( $has_access ) {
 // get nums of lessons
 $num_topics = 0;
 foreach ( $lesson_topics as $lesson_topic ) {
-	$num_topics += count( $lesson_topic );
+	//module
+	if(is_array($lesson_topic))
+	{
+		$num_topics += count( $lesson_topic );
+	}
 }
 get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' => 'course-preview-modal' ) );
 
