@@ -38,7 +38,7 @@ class UICoursesGrid {
 				[ ...this.coursePreviews ].forEach( ( coursePreviewData ) => {
 					const courseCard = document.getElementById( `course-card-${ coursePreviewData.id }` )
 					const cardHeader = courseCard.querySelector( '.card-header' )
-					console.log(coursePreviewData);
+					//console.log(coursePreviewData);
 					if ( coursePreviewData.preview_url ) {
 						//add the class
 						cardHeader.classList.add( 'course-card-preview-link' )
@@ -85,7 +85,7 @@ class UICoursesGrid {
 					if ( this.ytPlayer ) {
 						this.ytPlayer.stop()
 						this.ytPlayer.mute()
-						console.log( 'stop from X' )
+						//console.log( 'stop from X' )
 					}
 				} )
 				//Close modal when click in background
@@ -104,7 +104,7 @@ class UICoursesGrid {
 					if ( e.code === 'Escape' && this.ytPlayer ) { // Escape key
 						this.ytPlayer.stop()
 						this.ytPlayer.mute()
-						console.log( 'stopping from ESC' )
+						//console.log( 'stopping from ESC' )
 					}
 				} )
 			}
