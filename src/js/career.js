@@ -24,22 +24,26 @@ class Career {
 			this.careerDesc = document.querySelector( '.course-description' )
 			//lets add the click listener to preview
 			this.previewLauncher = document.getElementById( 'career-preview-launcher' )
-			this.previewLauncher.addEventListener( 'click', ( event ) => this.showCareerPreview( event ) )
-			this.previewUrl = this.previewLauncher.dataset.preview
+			if(this.previewLauncher)
+			{
+				this.previewLauncher.addEventListener( 'click', ( event ) => this.showCareerPreview( event ) )
+				this.previewUrl = this.previewLauncher.dataset.preview
+				this.ytPlayer = new YTPlayer( '#course-video-preview', { related: false, modestBranding: true } )
+				this.ytPlayer.load( this.previewUrl, { autoplay: false, keyboard: false } )
+				this.ytPlayer.mute()
+				
+				//attach close events to close button of preview modal
+				//lets get buy now and more info btn text for the modal
+				const closeBtn = this.careerPreviewModal.querySelector( '.modal-close' )
+				closeBtn.addEventListener( 'click', () => {
+					if ( this.ytPlayer ) {
+						this.ytPlayer.pause()
+						this.ytPlayer.mute()
+					}
+				} )
+			}
 
-			this.ytPlayer = new YTPlayer( '#course-video-preview', { related: false, modestBranding: true } )
-			this.ytPlayer.load( this.previewUrl, { autoplay: false, keyboard: false } )
-			this.ytPlayer.mute()
 
-			//attach close events to close button of preview modal
-			//lets get buy now and more info btn text for the modal
-			const closeBtn = this.careerPreviewModal.querySelector( '.modal-close' )
-			closeBtn.addEventListener( 'click', () => {
-				if ( this.ytPlayer ) {
-					this.ytPlayer.pause()
-					this.ytPlayer.mute()
-				}
-			} )
 			//Close modal when click in background
 			document.addEventListener( 'click', ( event ) => {
 				const target = event.target
@@ -60,6 +64,7 @@ class Career {
 			//course description show more button
 			this.showMoreBtn.addEventListener( 'click', ( event ) => {
 				event.preventDefault()
+				console.log("Clcking toggle");
 				if ( this.careerDesc.classList.contains( 'is-showing' ) ) {
 					this.careerDesc.classList.remove( 'is-showing' )
 					this.showMoreBtn.querySelector( 'i' ).classList.remove( 'fa-chevron-up' )
