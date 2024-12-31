@@ -52,7 +52,7 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 			</a>
 		</div> -->
 
-				<div class="is-flex is-align-items-center py-3 px-4 has-gap-16">
+		<div class="is-flex is-align-items-center py-3 px-4 has-gap-16">
 			<div class="course-progress is-small">
 				<svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
 					<circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="transparent"></circle>
@@ -137,6 +137,7 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 										<?php
 										$lesson_progress = buddyboss_theme()->learndash_helper()->learndash_get_lesson_progress( $lesson->ID, $course_id );
 										$completed       = ! empty( $course_progress['lessons'][ $lesson->ID ] ) && 1 === $course_progress['lessons'][ $lesson->ID ];
+										
 										if ( ! $is_enrolled && ! $is_sample ) :
 											?>
 											<i class="fa-solid fa-lock has-text-grey-darker"></i>
@@ -146,6 +147,7 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 											<i class="fa-solid fa-circle-check has-text-primary"></i>
 
 									<?php	else : ?>
+
 											<i class="fa-solid fa-circle-check has-text-grey-lighter"></i>
 									<?php endif; ?>
 										<a class="is-size-14px" href="<?php echo esc_url( get_permalink( $lesson->ID ) ); ?>">
@@ -194,11 +196,25 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 															$lesson_video_enabled = isset( $topic_settings['lesson_video_enabled'] ) ? $topic_settings['lesson_video_enabled'] : null;
 															$completed            = ! empty( $course_progress['topics'][ $lesson->ID ][ $lesson_topic->ID ] ) && 1 === $course_progress['topics'][ $lesson->ID ][ $lesson_topic->ID ];
 															$is_assignment        = get_field( 'is_assignment', $lesson_topic->ID );
+
+															$icon = 'fa-circle fa-xs';
+															if($is_assignment) {
+																$icon = 'fa-feather';
+															}
+															elseif(has_term('review', 'ld_topic_category',$lesson_topic->ID))
+															{
+																$icon = 'fa-heart';
+															}
+															elseif(has_term('certificate', 'ld_topic_category',$lesson_topic->ID))
+															{
+																$icon = 'fa-trophy';
+															}
 															?>
 													<li class="lms-topic-item is-flex has-gap-16 is-align-items-center <?php echo $lesson_topic->ID === $post->ID ? esc_attr( 'current' ) : ''; ?>">
 															<?php if ( $is_sample || $is_enrolled ) : ?>
 																		<?php if ( $lesson_topic->ID === $post->ID ) : ?>
-																				<i class="fa-solid <?php echo ( $is_assignment ? 'fa-feather' : 'fa-circle fa-xs' ); ?> <?php echo ( $completed ? 'has-text-primary' : 'has-text-grey-lighter' ); ?>"></i>
+																			
+																				<i class="fa-solid <?php echo ( $icon); ?> <?php echo ( $completed ? 'has-text-primary' : 'has-text-grey-lighter' ); ?>"></i>
 																				<span class="is-size-14px has-text-weight-bold <?php echo $completed ? esc_attr( 'is-line-through' ) : ''; ?>"><?php echo $lesson_topic->post_title; ?></span>
 
 																		<?php else : ?>

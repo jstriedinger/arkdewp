@@ -120,6 +120,7 @@ a#career-preview-launcher {
 	}
 	&.is-small {
 		width: 85px;
+		flex: 0 0 85px;
 		.fa-solid{
 			font-size: 1.9rem;
 			top: calc(50% - 1.1rem);
