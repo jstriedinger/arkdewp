@@ -11,19 +11,22 @@ if ( ! isset( $course_progress[  $args['course_id'] ] ) ) {
 } else {
 	$course_progress = $course_progress[ $args['course_id'] ];
 }
-$course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage($args['user_id'], $args['course_id'] );
+$course_progress_num = (int) buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage($args['user_id'], $args['course_id'] );
 ?>
 <article class="card is-small mt-6">
 	<div class="card-content">
 		<div class="is-flex is-align-items-center has-gap-16">
 			<div class="course-progress is-small">
+				<?php if (is_numeric($course_progress_num)) : ?>
 				<svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
 					<circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="transparent"></circle>
 					<circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="3"></circle>
 					<circle class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="3" stroke-dasharray="<?php echo $course_progress_num . ' ' . ( 100 - $course_progress_num ); ?>" stroke-dashoffset="25"></circle>
 				</svg>
 				<i class="fa-solid fa-trophy"></i>
+				<?php endif; ?>
 			</div>
+			
 			<div>
 				
 <?php
