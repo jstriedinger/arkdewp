@@ -222,6 +222,13 @@ ul.bullet-points {
 		}
 	}
 }
+.content{
+	&.has-text-white{
+		h1,h2,h3,h5 {
+			color: white;
+		}
+	}
+}
 .has-text-white {
 	p,a,strong {
 		color: white;
@@ -340,6 +347,20 @@ ul.bullet-points {
 			background: var(--color-gold);
 			left: -20px;
 			bottom: calc(50% - 8px);
+		}
+	}
+}
+
+//404 page
+section.error-404{
+	padding: 2rem;
+	max-width: 1024px;
+	margin: 0 auto;
+	.bb-img-404{
+		padding-top: 3rem;
+		@include desktop{
+			max-width: 80%;
+			margin: 0 auto;
 		}
 	}
 }
