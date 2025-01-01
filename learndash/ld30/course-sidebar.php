@@ -219,7 +219,7 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 
 																		<?php else : ?>
 																			<a class="is-flex has-gap-16 is-align-items-center bb-title bb-lms-title-wrap is-size-14px is-flex-grow-1" href="<?php echo esc_url( get_permalink( $lesson_topic->ID ) ); ?>" title="<?php echo esc_attr( $lesson_topic->post_title ); ?>">
-																				<i class="fa-solid <?php echo ( $is_assignment ? 'fa-feather' : 'fa-circle fa-xs' ); ?> <?php echo ( $completed ? 'has-text-primary' : 'has-text-grey-lighter' ); ?> "></i>
+																				<i class="fa-solid <?php echo ( $icon); ?> <?php echo ( $completed ? 'has-text-primary' : 'has-text-grey-lighter' ); ?> "></i>
 																				<span class="is-size-14px <?php echo $completed ? esc_attr( 'is-line-through' ) : ''; ?>"><?php echo $lesson_topic->post_title; ?></span>	
 																			</a>
 																		<?php endif; ?>
