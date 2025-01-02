@@ -13,7 +13,7 @@ if ( ! isset( $course_progress[  $args['course_id'] ] ) ) {
 }
 $course_progress_num = (int) buddyboss_theme()->learndash_helper()->ld_get_progress_course_percentage($args['user_id'], $args['course_id'] );
 ?>
-<article class="card is-small mt-6 with-shadows">
+<article class="card is-small mt-4 with-shadows mb-6">
 	<div class="card-content">
 		<div class="is-flex is-align-items-center has-gap-16">
 			<div class="course-progress is-small">
