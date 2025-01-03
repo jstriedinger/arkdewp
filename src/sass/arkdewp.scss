@@ -91,6 +91,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 //@import "~bulma/bulma";
 @import "helpers";
 
+//flags
+$fp-prefix: 'fp' !default;
+$fp-4x3-path: './img/flags/4x3/' !default;
+$fp-1x1-path: './img/flags/1x1/' !default;
+$fp-countries: "ar","bo","br","ch","co","ec","py","pe","uy","ve","es","uk","mx","gb","us","ca";
+@import "~flagpack/src/flagpack.scss";
+
 
 
 /*--------------------------------------------------------------

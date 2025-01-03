@@ -61,7 +61,7 @@ if ( $course_status == 'completed' ) {
 	}
 } else {	?>
 				<h5 class="mb-1"><?php echo sprintf( __( '%s%% completado. ¡Sigue así!', 'arkdewp' ), esc_attr( $course_progress_num ) ); ?></h5>
-				<p><?php esc_html_e( 'Completa todo el contenido del curso (incluyendo esta lección), deja un reseña y podrás descargar tu certificado online.', 'arkdewp' ); ?></p>
+				<p><?php esc_html_e( 'Completa todo el contenido (incluyendo esta lección), deja un reseña y podrás descargar tu certificado.', 'arkdewp' ); ?></p>
 <?php }
 ?>
 			</div>
