@@ -5,8 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $teachers = $args[0];
 $career   = isset( $args[1] ) ? true : false;
 ?>
-
-<h3 class="subtitle is-size-4 has-text-weight-bold pt-4 <?php echo $career ? 'has-text-white' : ''; ?>"><?php count( $teachers ) > 1 ? esc_html_e( 'Tus instructores', 'arkdewp' ) : esc_html_e( 'Tu instructor', 'arkdewp' ); ?></h3>
+<div class="pt-6"></div>
+<h3 class="subtitle is-size-4 has-text-weight-bold pt-2 <?php echo $career ? 'has-text-white' : ''; ?>"><?php count( $teachers ) > 1 ? esc_html_e( 'Tus instructores', 'arkdewp' ) : esc_html_e( 'Tu instructor', 'arkdewp' ); ?></h3>
 <div class="is-flex has-gap-16 is-flex-direction-column mb-6">
 	<?php
 	foreach ( $teachers as $teacher ) :

@@ -48,6 +48,34 @@
             "new_lines": ""
         },
         {
+            "key": "field_67786cf72fcd9",
+            "label": "Featured images",
+            "name": "featured_images",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min": "",
+            "max": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "insert": "append",
+            "preview_size": "medium"
+        },
+        {
             "key": "field_6436ead456157",
             "label": "GIF preview video",
             "name": "preview_gif",
@@ -173,7 +201,8 @@
             "allow_null": 1,
             "multiple": 0,
             "return_format": "object",
-            "ui": 1
+            "ui": 1,
+            "bidirectional_target": []
         },
         {
             "key": "field_6081e93e7109c",
@@ -252,6 +281,7 @@
                     "max": 0,
                     "layout": "table",
                     "button_label": "Add Row",
+                    "rows_per_page": 20,
                     "sub_fields": [
                         {
                             "key": "field_607850b611dc6",
@@ -274,8 +304,7 @@
                             "maxlength": "",
                             "parent_repeater": "field_6078504311dc5"
                         }
-                    ],
-                    "rows_per_page": 20
+                    ]
                 },
                 {
                     "key": "field_5f6acc3e7845d",
@@ -296,6 +325,7 @@
                     "max": 0,
                     "layout": "table",
                     "button_label": "Add Row",
+                    "rows_per_page": 20,
                     "sub_fields": [
                         {
                             "key": "field_5faf6395cc06a",
@@ -318,8 +348,7 @@
                             "maxlength": "",
                             "parent_repeater": "field_5f6acc3e7845d"
                         }
-                    ],
-                    "rows_per_page": 20
+                    ]
                 },
                 {
                     "key": "field_60f0d543e08f4",
@@ -364,7 +393,8 @@
             "allow_null": 1,
             "multiple": 0,
             "return_format": "object",
-            "ui": 1
+            "ui": 1,
+            "bidirectional_target": []
         },
         {
             "key": "field_5f6580bebcd1b",
@@ -388,7 +418,8 @@
             "elements": "",
             "min": "",
             "max": "",
-            "return_format": "object"
+            "return_format": "object",
+            "bidirectional_target": []
         },
         {
             "key": "field_63c10acdfe6ca",
@@ -414,7 +445,8 @@
             "elements": "",
             "min": "",
             "max": "",
-            "return_format": "object"
+            "return_format": "object",
+            "bidirectional_target": []
         }
     ],
     "location": [
@@ -435,5 +467,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1685572828
+    "modified": 1735945627
 }

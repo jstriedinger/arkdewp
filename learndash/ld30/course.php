@@ -54,6 +54,7 @@ $resources          = $meta['info']['resources'];
 $preview_gif        = $meta['preview_gif'];
 $course_cover_photo = false;
 $sponsor            = $meta['sponsor'];
+$featured_images    = $meta['featured_images'];
 if ( class_exists( '\BuddyBossTheme\BuddyBossMultiPostThumbnails' ) ) {
 	$course_cover_photo = \BuddyBossTheme\BuddyBossMultiPostThumbnails::get_post_thumbnail_url(
 		'sfwd-courses',
@@ -265,8 +266,11 @@ get_template_part( 'template-parts/modals/course', 'preview', array( 'modal_id' 
 					}
 					get_template_part( 'template-parts/course/bulletpoints', '', array( 'bullets' => $bullets ) );
 					get_template_part( 'template-parts/course/description', '' );
+					if($featured_images)
+						get_template_part( 'template-parts/course/featured_images', '',array( 'featured_images' => $featured_images ) );
 					?>
-					<h3 class="subtitle is-size-4  has-text-weight-bold pt-4"><?php esc_html_e( 'Temario del curso', 'arkdewp' ); ?></h2>
+					<div class="pt-6"></div>
+					<h3 class="subtitle is-size-4  has-text-weight-bold pt-2"><?php esc_html_e( 'Temario del curso', 'arkdewp' ); ?></h2>
 					
 					<?php
 					learndash_get_template_part(

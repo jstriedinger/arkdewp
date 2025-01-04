@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( $lessons && ! empty( $lessons ) ) : ?>
 	
-	<div class="course-pensum mb-6">
+	<div class="course-pensum">
 	<?php
 	foreach ( $lessons as $lesson ) :
 		$lesson          = $lesson['post'];
