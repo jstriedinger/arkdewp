@@ -92,13 +92,7 @@
 <?php endif; ?>
 
 <?php wp_footer(); ?>
-<?php
-if ( is_singular( array( 'sfwd-courses', 'sfwd-lessons', 'sfwd-topic' ) ) ) :
-	?>
-		<script src="code.jivosite.com/widget/C9bfrgBJMN" async></script>
-	<?php
-endif;
-?>
+
 
 </body>
 </html>

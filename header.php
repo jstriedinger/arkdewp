@@ -18,6 +18,13 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<meta name="facebook-domain-verification" content="qtkj1h0bu1uopx6inpvml2jouchksl" />
 
+	<?php
+if ( is_singular( array( 'sfwd-courses', 'sfwd-lessons', 'sfwd-topic' ) ) ) :
+	?>
+		<script src="//code.jivosite.com/widget/E7FAbcDoaC" async></script>
+	<?php
+endif;
+?>
 	<?php wp_head(); ?>
 </head>
 
