@@ -17,13 +17,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<meta name="facebook-domain-verification" content="qtkj1h0bu1uopx6inpvml2jouchksl" />
-	<?php
-	if ( is_singular( array( 'sfwd-courses', 'sfwd-lessons', 'sfwd-topic' ) ) ) :
-		?>
-		<script src="//code.jivosite.com/widget/C9bfrgBJMN" async></script>
-		<?php
-endif;
-	?>
 
 	<?php wp_head(); ?>
 </head>
