@@ -14,6 +14,7 @@ if ( 0 === $parent_course_data ) {
 $parent_course       = get_post( $parent_course_data );
 $parent_course_link  = $parent_course->guid;
 $parent_course_title = $parent_course->post_title;
+$parent_course_review_lesson = get_field( 'review_lesson', $parent_course->ID );
 $is_enrolled         = false;
 $current_user_id     = get_current_user_id();
 $get_course_groups   = learndash_get_course_groups( $parent_course->ID );
@@ -64,8 +65,7 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 			<div>
 				<p class="has-text-weight-bold is-size-6"><?php echo $course_progress_num; ?>% <?php esc_html_e( 'completado', 'arkdewp' ); ?></p>
 				<?php
-				if ( 'completed' !== $course_progress['status'] && $course_progress_num < 100 ) :
-
+				if ( 'completed' !== $course_progress['status'] && $course_progress_num < 30 ) :
 					?>
 					<p class="is-size-6"><?php esc_html_e( '¡Sigue así!', 'arkdewp' ); ?></p>
 					<?php else : ?>
@@ -83,11 +83,11 @@ $course_progress_num = buddyboss_theme()->learndash_helper()->ld_get_progress_co
 							</a>
 							
 							<?php
-						} else {
+						} elseif($parent_course_review_lesson) {
 							?>
-							<button class="write-a-review button is-small not-rated" data-course_id="<?php echo esc_attr( $course_id ); ?>">
+							<a class="button is-small is-purple is-simple" href="<?php echo esc_url(get_post_permalink($parent_course_review_lesson ) ) ;?>">
 								<?php echo esc_html( 'Deja una reseña', 'arkdewp' ); ?>
-							</button>
+						</a>
 							<?php
 						}
 						?>

@@ -447,6 +447,35 @@
             "max": "",
             "return_format": "object",
             "bidirectional_target": []
+        },
+        {
+            "key": "field_67888856aa08a",
+            "label": "Clase para ingresar reseña",
+            "name": "review_lesson",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "sfwd-topic"
+            ],
+            "post_status": "",
+            "taxonomy": [
+                "ld_topic_category:review"
+            ],
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 1,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
         }
     ],
     "location": [
@@ -467,5 +496,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1735945627
+    "modified": 1737003679
 }
